@@ -526,8 +526,6 @@ const int hmiHlpIgnoreFilesCount = sizeof(hmiHlpIgnoreFiles) / sizeof(hmiHlpIgno
 Generator::Generator()
 {
     getJsonValue();
-    runtime = new Runtime;
-    runtime->show();
 }
 
 void Generator::getJsonValue(){

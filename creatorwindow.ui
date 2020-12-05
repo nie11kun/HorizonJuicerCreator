@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CreatorWindow</class>
+ <widget class="QWidget" name="CreatorWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>895</width>
+    <height>553</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>500</y>
+     <width>191</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QPushButton" name="saveDataPushButton">
+      <property name="text">
+       <string>保存设置</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="labelError">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="creatPushButton">
+      <property name="text">
+       <string>程序生成</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>10</y>
+     <width>211</width>
+     <height>535</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetFixedSize</enum>
+    </property>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QLabel" name="labelMachineType">
+        <property name="text">
+         <string>机床类型</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelIfHasScrewTap">
+        <property name="text">
+         <string>是否磨丝锥</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelWareType">
+        <property name="text">
+         <string>修整器类型</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelIfHasWorm">
+        <property name="text">
+         <string>是否磨蜗杆</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelWheelType">
+        <property name="text">
+         <string>修整轮类型</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelShapeType">
+        <property name="text">
+         <string>齿形选择</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelIfHasReOp">
+        <property name="text">
+         <string>二次对刀</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelIfOperation">
+        <property name="text">
+         <string>自动对刀</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelMeasureMethord">
+        <property name="text">
+         <string>对刀机构</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelIfCenter">
+        <property name="text">
+         <string>磨削中心</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelIfHasU">
+        <property name="text">
+         <string>U轴</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelIfHasA">
+        <property name="text">
+         <string>A轴</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelGrindWheelType">
+        <property name="text">
+         <string>砂轮驱动</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelDressWheelType">
+        <property name="text">
+         <string>修正轮驱动</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelRoughFeedInput">
+        <property name="text">
+         <string>粗磨量</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <widget class="QComboBox" name="comboBoxMachineType">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>外螺纹</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>内螺纹</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxIfHasScrewTap">
+        <item>
+         <property name="text">
+          <string>是</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>否</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxWareType">
+        <item>
+         <property name="text">
+          <string>VW</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>V</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>XZ</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>X_Back</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>液压</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxIfHasWorm">
+        <item>
+         <property name="text">
+          <string>否</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>是</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxWheelType">
+        <item>
+         <property name="text">
+          <string>单/方滚轮</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>双滚轮</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxShapeType">
+        <item>
+         <property name="text">
+          <string>全套齿形</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>双圆弧</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxIfHasReOp">
+        <item>
+         <property name="text">
+          <string>有</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>无</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxIfOperation">
+        <item>
+         <property name="text">
+          <string>有</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>无</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxMeasureMethord">
+        <item>
+         <property name="text">
+          <string>开关</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>测头</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>开关和测头</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxIfCenter">
+        <item>
+         <property name="text">
+          <string>是</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>不是</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxIfHasU">
+        <item>
+         <property name="text">
+          <string>有</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>无</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxIfHasA">
+        <item>
+         <property name="text">
+          <string>有</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>无</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxGrindWheelType">
+        <item>
+         <property name="text">
+          <string>伺服</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>变频器</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxDressWheelType">
+        <item>
+         <property name="text">
+          <string>伺服</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>变频器</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxRoughFeedInput">
+        <item>
+         <property name="text">
+          <string>自动计算</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>手动输入</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>255</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_6">
+    <item>
+     <widget class="QGroupBox" name="groupBoxMachineInfo">
+      <property name="title">
+       <string>机床信息</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QLabel" name="labelMachineName">
+             <property name="text">
+              <string>机床型号</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelMachineNameLng">
+             <property name="text">
+              <string>机床名称</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelMachineIndex">
+             <property name="text">
+              <string>机床编号</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelCustomInfo">
+             <property name="text">
+              <string>用户名称</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelLng">
+             <property name="text">
+              <string>机床语言</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QLineEdit" name="lineEditMachineName">
+             <property name="text">
+              <string>demo</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEditMachineNameLng">
+             <property name="text">
+              <string>demo</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEditMachineIndex">
+             <property name="text">
+              <string>1</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEditCustomInfo">
+             <property name="text">
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBoxLng">
+             <item>
+              <property name="text">
+               <string>chs</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>eng</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="labelIfRemoveComments">
+        <property name="text">
+         <string>删除注释</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxIfRemoveComments">
+        <item>
+         <property name="text">
+          <string>是</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>否</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

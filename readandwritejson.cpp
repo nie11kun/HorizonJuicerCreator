@@ -72,9 +72,6 @@ void ReadAndWriteJson::setDirs(QString a, QString b) {
 
     obj1.insert("programDir", obj2);
 
-    if (obj1["version"].isNull())
-        obj1.insert("version", "0.0.0");
-
     if (!obj1["customInfo"].isNull()) {
         ConvertCode c;
         string s = obj1["customInfo"].toString().toStdString();

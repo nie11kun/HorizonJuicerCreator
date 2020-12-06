@@ -1,11 +1,13 @@
 #include "horizonjuicercreator.hpp"
 #include "ui_horizonjuicercreator.h"
+#include "convertcode.hpp"
 
 HorizonJuicerCreator::HorizonJuicerCreator(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::HorizonJuicerCreator)
 {
     ui->setupUi(this);
+    setVersion();
 }
 
 HorizonJuicerCreator::~HorizonJuicerCreator()
@@ -13,6 +15,30 @@ HorizonJuicerCreator::~HorizonJuicerCreator()
     delete ui;
 }
 
+void HorizonJuicerCreator::setVersion() {
+    ReadAndWriteJson r;
+    QJsonObject obj = r.readJsonToObj();
+
+    if (obj["version"].isNull() || obj["version"].toString() != version) {
+        obj.insert("version", version);
+
+        if (!obj["customInfo"].isNull()) {
+            ConvertCode c;
+            string s = obj["customInfo"].toString().toStdString();
+            s = c.UTF8ToGBK(s);
+            //s = c.GBKToUTF8(s);
+            obj.insert("customInfo", QString::fromStdString(s));
+        }
+        if (!obj["machineNameLng"].isNull()) {
+            ConvertCode c;
+            string s = obj["machineNameLng"].toString().toStdString();
+            s = c.UTF8ToGBK(s);
+            obj.insert("machineNameLng", QString::fromStdString(s));
+        }
+
+        r.saveObjToJson(obj);
+    }
+}
 
 void HorizonJuicerCreator::on_creatNewMachineButton_clicked()
 {

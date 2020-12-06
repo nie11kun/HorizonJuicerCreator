@@ -7,6 +7,7 @@
 #include "setting.hpp"
 #include "about.hpp"
 #include "history.hpp"
+#include "readandwritejson.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class HorizonJuicerCreator; }
@@ -38,5 +39,7 @@ private:
     Setting *setting;
     About *about;
     History *history;
+    void setVersion();
+    QString version = "3.11.4";
 };
 #endif // HORIZONJUICERCREATOR_H

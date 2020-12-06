@@ -1,15 +1,19 @@
-#ifndef GENERATOR_HPP
-#define GENERATOR_HPP
+#ifndef GENERATEPRO_H
+#define GENERATEPRO_H
 
+#include <QObject>
 #include <string>
 #include "readandwritejson.hpp"
 
 using namespace std;
 
-class Generator
+class GeneratePro : public QObject
 {
+    Q_OBJECT
 public:
-    Generator();
+    explicit GeneratePro(QObject *parent = nullptr);
+
+public slots:
     void startGenerate();
 
 private:
@@ -45,11 +49,8 @@ private:
     int ifHasScrewTap;
     int ifHasWorm;
 
-#ifdef _WIN32
-    string seg = "\\";
-#else
-    string seg = "/";
-#endif
+signals:
+
 };
 
-#endif // GENERATOR_HPP
+#endif // GENERATEPRO_H

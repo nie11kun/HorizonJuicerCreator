@@ -14,7 +14,7 @@ SOURCES += \
     convertcode.cpp \
     creatorwindow.cpp \
     filework.cpp \
-    generator.cpp \
+    generatepro.cpp \
     history.cpp \
     main.cpp \
     horizonjuicercreator.cpp \
@@ -27,7 +27,7 @@ HEADERS += \
     convertcode.hpp \
     creatorwindow.hpp \
     filework.hpp \
-    generator.hpp \
+    generatepro.h \
     history.hpp \
     horizonjuicercreator.hpp \
     readandwritejson.hpp \
@@ -70,7 +70,8 @@ macx: {
 
 DISTFILES +=
 
-RESOURCES +=
+RESOURCES += \
+    resourse.qrc
 
 
 

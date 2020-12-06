@@ -1,10 +1,16 @@
-#include "generator.hpp"
+#include "generatepro.h"
 #include <iostream>
 #include "convertcode.hpp"
 #include "filework.hpp"
 #include "boost/filesystem.hpp"
 
 namespace fs = boost::filesystem;
+
+#ifdef _WIN32
+    string seg = "\\";
+#else
+    string seg = "/";
+#endif
 
 const char* isComments =
 "(;[^\n\*]+)";
@@ -391,33 +397,33 @@ string mpfsourceDir[] = {
 };
 
 string hmiCfgSourceDir[] = {
-    seg + "Source_Library" + seg + "HMI" + seg  + "cfg"
+    seg + "Source_Library" + seg + "HMI" + seg + "cfg"
 };
 
 string hmiIco640SourceDir[] = {
-    seg + "Source_Library" + seg + "HMI" + seg  + "ico" + seg  + "ico640"
+    seg + "Source_Library" + seg + "HMI" + seg + "ico" + seg + "ico640"
 };
 
 string hmiIco800SourceDir[] = {
-    seg + "Source_Library" + seg + "HMI" + seg "ico" + seg  + "ico800"
+    seg + "Source_Library" + seg + "HMI" + seg + "ico" + seg + "ico800"
 };
 string hmiIco800DefaultSourceDir[] = {
-    seg + "Source_Library" + seg + "HMI" + seg "ico" + seg  + "ico800" + seg + "default"
+    seg + "Source_Library" + seg + "HMI" + seg + "ico" + seg + "ico800" + seg + "default"
 };
 string hmiLngSourceDir[] = {
-    seg + "Source_Library" + seg + "HMI" + seg  + "lng"
+    seg + "Source_Library" + seg + "HMI" + seg + "lng"
 };
 string hmiHlpSourceDir[] = {
-    seg + "Source_Library" + seg + "HMI" + seg  + "hlp"
+    seg + "Source_Library" + seg + "HMI" + seg + "hlp"
 };
 string hmiProjSourceDir[] = {
-    seg + "Source_Library" + seg + "HMI" + seg  + "proj"
+    seg + "Source_Library" + seg + "HMI" + seg + "proj"
 };
 string hmiRepositorySourceDir[] = {
-    seg + "Source_Library" + seg + "HMI" + seg  + "Repository"
+    seg + "Source_Library" + seg + "HMI" + seg + "Repository"
 };
 string screwTapSourceDir[] = {
-    seg + "Source_Library" + seg + "CMA" + seg  + "SCREW_TAP"
+    seg + "Source_Library" + seg + "CMA" + seg + "SCREW_TAP"
 };
 //*******************************************
 const char* swIncludeFiles[] = {
@@ -488,18 +494,18 @@ const char* HenGang =
 ;
 //*******************************************
 
-string cmaDirRef = seg  + "CMA";
-string mpfDirRef = seg  + "MPF";
-string defDirRef = seg  + "DEF";
-string hmiDirRef = seg  + "HMI";
-string hmiCfgDirRef = seg  + "HMI" + seg  + "cfg";
-string hmiIcoDirRef = seg  + "HMI" + seg  + "ico";
-string hmiIco640DirRef = seg  + "HMI" + seg "ico" + seg  + "ico640";
-string hmiIco800DirRef = seg  + "HMI" + seg "ico" + seg  + "ico800";
-string hmiIco800DefaultDirRef = seg  + "HMI" + seg "ico" + seg  + "ico800" + seg "default";
-string hmiLngDirRef = seg  + "HMI" + seg  + "lng";
-string hmiProjDirRef = seg  + "HMI" + seg  + "proj";
-string hmiHlpDirRef = seg  + "HMI" + seg  + "hlp";
+string cmaDirRef = seg + "CMA";
+string mpfDirRef = seg + "MPF";
+string defDirRef = seg + "DEF";
+string hmiDirRef = seg + "HMI";
+string hmiCfgDirRef = seg + "HMI" + seg + "cfg";
+string hmiIcoDirRef = seg + "HMI" + seg + "ico";
+string hmiIco640DirRef = seg + "HMI" + seg + "ico" + seg + "ico640";
+string hmiIco800DirRef = seg + "HMI" + seg + "ico" + seg + "ico800";
+string hmiIco800DefaultDirRef = seg + "HMI" + seg + "ico" + seg + "ico800" + seg + "default";
+string hmiLngDirRef = seg + "HMI" + seg + "lng";
+string hmiProjDirRef = seg + "HMI" + seg + "proj";
+string hmiHlpDirRef = seg + "HMI" + seg + "hlp";
 
 const char* snxzSourceDirRef[] = { "SN$", "X_Z$" };
 const char* swvwSourceDirRef[] = { "SW$", "V_W$" };
@@ -523,12 +529,12 @@ const int hmiHlpIgnoreFilesCount = sizeof(hmiHlpIgnoreFiles) / sizeof(hmiHlpIgno
 
 //**********************************************
 
-Generator::Generator()
+GeneratePro::GeneratePro(QObject *parent) : QObject(parent)
 {
     getJsonValue();
 }
 
-void Generator::getJsonValue(){
+void GeneratePro::getJsonValue(){
     ConvertCode c;
     ReadAndWriteJson r;
     QJsonObject obj = r.readJsonToObj();
@@ -596,7 +602,7 @@ void Generator::getJsonValue(){
     cout << "-------------------" << endl;
 }
 
-void Generator::startGenerate() {
+void GeneratePro::startGenerate() {
     FileWork project;
     ConvertCode convert;
 
@@ -643,9 +649,9 @@ void Generator::startGenerate() {
     //************************************************
 
     if (lng == 1)
-        hmiIco800DefaultSourceDir[0] += seg  + "chs";
+        hmiIco800DefaultSourceDir[0] += seg + "chs";
     else
-        hmiIco800DefaultSourceDir[0] += seg  + "eng";
+        hmiIco800DefaultSourceDir[0] += seg + "eng";
 
     string destDirParent = destDir;
     destDir = destDir + seg + machineNameForDirName;
@@ -1292,3 +1298,4 @@ void Generator::startGenerate() {
         std::cout << "pleace enter the right directory." << std::endl;
     }
 }
+

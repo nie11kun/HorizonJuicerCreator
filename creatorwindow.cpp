@@ -9,6 +9,8 @@
 #include <convertcode.hpp>
 #include <QListView>
 #include <QDir>
+#include <QMovie>
+#include <QDesktopServices>
 
 using namespace std;
 
@@ -19,6 +21,16 @@ CreatorWindow::CreatorWindow(QWidget *parent) :
     ui->setupUi(this);
     getMachineInfo();
     loadComboBoxSet();
+
+    QMovie *movie = new QMovie(":./processing.gif");
+    movie->setScaledSize(ui->labelProcessing->size());
+    ui->labelProcessing->setMovie(movie);
+    movie->start();
+
+    generator = new GeneratePro();
+    t = new QThread;
+    generator->moveToThread(t);
+    t->start();
 }
 
 CreatorWindow::~CreatorWindow()
@@ -279,10 +291,17 @@ void CreatorWindow::on_creatPushButton_clicked()
     if (!obj["programDir"].isNull()) {
         QJsonObject a = obj["programDir"].toObject();
         if (!a["sourceDir"].isNull() && !a["destDir"].isNull() && QDir(a["sourceDir"].toString()).exists() && QDir(a["destDir"].toString()).exists()) {
-            QWidget::close();
+            // QWidget::close();
 
-            Generator g;
-            g.startGenerate();
+            ui->labelInfo->setStyleSheet("QLabel { color : red; }");
+            ui->labelInfo->setText("正在生成程序...");
+
+            generator->startGenerate();
+
+            ui->labelInfo->setText("程序已生成");
+
+            QDesktopServices::openUrl(QUrl("file:///" + r.getDestDir()));
+
         } else {
             setting = new Setting;
             setting->show();

@@ -3,7 +3,8 @@
 
 #include <QWidget>
 #include "setting.hpp"
-#include "generator.hpp"
+#include "generatepro.h"
+#include <QThread>
 
 namespace Ui {
 class CreatorWindow;
@@ -40,6 +41,12 @@ private:
     void operationComboBoxSet(int index);
     void centerSet(int index);
     Setting *setting;
+    GeneratePro *generator;
+    QThread *t;
+
+signals:
+    void startOtherThread();
+
 };
 
 #endif // CREATORWINDOW_HPP

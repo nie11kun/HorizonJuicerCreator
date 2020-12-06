@@ -51,6 +51,8 @@ private:
     int ifHasWorm;
 
 signals:
+    void triggerStartingProcess();
+    void triggerFinishedProcess();
 
 };
 

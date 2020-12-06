@@ -531,7 +531,6 @@ const int hmiHlpIgnoreFilesCount = sizeof(hmiHlpIgnoreFiles) / sizeof(hmiHlpIgno
 
 GeneratePro::GeneratePro(QObject *parent) : QObject(parent)
 {
-    getJsonValue();
     //qDebug() << "Current thread:" << thread();
 }
 
@@ -608,6 +607,10 @@ void GeneratePro::getJsonValue(){
 }
 
 void GeneratePro::startGenerate() {
+    emit triggerStartingProcess();
+
+    getJsonValue();
+
     FileWork project;
     ConvertCode convert;
 
@@ -1302,5 +1305,7 @@ void GeneratePro::startGenerate() {
     else {
         std::cout << "pleace enter the right directory." << std::endl;
     }
+
+    emit triggerFinishedProcess();
 }
 

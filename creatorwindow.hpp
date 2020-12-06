@@ -32,6 +32,9 @@ private slots:
 
     void on_creatPushButton_clicked();
 
+    void startingProcess();
+    void finishedProcess();
+
 private:
     Ui::CreatorWindow *ui;
     void getMachineInfo();
@@ -45,7 +48,7 @@ private:
     QThread *t;
 
 signals:
-    void startOtherThread();
+    void triggerProcess();
 
 };
 

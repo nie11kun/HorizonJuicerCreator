@@ -26,11 +26,16 @@ CreatorWindow::CreatorWindow(QWidget *parent) :
     movie->setScaledSize(ui->labelProcessing->size());
     ui->labelProcessing->setMovie(movie);
     movie->start();
+    ui->labelProcessing->hide();
 
     generator = new GeneratePro();
     t = new QThread;
     generator->moveToThread(t);
     t->start();
+
+    connect(this, SIGNAL(triggerProcess()), generator, SLOT(startGenerate()));
+    connect(generator, SIGNAL(triggerStartingProcess()), this, SLOT(startingProcess()));
+    connect(generator, SIGNAL(triggerFinishedProcess()), this, SLOT(finishedProcess()));
 }
 
 CreatorWindow::~CreatorWindow()
@@ -292,18 +297,10 @@ void CreatorWindow::on_creatPushButton_clicked()
         QJsonObject a = obj["programDir"].toObject();
         if (!a["sourceDir"].isNull() && !a["destDir"].isNull() && QDir(a["sourceDir"].toString()).exists() && QDir(a["destDir"].toString()).exists()) {
             // QWidget::close();
-
-            ui->labelInfo->setStyleSheet("QLabel { color : red; }");
-            ui->labelInfo->setText("正在生成程序...");
             //qDebug() << "Current thread:" << thread();
+            //generator->startGenerate();
 
-            generator->startGenerate();
-            //generator->test();
-
-            ui->labelInfo->setText("程序已生成");
-
-            QDesktopServices::openUrl(QUrl("file:///" + r.getDestDir()));
-
+            emit triggerProcess();
         } else {
             setting = new Setting;
             setting->show();
@@ -312,4 +309,26 @@ void CreatorWindow::on_creatPushButton_clicked()
         setting = new Setting;
         setting->show();
     }
+}
+
+void CreatorWindow::startingProcess() {
+    ui->creatPushButton->setText("正在生成");
+    ui->creatPushButton->setDisabled(true);
+    ui->saveDataPushButton->setDisabled(true);
+    ui->labelInfo->hide();
+    ui->labelProcessing->show();
+}
+
+void CreatorWindow::finishedProcess() {
+    ReadAndWriteJson r;
+
+    ui->creatPushButton->setText("程序生成");
+    ui->creatPushButton->setDisabled(false);
+    ui->saveDataPushButton->setDisabled(false);
+    ui->labelProcessing->hide();
+    ui->labelInfo->show();
+    ui->labelInfo->setStyleSheet("QLabel { color : red; }");
+    ui->labelInfo->setText("程序已生成");
+
+    QDesktopServices::openUrl(QUrl("file:///" + r.getDestDir()));
 }

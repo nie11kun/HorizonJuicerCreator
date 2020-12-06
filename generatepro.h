@@ -15,6 +15,7 @@ public:
 
 public slots:
     void startGenerate();
+    void test();
 
 private:
     void getJsonValue();

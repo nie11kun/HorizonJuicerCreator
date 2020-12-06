@@ -295,8 +295,10 @@ void CreatorWindow::on_creatPushButton_clicked()
 
             ui->labelInfo->setStyleSheet("QLabel { color : red; }");
             ui->labelInfo->setText("正在生成程序...");
+            //qDebug() << "Current thread:" << thread();
 
             generator->startGenerate();
+            //generator->test();
 
             ui->labelInfo->setText("程序已生成");
 

@@ -532,6 +532,11 @@ const int hmiHlpIgnoreFilesCount = sizeof(hmiHlpIgnoreFiles) / sizeof(hmiHlpIgno
 GeneratePro::GeneratePro(QObject *parent) : QObject(parent)
 {
     getJsonValue();
+    //qDebug() << "Current thread:" << thread();
+}
+
+void GeneratePro::test() {
+    qDebug() << "Current thread:" << thread();
 }
 
 void GeneratePro::getJsonValue(){

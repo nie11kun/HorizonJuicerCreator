@@ -114,8 +114,10 @@ void CreatorWindow::on_saveDataPushButton_clicked()
 
         r.saveObjToJson(obj);
 
+        ui->labelInfo->setText("保存成功");
+
     } else {
-        ui->labelError->setText("机床信息设置有误");
+        ui->labelInfo->setText("机床信息设置有误");
     }
 
 }

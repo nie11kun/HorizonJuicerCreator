@@ -6,10 +6,10 @@
 
 namespace fs = boost::filesystem;
 
-char* isComments =
+const char* isComments =
 "(;[^\n\*]+)";
 
-char* commentsInFiles[] = {
+const char* commentsInFiles[] = {
     "com$",
     "spf$",
     "mpf$",
@@ -18,419 +18,419 @@ char* commentsInFiles[] = {
     "MPF$"
 };
 //*****************************************
-char* ifIsKaiGuanCeLiang =
+const char* ifIsKaiGuanCeLiang =
 "(;ifIsKaiGuanCeLiangBegin.*?;ifIsKaiGuanCeLiangEnd)|"
 "(\<!--ifIsKaiGuanCeLiangBegin--\>.*?\<!--ifIsKaiGuanCeLiangEnd--\>)|"
 "([^\n]+ifIsKaiGuanCeLiang\\b)|"
 "([^\n]+\<!--ifIsKaiGuanCeLiangLine--\>)"
 ;
-char* ifIsCeTouCeLiang =
+const char* ifIsCeTouCeLiang =
 "(;ifIsCeTouCeLiangBegin.*?;ifIsCeTouCeLiangEnd)|"
 "(\<!--ifIsCeTouCeLiangBegin--\>.*?\<!--ifIsCeTouCeLiangEnd--\>)|"
 "([^\n]+ifIsCeTouCeLiang\\b)|"
 "([^\n]+\<!--ifIsCeTouCeLiangLine--\>)"
 ;
-char* ifIsKaiGuanAndCeTouCeLiang =
+const char* ifIsKaiGuanAndCeTouCeLiang =
 "(;ifIsKaiGuanAndCeTouCeLiangBegin.*?;ifIsKaiGuanAndCeTouCeLiangEnd)|"
 "(\<!--ifIsKaiGuanAndCeTouCeLiangBegin--\>.*?\<!--ifIsKaiGuanAndCeTouCeLiangEnd--\>)|"
 "([^\n]+ifIsKaiGuanAndCeTouCeLiang\\b)|"
 "([^\n]+\<!--ifIsKaiGuanAndCeTouCeLiangLine--\>)"
 ;
-char* ifIsNotCenter =
+const char* ifIsNotCenter =
 "(;ifIsNotCenterBegin.*?;ifIsNotCenterEnd)|"
 "(\<!--ifIsNotCenterBegin--\>.*?\<!--ifIsNotCenterEnd--\>)|"
 "([^\n]+ifIsNotCenter\\b)|"
 "([^\n]+\<!--ifIsNotCenterLine--\>)"
 ;
-char* ifIsCenter =
+const char* ifIsCenter =
 "(;ifIsCenterBegin.*?;ifIsCenterEnd)|"
 "(\<!--ifIsCenterBegin--\>.*?\<!--ifIsCenterEnd--\>)|"
 "([^\n]+ifIsCenter\\b)|"
 "([^\n]+\<!--ifIsCenterLine--\>)"
 ;
-char* ifIsAuto =
+const char* ifIsAuto =
 "(;ifIsAutoBegin.*?;ifIsAutoEnd)|"
 "(\<!--ifIsAutoBegin--\>.*?\<!--ifIsAutoEnd--\>)|"
 "([^\n]+ifIsAuto\\b)|"
 "([^\n]+\<!--ifIsAutoLine--\>)"
 ;
-char* ifIsExternal =
+const char* ifIsExternal =
 "(;ifIsExternalBegin.*?;ifIsExternalEnd)|"
 "(\<!--ifIsExternalBegin--\>.*?\<!--ifIsExternalEnd--\>)|"
 "([^\n]+ifIsExternal\\b)|"
 "([^\n]+\<!--ifIsExternalLine--\>)"
 ;
-char* ifIsExternalVW =
+const char* ifIsExternalVW =
 "(;ifIsExternalVWBegin.*?;ifIsExternalVWEnd)|"
 "(\<!--ifIsExternalVWBegin--\>.*?\<!--ifIsExternalVWEnd--\>)|"
 "([^\n]+ifIsExternalVW\\b)|"
 "([^\n]+\<!--ifIsExternalVWLine--\>)"
 ;
-char* ifIsScrewTap =
+const char* ifIsScrewTap =
 "(;ifIsScrewTapBegin.*?;ifIsScrewTapEnd)|"
 "(\<!--ifIsScrewTapBegin--\>.*?\<!--ifIsScrewTapEnd--\>)|"
 "([^\n]+ifIsScrewTap\\b)|"
 "([^\n]+\<!--ifIsScrewTapLine--\>)"
 ;
-char* ifIsNotScrewTap =
+const char* ifIsNotScrewTap =
 "(;ifIsNotScrewTapBegin.*?;ifIsNotScrewTapEnd)|"
 "(\<!--ifIsNotScrewTapBegin--\>.*?\<!--ifIsNotScrewTapEnd--\>)|"
 "([^\n]+ifIsNotScrewTap\\b)|"
 "([^\n]+\<!--ifIsNotScrewTapLine--\>)"
 ;
-char* ifIsInternal =
+const char* ifIsInternal =
 "(;ifIsInternalBegin.*?;ifIsInternalEnd)|"
 "(\<!--ifIsInternalBegin--\>.*?\<!--ifIsInternalEnd--\>)|"
 "([^\n]+ifIsInternal\\b)|"
 "([^\n]+\<!--ifIsInternalLine--\>)"
 ;
-char* ifIsInternalOnly =
+const char* ifIsInternalOnly =
 "(;ifIsInternalOnlyBegin.*?;ifIsInternalOnlyEnd)|"
 "(\<!--ifIsInternalOnlyBegin--\>.*?\<!--ifIsInternalOnlyEnd--\>)|"
 "([^\n]+ifIsInternalOnly\\b)|"
 "([^\n]+\<!--ifIsInternalOnlyLine--\>)"
 ;
-char* ifIsDressWare1 =
+const char* ifIsDressWare1 =
 "(;ifIsDressWare1Begin.*?;ifIsDressWare1End)|"
 "(\<!--ifIsDressWare1Begin--\>.*?\<!--ifIsDressWare1End--\>)|"
 "([^\n]+ifIsDressWare1\\b)|"
 "([^\n]+\<!--ifIsDressWare1Line--\>)"
 ;
-char* ifIsDressWare2 =
+const char* ifIsDressWare2 =
 "(;ifIsDressWare2Begin.*?;ifIsDressWare2End)|"
 "(\<!--ifIsDressWare2Begin--\>.*?\<!--ifIsDressWare2End--\>)|"
 "([^\n]+ifIsDressWare2\\b)|"
 "([^\n]+\<!--ifIsDressWare2Line--\>)"
 ;
-char* ifIsDressWare3 =
+const char* ifIsDressWare3 =
 "(;ifIsDressWare3Begin.*?;ifIsDressWare3End)|"
 "(\<!--ifIsDressWare3Begin--\>.*?\<!--ifIsDressWare3End--\>)|"
 "([^\n]+ifIsDressWare3\\b)|"
 "([^\n]+\<!--ifIsDressWare3Line--\>)"
 ;
-char* ifIsDressWare4 =
+const char* ifIsDressWare4 =
 "(;ifIsDressWare4Begin.*?;ifIsDressWare4End)|"
 "(\<!--ifIsDressWare4Begin--\>.*?\<!--ifIsDressWare4End--\>)|"
 "([^\n]+ifIsDressWare4\\b)|"
 "([^\n]+\<!--ifIsDressWare4Line--\>)"
 ;
-char* ifIsDressWare5 =
+const char* ifIsDressWare5 =
 "(;ifIsDressWare5Begin.*?;ifIsDressWare5End)|"
 "(\<!--ifIsDressWare5Begin--\>.*?\<!--ifIsDressWare5End--\>)|"
 "([^\n]+ifIsDressWare5\\b)|"
 "([^\n]+\<!--ifIsDressWare5Line--\>)"
 ;
-char* ifIsSingleAndRound =
+const char* ifIsSingleAndRound =
 "(;ifIsSingleAndRoundBegin.*?;ifIsSingleAndRoundEnd)|"
 "(\<!--ifIsSingleAndRoundBegin--\>.*?\<!--ifIsSingleAndRoundEnd--\>)|"
 "([^\n]+ifIsSingleAndRound\\b)|"
 "([^\n]+\<!--ifIsSingleAndRoundLine--\>)"
 ;
-char* ifIsSide =
+const char* ifIsSide =
 "(;ifIsSideBegin.*?;ifIsSideEnd)|"
 "(\<!--ifIsSideBegin--\>.*?\<!--ifIsSideEnd--\>)|"
 "([^\n]+ifIsSide\\b)|"
 "([^\n]+\<!--ifIsSideLine--\>)"
 ;
-char* ifIsAllShape =
+const char* ifIsAllShape =
 "(;ifIsAllShapeBegin.*?;ifIsAllShapeEnd)|"
 "(\<!--ifIsAllShapeBegin--\>.*?\<!--ifIsAllShapeEnd--\>)|"
 "([^\n]+ifIsAllShape\\b)|"
 "([^\n]+\<!--ifIsAllShapeLine--\>)"
 ;
-char* ifIsArc =
+const char* ifIsArc =
 "(;ifIsArcBegin.*?;ifIsArcEnd)|"
 "(\<!--ifIsArcBegin--\>.*?\<!--ifIsArcEnd--\>)|"
 "([^\n]+ifIsArc\\b)|"
 "([^\n]+\<!--ifIsArcLine--\>)"
 ;
-char* ifIsOnlyArc =
+const char* ifIsOnlyArc =
 "(;ifIsOnlyArcBegin.*?;ifIsOnlyArcEnd)|"
 "(\<!--ifIsOnlyArcBegin--\>.*?\<!--ifIsOnlyArcEnd--\>)|"
 "([^\n]+ifIsOnlyArc\\b)|"
 "([^\n]+\<!--ifIsOnlyArcLine--\>)"
 ;
-char* ifIsFrontDress =
+const char* ifIsFrontDress =
 "(;ifIsFrontDressBegin.*?;ifIsFrontDressEnd)|"
 "(\<!--ifIsFrontDressBegin--\>.*?\<!--ifIsFrontDressEnd--\>)|"
 "([^\n]+ifIsFrontDress\\b)|"
 "([^\n]+\<!--ifIsFrontDressLine--\>)"
 ;
-char* ifIsBackDress =
+const char* ifIsBackDress =
 "(;ifIsBackDressBegin.*?;ifIsBackDressEnd)|"
 "(\<!--ifIsBackDressBegin--\>.*?\<!--ifIsBackDressEnd--\>)|"
 "([^\n]+ifIsBackDress\\b)|"
 "([^\n]+\<!--ifIsBackDressLine--\>)"
 ;
-char* ifIsVW =
+const char* ifIsVW =
 "(;ifIsVWBegin.*?;ifIsVWEnd)|"
 "(\<!--ifIsVWBegin--\>.*?\<!--ifIsVWEnd--\>)|"
 "([^\n]+ifIsVW\\b)|"
 "([^\n]+\<!--ifIsVWLine--\>)"
 ;
-char* ifIsVWSR =
+const char* ifIsVWSR =
 "(;ifIsVWSRBegin.*?;ifIsVWSREnd)|"
 "(\<!--ifIsVWSRBegin--\>.*?\<!--ifIsVWSREnd--\>)|"
 "([^\n]+ifIsVWSR\\b)|"
 "([^\n]+\<!--ifIsVWSRLine--\>)"
 ;
-char* ifIsVWSide =
+const char* ifIsVWSide =
 "(;ifIsVWSideBegin.*?;ifIsVWSideEnd)|"
 "(\<!--ifIsVWSideBegin--\>.*?\<!--ifIsVWSideEnd--\>)|"
 "([^\n]+ifIsVWSide\\b)|"
 "([^\n]+\<!--ifIsVWSideLine--\>)"
 ;
-char* ifIsV =
+const char* ifIsV =
 "(;ifIsVBegin.*?;ifIsVEnd)|"
 "(\<!--ifIsVBegin--\>.*?\<!--ifIsVEnd--\>)|"
 "([^\n]+ifIsV\\b)|"
 "([^\n]+\<!--ifIsVLine--\>)"
 ;
-char* ifIsXZSR =
+const char* ifIsXZSR =
 "(;ifIsXZSRBegin.*?;ifIsXZSREnd)|"
 "(\<!--ifIsXZSRBegin--\>.*?\<!--ifIsXZSREnd--\>)|"
 "([^\n]+ifIsXZSR\\b)|"
 "([^\n]+\<!--ifIsXZSRLine--\>)"
 ;
-char* ifIsXZSide =
+const char* ifIsXZSide =
 "(;ifIsXZSideBegin.*?;ifIsXZSideEnd)|"
 "(\<!--ifIsXZSideBegin--\>.*?\<!--ifIsXZSideEnd--\>)|"
 "([^\n]+ifIsXZSide\\b)|"
 "([^\n]+\<!--ifIsXZSideLine--\>)"
 ;
-char* ifIsXWai =
+const char* ifIsXWai =
 "(;ifIsXWaiBegin.*?;ifIsXWaiEnd)|"
 "(\<!--ifIsXWaiBegin--\>.*?\<!--ifIsXWaiEnd--\>)|"
 "([^\n]+ifIsXWai\\b)|"
 "([^\n]+\<!--ifIsXWaiLine--\>)"
 ;
-char* ifIsXNeiFront =
+const char* ifIsXNeiFront =
 "(;ifIsXNeiFrontBegin.*?;ifIsXNeiFrontEnd)|"
 "(\<!--ifIsXNeiFrontBegin--\>.*?\<!--ifIsXNeiFrontEnd--\>)|"
 "([^\n]+ifIsXNeiFront\\b)|"
 "([^\n]+\<!--ifIsXNeiFrontLine--\>)"
 ;
-char* ifIsXNeiBack =
+const char* ifIsXNeiBack =
 "(;ifIsXNeiBackBegin.*?;ifIsXNeiBackEnd)|"
 "(\<!--ifIsXNeiBackBegin--\>.*?\<!--ifIsXNeiBackEnd--\>)|"
 "([^\n]+ifIsXNeiBack\\b)|"
 "([^\n]+\<!--ifIsXNeiBackLine--\>)"
 ;
-char* ifIsVH =
+const char* ifIsVH =
 "(;ifIsVHBegin.*?;ifIsVHEnd)|"
 "(\<!--ifIsVHBegin--\>.*?\<!--ifIsVHEnd--\>)|"
 "([^\n]+ifIsVH\\b)|"
 "([^\n]+\<!--ifIsVHLine--\>)"
 ;
-char* ifIsHasWorm =
+const char* ifIsHasWorm =
 "(;ifIsHasWormBegin.*?;ifIsHasWormEnd)|"
 "(\<!--ifIsHasWormBegin--\>.*?\<!--ifIsHasWormEnd--\>)|"
 "([^\n]+ifIsHasWorm\\b)|"
 "([^\n]+\<!--ifIsHasWormLine--\>)"
 ;
-char* ifIsNotHasWorm =
+const char* ifIsNotHasWorm =
 "(;ifIsNotHasWormBegin.*?;ifIsNotHasWormEnd)|"
 "(\<!--ifIsNotHasWormBegin--\>.*?\<!--ifIsNotHasWormEnd--\>)|"
 "([^\n]+ifIsNotHasWorm\\b)|"
 "([^\n]+\<!--ifIsNotHasWormLine--\>)"
 ;
-char* ifIsHasU =
+const char* ifIsHasU =
 "(;ifIsHasUBegin.*?;ifIsHasUEnd)|"
 "(\<!--ifIsHasUBegin--\>.*?\<!--ifIsHasUEnd--\>)|"
 "([^\n]+ifIsHasU\\b)|"
 "([^\n]+\<!--ifIsHasULine--\>)"
 ;
-char* ifIsNotHasU =
+const char* ifIsNotHasU =
 "(;ifIsNotHasUBegin.*?;ifIsNotHasUEnd)|"
 "(\<!--ifIsNotHasUBegin--\>.*?\<!--ifIsNotHasUEnd--\>)|"
 "([^\n]+ifIsNotHasU\\b)|"
 "([^\n]+\<!--ifIsNotHasULine--\>)"
 ;
-char* ifIsRoughToAmount =
+const char* ifIsRoughToAmount =
 "(;ifIsRoughToAmountBegin.*?;ifIsRoughToAmountEnd)|"
 "(\<!--ifIsRoughToAmountBegin--\>.*?\<!--ifIsRoughToAmountEnd--\>)|"
 "([^\n]+ifIsRoughToAmount\\b)|"
 "([^\n]+\<!--ifIsRoughToAmountLine--\>)"
 ;
-char* ifIsNotRoughToAmount =
+const char* ifIsNotRoughToAmount =
 "(;ifIsNotRoughToAmountBegin.*?;ifIsNotRoughToAmountEnd)|"
 "(\<!--ifIsNotRoughToAmountBegin--\>.*?\<!--ifIsNotRoughToAmountEnd--\>)|"
 "([^\n]+ifIsNotRoughToAmount\\b)|"
 "([^\n]+\<!--ifIsNotRoughToAmountLine--\>)"
 ;
-char* ifIsHasReOperate =
+const char* ifIsHasReOperate =
 "(;ifIsHasReOperateBegin.*?;ifIsHasReOperateEnd)|"
 "(\<!--ifIsHasReOperateBegin--\>.*?\<!--ifIsHasReOperateEnd--\>)|"
 "([^\n]+ifIsHasReOperate\\b)|"
 "([^\n]+\<!--ifIsHasReOperateLine--\>)"
 ;
-char* ifIsNotHasReOperate =
+const char* ifIsNotHasReOperate =
 "(;ifIsNotHasReOperateBegin.*?;ifIsNotHasReOperateEnd)|"
 "(\<!--ifIsNotHasReOperateBegin--\>.*?\<!--ifIsNotHasReOperateEnd--\>)|"
 "([^\n]+ifIsNotHasReOperate\\b)|"
 "([^\n]+\<!--ifIsNotHasReOperateLine--\>)"
 ;
-char* ifIsCHS =
+const char* ifIsCHS =
 "(;ifIsCHSBegin.*?;ifIsCHSEnd)|"
 "(\<!--ifIsCHSBegin--\>.*?\<!--ifIsCHSEnd--\>)|"
 "([^\n]+ifIsCHS\\b)|"
 "([^\n]+\<!--ifIsCHSLine--\>)"
 ;
-char* ifIsENG =
+const char* ifIsENG =
 "(;ifIsENGBegin.*?;ifIsENGEnd)|"
 "(\<!--ifIsENGBegin--\>.*?\<!--ifIsENGEnd--\>)|"
 "([^\n]+ifIsENG\\b)|"
 "([^\n]+\<!--ifIsENGLine--\>)"
 ;
-char* ifIsHasOtherCommonShape =
+const char* ifIsHasOtherCommonShape =
 "(;ifIsHasOtherCommonShapeBegin.*?;ifIsHasOtherCommonShapeEnd)|"
 "(\<!--ifIsHasOtherCommonShapeBegin--\>.*?\<!--ifIsHasOtherCommonShapeEnd--\>)|"
 "([^\n]+ifIsHasOtherCommonShape\\b)|"
 "([^\n]+\<!--ifIsHasOtherCommonShapeLine--\>)"
 ;
 //----------------------------------------
-char* rmUnusedPart =
+const char* rmUnusedPart =
 "(;)"
 ;
-char* rmUnusedPartInHTML =
+const char* rmUnusedPartInHTML =
 "(<!--removed-->)"
 ;
 //****************************************
-char* chsInPanel =
+const char* chsInPanel =
 "(chs\.png)"
 ;
-char* toEngInPanel =
+const char* toEngInPanel =
 "(eng\.png)"
 ;
 //*****************************************
-char* ifIsHasA =
+const char* ifIsHasA =
 "(INI\\[16]\\=\\d)"
 ;
-char* itIsHasA =
+const char* itIsHasA =
 "(INI[16]=1)"
 ;
-char* ifIsSiFuInGrindWheel =
+const char* ifIsSiFuInGrindWheel =
 "(INI\\[36]\\=\\d)"
 ;
-char* itIsSiFuInGrindWheel =
+const char* itIsSiFuInGrindWheel =
 "(INI[36]=1)"
 ;
-char* ifIsSiFuInDressWheel =
+const char* ifIsSiFuInDressWheel =
 "(INI\\[37]\\=\\d)"
 ;
-char* itIsSiFuInDressWheel =
+const char* itIsSiFuInDressWheel =
 "(INI[37]=1)"
 ;
-char* ifIsAutoOp =
+const char* ifIsAutoOp =
 "(INI\\[69]\\=\\d)"
 ;
-char* itIsAutoOp =
+const char* itIsAutoOp =
 "(INI[69]=1)"
 ;
-char* ifIsReOp =
+const char* ifIsReOp =
 "(INI\\[78]\\=\\d)"
 ;
-char* itIsReOp =
+const char* itIsReOp =
 "(INI[78]=1)"
 ;
 //***************************************
-char* fromMachineNameInMain =
+const char* fromMachineNameInMain =
 "(machineName)"
 ;
-char* fromMachineNameCHS =
+const char* fromMachineNameCHS =
 "(machineCHS)"
 ;
-char* fromMachineIndex =
+const char* fromMachineIndex =
 "(machineIndex)"
 ;
-char* fromCustomInfo =
+const char* fromCustomInfo =
 "(customInfo)"
 ;
-char* fromDebugDate =
+const char* fromDebugDate =
 "(debugDate)"
 ;
-char* fromSoftwareVersion =
+const char* fromSoftwareVersion =
 "(softwareVersion)"
 ;
-char* fromSpecificationInfo =
+const char* fromSpecificationInfo =
 "(specificationInfo)"
 ;
 //***************************************
 string souceLibraryDir[] = {
-    "/\\Source_Library"
+    seg + "Source_Library"
 };
 
 string commonSourceDir[] = {
-    "/\\Source_Library/\\CMA",
-    "/\\Source_Library/\\CMA/\\DRESS_PART",
-    "/\\Source_Library/\\CMA/\\DRESS_PART/\\shape"
+    seg + "Source_Library" + seg + "CMA",
+    seg + "Source_Library" + seg + "CMA" + seg + "DRESS_PART",
+    seg + "Source_Library" + seg + "CMA" + seg + "DRESS_PART" + seg + "shape"
 };
 string commonShapeDir[] = {
-    "/\\Source_Library/\\CMA/\\DRESS_PART/\\CommonShape"
+    seg + "Source_Library" + seg + "CMA" + seg + "DRESS_PART" + seg + "CommonShape"
 };
 string externalShapeDir[] = {
-    "/\\Source_Library/\\CMA/\\DRESS_PART/\\ExterneShape"
+    seg + "Source_Library" + seg + "CMA" + seg + "DRESS_PART" + seg + "ExterneShape"
 };
 string wormShapeDir[] = {
-    "/\\Source_Library/\\CMA/\\DRESS_PART/\\Worm"
+    seg + "Source_Library" + seg + "CMA" + seg + "DRESS_PART" + seg + "Worm"
 };
 string operationSourceDir[] = {
-    "/\\Source_Library/\\CMA/\\auto_operation"
+    seg + "Source_Library" + seg + "CMA" + seg + "auto_operation"
 };
 
 string centerSourceDir[] = {
-    "/\\Source_Library/\\CMA/\\GRIND_CENTER"
+    seg + "Source_Library" + seg + "CMA" + seg + "GRIND_CENTER"
 };
 
 string defSourceDir[] = {
-    "/\\Source_Library/\\DEF"
+    seg + "Source_Library" + seg + "DEF"
 };
 
 string mpfsourceDir[] = {
-    "/\\Source_Library/\\MPF"
+    seg + "Source_Library" + seg + "MPF"
 };
 
 string hmiCfgSourceDir[] = {
-    "/\\Source_Library/\\HMI/\\cfg"
+    seg + "Source_Library" + seg + "HMI" + seg  + "cfg"
 };
 
 string hmiIco640SourceDir[] = {
-    "/\\Source_Library/\\HMI/\\ico/\\ico640"
+    seg + "Source_Library" + seg + "HMI" + seg  + "ico" + seg  + "ico640"
 };
 
 string hmiIco800SourceDir[] = {
-    "/\\Source_Library/\\HMI/\\ico/\\ico800"
+    seg + "Source_Library" + seg + "HMI" + seg "ico" + seg  + "ico800"
 };
 string hmiIco800DefaultSourceDir[] = {
-    "/\\Source_Library/\\HMI/\\ico/\\ico800/\\default"
+    seg + "Source_Library" + seg + "HMI" + seg "ico" + seg  + "ico800" + seg + "default"
 };
 string hmiLngSourceDir[] = {
-    "/\\Source_Library/\\HMI/\\lng"
+    seg + "Source_Library" + seg + "HMI" + seg  + "lng"
 };
 string hmiHlpSourceDir[] = {
-    "/\\Source_Library/\\HMI/\\hlp"
+    seg + "Source_Library" + seg + "HMI" + seg  + "hlp"
 };
 string hmiProjSourceDir[] = {
-    "/\\Source_Library/\\HMI/\\proj"
+    seg + "Source_Library" + seg + "HMI" + seg  + "proj"
 };
 string hmiRepositorySourceDir[] = {
-    "/\\Source_Library/\\HMI/\\Repository"
+    seg + "Source_Library" + seg + "HMI" + seg  + "Repository"
 };
 string screwTapSourceDir[] = {
-    "/\\Source_Library/\\CMA/\\SCREW_TAP"
+    seg + "Source_Library" + seg + "CMA" + seg  + "SCREW_TAP"
 };
 //*******************************************
-char* swIncludeFiles[] = {
+const char* swIncludeFiles[] = {
     "INFO_INIT\.MPF$"
 };
-char* snIncludeFiles[] = {
+const char* snIncludeFiles[] = {
     "INFO_INIT\.MPF$"
 };
-char* hmiHlpIgnoreFiles[] = {
+const char* hmiHlpIgnoreFiles[] = {
     "\.png$",
     "\.PNG$"
 };
-char* commonProjFiles[] = {
+const char* commonProjFiles[] = {
     "custom\.com$",
     "dress\.com$",
     "dressware\.com$",
@@ -438,72 +438,72 @@ char* commonProjFiles[] = {
     "info\.com$",
     "process\.com$"
 };
-char* cbProjFiles[] = {
+const char* cbProjFiles[] = {
     "shape\.com$",
     "shapecommon\.com$"
 };
-char* autoProjFiles[] = {
+const char* autoProjFiles[] = {
     "auto\.com$"
 };
-char* centerProjFiles[] = {
+const char* centerProjFiles[] = {
     "centerduanmian\.com$",
     "centermain\.com$",
     "centerwaiyuan\.com$"
 };
 
-char* ncPlcParaFiles[] = {
+const char* ncPlcParaFiles[] = {
     "NC_PLC-variates\.xml$"
 };
 
-char* machinePic800[] = {
+const char* machinePic800[] = {
     "panel_0_0",
     "panel_0_1"
 };
-char* machinePic640[] = {
+const char* machinePic640[] = {
     "splash"
 };
 
-char* mpfMachineMainProgram[] = {
+const char* mpfMachineMainProgram[] = {
     "INFO_INIT\.MPF$"
 };
-char* cmaMachineINIProgram[] = {
+const char* cmaMachineINIProgram[] = {
     "B_MACHINE_INI\.SPF$"
 };
 //*******************************************
-char* MultiSymbel =
+const char* MultiSymbel =
 "(×)|"
 "(\\*)"
 ;
-char* MultiRepleace =
+const char* MultiRepleace =
 "(x)"
 ;
-char* Half =
+const char* Half =
 "(/)"
 ;
-char* XiaHua =
+const char* XiaHua =
 "(_)"
 ;
-char* HenGang =
+const char* HenGang =
 "(-)"
 ;
 //*******************************************
 
-string cmaDirRef = "/\\CMA";
-string mpfDirRef = "/\\MPF";
-string defDirRef = "/\\DEF";
-string hmiDirRef = "/\\HMI";
-string hmiCfgDirRef = "/\\HMI/\\cfg";
-string hmiIcoDirRef = "/\\HMI/\\ico";
-string hmiIco640DirRef = "/\\HMI/\\ico/\\ico640";
-string hmiIco800DirRef = "/\\HMI/\\ico/\\ico800";
-string hmiIco800DefaultDirRef = "/\\HMI/\\ico/\\ico800/\\default";
-string hmiLngDirRef = "/\\HMI/\\lng";
-string hmiProjDirRef = "/\\HMI/\\proj";
-string hmiHlpDirRef = "/\\HMI/\\hlp";
+string cmaDirRef = seg  + "CMA";
+string mpfDirRef = seg  + "MPF";
+string defDirRef = seg  + "DEF";
+string hmiDirRef = seg  + "HMI";
+string hmiCfgDirRef = seg  + "HMI" + seg  + "cfg";
+string hmiIcoDirRef = seg  + "HMI" + seg  + "ico";
+string hmiIco640DirRef = seg  + "HMI" + seg "ico" + seg  + "ico640";
+string hmiIco800DirRef = seg  + "HMI" + seg "ico" + seg  + "ico800";
+string hmiIco800DefaultDirRef = seg  + "HMI" + seg "ico" + seg  + "ico800" + seg "default";
+string hmiLngDirRef = seg  + "HMI" + seg  + "lng";
+string hmiProjDirRef = seg  + "HMI" + seg  + "proj";
+string hmiHlpDirRef = seg  + "HMI" + seg  + "hlp";
 
-char* snxzSourceDirRef[] = { "SN$", "X_Z$" };
-char* swvwSourceDirRef[] = { "SW$", "V_W$" };
-char* swxzSourceDirRef[] = { "SW$", "X_Z$" };
+const char* snxzSourceDirRef[] = { "SN$", "X_Z$" };
+const char* swvwSourceDirRef[] = { "SW$", "V_W$" };
+const char* swxzSourceDirRef[] = { "SW$", "X_Z$" };
 //**********************************
 
 const int swIFCount = sizeof(swIncludeFiles) / sizeof(swIncludeFiles[0]);
@@ -593,6 +593,7 @@ void Generator::getJsonValue(){
     cout << ifHasReOp << endl;
     cout << ifHasScrewTap << endl;
     cout << ifHasWorm << endl;
+    cout << "-------------------" << endl;
 }
 
 void Generator::startGenerate() {
@@ -626,9 +627,9 @@ void Generator::startGenerate() {
     project.findAndReplaceInString(machineName, HenGang, Half);
     string machineNameForInfo = machineName;
 
-    char* toMachineNameInMain = (char*)machineNameForInfo.c_str();
+    const char* toMachineNameInMain = (char*)machineNameForInfo.c_str();
     string nameFixed = machineNameForFileName + "$";
-    char* c_machineName[] = { (char*)nameFixed.c_str() };
+    const char* c_machineName[] = { (char*)nameFixed.c_str() };
 
     //*************************************************
     char* toMachineNameLng = (char*)machineNameLng.c_str();
@@ -642,12 +643,12 @@ void Generator::startGenerate() {
     //************************************************
 
     if (lng == 1)
-        hmiIco800DefaultSourceDir[0] += "/\\chs";
+        hmiIco800DefaultSourceDir[0] += seg  + "chs";
     else
-        hmiIco800DefaultSourceDir[0] += "/\\eng";
+        hmiIco800DefaultSourceDir[0] += seg  + "eng";
 
     string destDirParent = destDir;
-    destDir = destDir + "/\\" + machineNameForDirName;
+    destDir = destDir + seg + machineNameForDirName;
 
     //*******************************************
 
@@ -729,7 +730,7 @@ void Generator::startGenerate() {
     const char* c_hmiHlpDestDir = hmiHlpDirRef.insert(0, destDir).c_str();
     const char* c_hmiIco640DestDir = hmiIco640DirRef.insert(0, destDir).c_str();
     const char* c_hmiIco800DestDir = hmiIco800DirRef.insert(0, destDir).c_str();
-    const char* c_hmiIco800DefaultDestDir = hmiIco800DefaultDirRef.insert(0, destDir).c_str();
+    //const char* c_hmiIco800DefaultDestDir = hmiIco800DefaultDirRef.insert(0, destDir).c_str();
     const char* c_hmiLngDestDir = hmiLngDirRef.insert(0, destDir).c_str();
     const char* c_hmiProjDestDir = hmiProjDirRef.insert(0, destDir).c_str();
 
@@ -783,12 +784,12 @@ void Generator::startGenerate() {
         fs::create_directory(hmiIco800Path);
 
         cout << "\n\ncopy files:\n";
-        project.copyFilesToNewDirWithIgnore(c_defSourceDir[0], c_defDestDir, NULL, NULL);
-        project.copyFilesToNewDirWithIgnore(c_hmiCfgSourceDir[0], c_hmiCfgDestDir, NULL, NULL);
+        project.copyFilesToNewDirWithIgnore(c_defSourceDir[0], c_defDestDir, NULL, 0);
+        project.copyFilesToNewDirWithIgnore(c_hmiCfgSourceDir[0], c_hmiCfgDestDir, NULL, 0);
         project.copyFileFolderToNewDir(c_hmiHlpSourceDir[0], c_hmiHlpDestDir);
-        project.copyFilesToNewDirWithIgnore(c_hmiLngSourceDir[0], c_hmiLngDestDir, NULL, NULL);
-        project.copyFilesToNewDirWithIgnore(c_hmiIco640SourceDir[0], c_hmiIco640DestDir, NULL, NULL);
-        project.copyFilesToNewDirWithIgnore(c_hmiIco800DefaultSourceDir[0], c_hmiIco800DestDir, NULL, NULL);
+        project.copyFilesToNewDirWithIgnore(c_hmiLngSourceDir[0], c_hmiLngDestDir, NULL, 0);
+        project.copyFilesToNewDirWithIgnore(c_hmiIco640SourceDir[0], c_hmiIco640DestDir, NULL, 0);
+        project.copyFilesToNewDirWithIgnore(c_hmiIco800DefaultSourceDir[0], c_hmiIco800DestDir, NULL, 0);
 
         project.copyFilesToNewDirWithInclude(c_hmiProjSourceDir[0], c_hmiProjDestDir, commonProjFiles, commonPFCount);
         project.copyFilesToNewDirWithInclude(c_souceLibraryDir[0], c_distMainDir, ncPlcParaFiles, ncPlcParaCount);
@@ -798,28 +799,28 @@ void Generator::startGenerate() {
             if (wareType == 0 || wareType == 1)
             {
                 for (int i = 0; i < commonSDSize; i++) {
-                    project.copyFilesToNewDirWithIgnoreRefDirs(c_commonSourceDir[i], swvwSourceDirRef, swvwSDCount, c_cmaDestDir, NULL, NULL);
+                    project.copyFilesToNewDirWithIgnoreRefDirs(c_commonSourceDir[i], swvwSourceDirRef, swvwSDCount, c_cmaDestDir, NULL, 0);
                 }
             }
             else
             {
                 for (int i = 0; i < commonSDSize; i++) {
-                    project.copyFilesToNewDirWithIgnoreRefDirs(c_commonSourceDir[i], swxzSourceDirRef, swxzSDCount, c_cmaDestDir, NULL, NULL);
+                    project.copyFilesToNewDirWithIgnoreRefDirs(c_commonSourceDir[i], swxzSourceDirRef, swxzSDCount, c_cmaDestDir, NULL, 0);
                 }
             }
 
             if (wareType != 1)
             {
                 project.copyFilesToNewDirWithInclude(c_hmiProjSourceDir[0], c_hmiProjDestDir, cbProjFiles, cbPFCount);
-                project.copyFilesToNewDirWithIgnore(c_commonShapeDir[0], c_cmaDestDir, NULL, NULL);
-                project.copyFilesToNewDirWithIgnore(c_externalShapeDir[0], c_cmaDestDir, NULL, NULL);
+                project.copyFilesToNewDirWithIgnore(c_commonShapeDir[0], c_cmaDestDir, NULL, 0);
+                project.copyFilesToNewDirWithIgnore(c_externalShapeDir[0], c_cmaDestDir, NULL, 0);
             }
 
             if (wareType == 0 || wareType == 2)
             {
                 if (ifHasWorm == 1)
                 {
-                    project.copyFilesToNewDirWithIgnore(c_wormShapeDir[0], c_cmaDestDir, NULL, NULL);
+                    project.copyFilesToNewDirWithIgnore(c_wormShapeDir[0], c_cmaDestDir, NULL, 0);
                 }
             }
 
@@ -827,39 +828,39 @@ void Generator::startGenerate() {
 
             if (ifOperation == 0)
             {
-                project.copyFilesToNewDirWithIgnoreRefDirs(c_operationSourceDir[0], swvwSourceDirRef, swvwSDCount, c_cmaDestDir, NULL, NULL);
+                project.copyFilesToNewDirWithIgnoreRefDirs(c_operationSourceDir[0], swvwSourceDirRef, swvwSDCount, c_cmaDestDir, NULL, 0);
                 project.copyFilesToNewDirWithInclude(c_hmiProjSourceDir[0], c_hmiProjDestDir, autoProjFiles, autoPFCount);
             }
 
             if (ifHasScrewTap == 0)
             {
-                project.copyFilesToNewDirWithIgnore(c_screwTapSourceDir[0], c_cmaDestDir, NULL, NULL);
+                project.copyFilesToNewDirWithIgnore(c_screwTapSourceDir[0], c_cmaDestDir, NULL, 0);
             }
         }
         else
         {
             for (int i = 0; i < commonSDSize; i++) {
-                project.copyFilesToNewDirWithIgnoreRefDirs(c_commonSourceDir[i], snxzSourceDirRef, snxzSDCount, c_cmaDestDir, NULL, NULL);
+                project.copyFilesToNewDirWithIgnoreRefDirs(c_commonSourceDir[i], snxzSourceDirRef, snxzSDCount, c_cmaDestDir, NULL, 0);
             }
 
             if (wareType != 3)
             {
                 project.copyFilesToNewDirWithInclude(c_hmiProjSourceDir[0], c_hmiProjDestDir, cbProjFiles, cbPFCount);
-                project.copyFilesToNewDirWithIgnore(c_commonShapeDir[0], c_cmaDestDir, NULL, NULL);
-                project.copyFilesToNewDirWithIgnore(c_externalShapeDir[0], c_cmaDestDir, NULL, NULL);
+                project.copyFilesToNewDirWithIgnore(c_commonShapeDir[0], c_cmaDestDir, NULL, 0);
+                project.copyFilesToNewDirWithIgnore(c_externalShapeDir[0], c_cmaDestDir, NULL, 0);
             }
 
             project.copyFilesToNewDirWithInclude(c_mpfsourceDir[0], c_mpfDestDir, snIncludeFiles, snIFCount);
 
             if (ifOperation == 0)
             {
-                project.copyFilesToNewDirWithIgnoreRefDirs(c_operationSourceDir[0], snxzSourceDirRef, snxzSDCount, c_cmaDestDir, NULL, NULL);
+                project.copyFilesToNewDirWithIgnoreRefDirs(c_operationSourceDir[0], snxzSourceDirRef, snxzSDCount, c_cmaDestDir, NULL, 0);
                 project.copyFilesToNewDirWithInclude(c_hmiProjSourceDir[0], c_hmiProjDestDir, autoProjFiles, autoPFCount);
             }
 
             if (ifCenter == 0)
             {
-                project.copyFilesToNewDirWithIgnoreRecursion(c_centerSourceDir[0], c_cmaDestDir, NULL, NULL);
+                project.copyFilesToNewDirWithIgnoreRecursion(c_centerSourceDir[0], c_cmaDestDir, NULL, 0);
                 project.copyFilesToNewDirWithInclude(c_hmiProjSourceDir[0], c_hmiProjDestDir, centerProjFiles, centerPFCount);
             }
         }
@@ -869,7 +870,7 @@ void Generator::startGenerate() {
         {
             if (wareType != 0 && wareType != 1)
             {
-                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsExternalVW, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsExternalVW, rmUnusedPart, NULL, 0);
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsExternalVW, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             }
 
@@ -877,57 +878,57 @@ void Generator::startGenerate() {
             {
                 if (ifHasWorm == 1)
                 {
-                    project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasWorm, rmUnusedPart, NULL, NULL);
-                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasWorm, rmUnusedPart, NULL, NULL);
+                    project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasWorm, rmUnusedPart, NULL, 0);
+                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasWorm, rmUnusedPart, NULL, 0);
                 }
                 else
                 {
-                    project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasWorm, rmUnusedPart, NULL, NULL);
-                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasWorm, rmUnusedPart, NULL, NULL);
+                    project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasWorm, rmUnusedPart, NULL, 0);
+                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasWorm, rmUnusedPart, NULL, 0);
                 }
             }
             else
             {
-                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasWorm, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasWorm, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasWorm, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasWorm, rmUnusedPart, NULL, 0);
             }
 
             if (ifHasReOp == 0)
             {
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasReOperate, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasReOperate, rmUnusedPart, NULL, 0);
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotHasReOperate, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
             }
             else
             {
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasReOperate, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasReOperate, rmUnusedPart, NULL, 0);
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsHasReOperate, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
             }
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsInternal, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsInternalOnly, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsInternal, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsInternal, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsInternalOnly, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsInternal, rmUnusedPart, NULL, 0);
 
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsInternal, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsCenter, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsCenter, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsCenter, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsInternal, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsInternal, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsInternal, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsInternal, rmUnusedPart, NULL, 0);
 
             if (ifHasScrewTap == 1)
             {
-                project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsScrewTap, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsScrewTap, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsScrewTap, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsScrewTap, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsScrewTap, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsScrewTap, rmUnusedPart, NULL, 0);
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsScrewTap, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             }
             else
             {
-                project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsNotScrewTap, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotScrewTap, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotScrewTap, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsNotScrewTap, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotScrewTap, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotScrewTap, rmUnusedPart, NULL, 0);
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotScrewTap, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             }
         }
@@ -935,43 +936,43 @@ void Generator::startGenerate() {
         {
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsExternal, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsExternalVW, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsExternal, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsExternalVW, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsExternal, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsExternal, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsExternal, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsExternal, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsExternalVW, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsExternal, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsExternal, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsExternal, rmUnusedPart, NULL, 0);
 
-            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsScrewTap, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsScrewTap, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsScrewTap, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsScrewTap, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsScrewTap, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsScrewTap, rmUnusedPart, NULL, 0);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsScrewTap, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
-            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasWorm, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasWorm, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasWorm, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasWorm, rmUnusedPart, NULL, 0);
 
             if (ifCenter == 0)
             {
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotCenter, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-                project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsNotCenter, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotCenter, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsInternalOnly, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsNotCenter, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotCenter, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsInternalOnly, rmUnusedPart, NULL, 0);
                 if (ifHasU == 0)
                 {
                     project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotHasU, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasU, rmUnusedPart, NULL, NULL);
+                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
                 }
                 else
                 {
                     project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsHasU, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasU, rmUnusedPart, NULL, NULL);
+                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
                 }
             }
             else
             {
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsCenter, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-                project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsCenter, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsCenter, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
             }
         }
 
@@ -983,33 +984,33 @@ void Generator::startGenerate() {
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsCeTouCeLiang, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsKaiGuanAndCeTouCeLiang, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsCenter, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCeTouCeLiang, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsKaiGuanAndCeTouCeLiang, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCeTouCeLiang, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsKaiGuanAndCeTouCeLiang, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
                 break;
             case 1:
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsKaiGuanCeLiang, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsKaiGuanAndCeTouCeLiang, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsKaiGuanCeLiang, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsKaiGuanAndCeTouCeLiang, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsKaiGuanCeLiang, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsKaiGuanAndCeTouCeLiang, rmUnusedPart, NULL, 0);
                 if (machineType == 1 && ifCenter == 0)
                 {
                     project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotCenter, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotCenter, rmUnusedPart, NULL, NULL);
+                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotCenter, rmUnusedPart, NULL, 0);
                 }
                 else
                 {
                     project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsCenter, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, NULL);
+                    project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
                 }
                 break;
             case 2:
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsKaiGuanCeLiang, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsCeTouCeLiang, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsCenter, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsKaiGuanCeLiang, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCeTouCeLiang, rmUnusedPart, NULL, NULL);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsKaiGuanCeLiang, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCeTouCeLiang, rmUnusedPart, NULL, 0);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
                 break;
             default:
                 break;
@@ -1018,7 +1019,7 @@ void Generator::startGenerate() {
         else
         {
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsAuto, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAuto, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAuto, rmUnusedPart, NULL, 0);
         }
 
         switch (wareType)
@@ -1028,20 +1029,20 @@ void Generator::startGenerate() {
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare3, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare4, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare5, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare2, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare3, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare4, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare2, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare3, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare4, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, 0);
 
             if (wheelType == 0)
             {
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, 0);
             }
             else
             {
                 project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, 0);
             }
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
@@ -1050,14 +1051,14 @@ void Generator::startGenerate() {
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXWai, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVH, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
 
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
 
             break;
         case 1:
@@ -1065,24 +1066,24 @@ void Generator::startGenerate() {
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare3, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare4, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare5, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare1, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare3, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare4, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare1, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare3, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare4, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, 0);
 
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVW, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsVW, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVW, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsVW, rmUnusedPart, NULL, 0);
 
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
 
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
 
             break;
         case 2:
@@ -1090,36 +1091,36 @@ void Generator::startGenerate() {
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare2, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare4, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare5, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare1, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare2, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare4, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare1, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare2, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare4, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, 0);
 
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsV, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsV, rmUnusedPart, NULL, 0);
             if (wheelType == 0)
             {
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, 0);
             }
             else
             {
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, 0);
             }
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, 0);
 
             if (machineType == 0)
             {
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
             }
             else
             {
-                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, NULL);
+                project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
             }
 
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
 
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
 
             break;
         case 3:
@@ -1127,42 +1128,42 @@ void Generator::startGenerate() {
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare2, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare3, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare5, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare1, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare2, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare3, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare1, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare2, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare3, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, 0);
 
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsFrontDress, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsFrontDress, rmUnusedPart, NULL, 0);
 
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsV, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsV, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
             break;
         case 4:
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare1, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare2, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare3, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare4, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare1, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare2, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare3, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare4, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare1, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare2, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare3, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare4, rmUnusedPart, NULL, 0);
 
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsV, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsV, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
 
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
 
             break;
         default:
@@ -1173,17 +1174,17 @@ void Generator::startGenerate() {
         {
         case 0:
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsSide, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsSide, rmUnusedPart, NULL, 0);
             break;
         case 1:
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsSingleAndRound, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsSingleAndRound, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsSingleAndRound, rmUnusedPart, NULL, 0);
             break;
         default:
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsSingleAndRound, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsSide, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsSingleAndRound, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsSide, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsSingleAndRound, rmUnusedPart, NULL, 0);
             break;
         }
 
@@ -1191,51 +1192,51 @@ void Generator::startGenerate() {
         {
         case 0:
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsOnlyArc, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsOnlyArc, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasOtherCommonShape, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsOnlyArc, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasOtherCommonShape, rmUnusedPart, NULL, 0);
             break;
         case 1:
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsAllShape, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAllShape, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasOtherCommonShape, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAllShape, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasOtherCommonShape, rmUnusedPart, NULL, 0);
             break;
         default:
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsOnlyArc, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsArc, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsAllShape, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsOnlyArc, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsArc, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAllShape, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasOtherCommonShape, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsOnlyArc, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsArc, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAllShape, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasOtherCommonShape, rmUnusedPart, NULL, 0);
             break;
         }
 
         if (roughFeedInput == 1)
         {
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotRoughToAmount, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotRoughToAmount, rmUnusedPart, NULL, 0);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotRoughToAmount, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
         }
         else
         {
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsRoughToAmount, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsRoughToAmount, rmUnusedPart, NULL, 0);
             project.findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsRoughToAmount, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
         }
 
         if (lng == 1)
         {
-            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, chsInPanel, toEngInPanel, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_hmiCfgDestDir, chsInPanel, toEngInPanel, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsCHS, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsCHS, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, chsInPanel, toEngInPanel, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_hmiCfgDestDir, chsInPanel, toEngInPanel, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsCHS, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsCHS, rmUnusedPart, NULL, 0);
         }
         else
         {
-            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsENG, rmUnusedPart, NULL, NULL);
-            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsENG, rmUnusedPart, NULL, NULL);
+            project.findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsENG, rmUnusedPart, NULL, 0);
+            project.findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsENG, rmUnusedPart, NULL, 0);
         }
 
         cout << "\n\ncopy pictures:\n";
-        project.copyFilesToNewDirWithRefDir(c_hmiIco800SourceDir[0], c_hmiIco800DestDir, c_hmiProjDestDir, NULL, NULL);
+        project.copyFilesToNewDirWithRefDir(c_hmiIco800SourceDir[0], c_hmiIco800DestDir, c_hmiProjDestDir, NULL, 0);
 
         project.copyFilesToNewDirWithIncludeDir(c_hmiRepositorySourceDir[0], c_hmiIco800DestDir, c_machineName, 1, machinePic800, machinePic800Count);
         project.copyFilesToNewDirWithIncludeDir(c_hmiRepositorySourceDir[0], c_hmiIco640DestDir, c_machineName, 1, machinePic640, machinePic640Count);
@@ -1262,13 +1263,13 @@ void Generator::startGenerate() {
         }
 
         project.findAndRepleaceInDirWithInclude(c_mpfDestDir, fromMachineNameInMain, toMachineNameInMain, mpfMachineMainProgram, 1);
-        project.findAndRepleaceInDirWithInclude(c_hmiLngDestDir, fromMachineNameInMain, toMachineNameInMain, NULL, NULL);
+        project.findAndRepleaceInDirWithInclude(c_hmiLngDestDir, fromMachineNameInMain, toMachineNameInMain, NULL, 0);
 
         project.findAndRepleaceInDirWithInclude(c_mpfDestDir, fromMachineNameCHS, toMachineNameLng, mpfMachineMainProgram, 1);
-        project.findAndRepleaceInDirWithInclude(c_hmiLngDestDir, fromMachineNameCHS, toMachineNameLng, NULL, NULL);
+        project.findAndRepleaceInDirWithInclude(c_hmiLngDestDir, fromMachineNameCHS, toMachineNameLng, NULL, 0);
 
         project.findAndRepleaceInDirWithInclude(c_mpfDestDir, fromMachineIndex, toMachineIndex, mpfMachineMainProgram, 1);
-        project.findAndRepleaceInDirWithInclude(c_hmiLngDestDir, fromMachineIndex, toMachineIndex, NULL, NULL);
+        project.findAndRepleaceInDirWithInclude(c_hmiLngDestDir, fromMachineIndex, toMachineIndex, NULL, 0);
 
         project.findAndRepleaceInDirWithInclude(c_mpfDestDir, fromSoftwareVersion, toSoftwareVersion, mpfMachineMainProgram, 1);
         project.findAndRepleaceInDirWithInclude(c_mpfDestDir, fromDebugDate, toDebugDate, mpfMachineMainProgram, 1);

@@ -3,7 +3,6 @@
 
 #include <string>
 #include "readandwritejson.hpp"
-#include "runtime.hpp"
 
 using namespace std;
 
@@ -14,7 +13,6 @@ public:
     void startGenerate();
 
 private:
-    Runtime *runtime;
     void getJsonValue();
     string debugDate;
     string specificationInfo;
@@ -47,6 +45,11 @@ private:
     int ifHasScrewTap;
     int ifHasWorm;
 
+#ifdef _WIN32
+    string seg = "\\";
+#else
+    string seg = "/";
+#endif
 };
 
 #endif // GENERATOR_HPP

@@ -35,7 +35,7 @@ FileWork::FileWork()
 
 }
 
-bool FileWork::findAndReplaceInString(string &in, char* find, char* replace)
+bool FileWork::findAndReplaceInString(string &in, const char* find, const char* replace)
 {
     boost::regex e;
     e.assign(find);
@@ -49,7 +49,7 @@ bool FileWork::findAndReplaceInString(string &in, char* find, char* replace)
     return 0;
 }
 
-bool FileWork::findAndRepleaceInFile(string filename, char* findMe, char* replaceMe)
+bool FileWork::findAndRepleaceInFile(string filename, const char* findMe, const char* replaceMe)
 {
     boost::regex e;
 
@@ -84,7 +84,7 @@ bool FileWork::findAndRepleaceInFile(string filename, char* findMe, char* replac
     return 0;
 }
 
-bool FileWork::findAndRepleaceInDirWithIgnore(const char* dir, char *findMe, char *replaceMe, char* ignore[], int ignoreCount)
+bool FileWork::findAndRepleaceInDirWithIgnore(const char* dir, const char *findMe, const char *replaceMe, const char* ignore[], int ignoreCount)
 {
     fs::path p = fs::system_complete(dir);
 
@@ -139,7 +139,7 @@ bool FileWork::findAndRepleaceInDirWithIgnore(const char* dir, char *findMe, cha
     return 0;
 }
 
-bool FileWork::findAndRepleaceInDirWithInclude(const char* dir, char *findMe, char *replaceMe, char* include[], int includeCount)
+bool FileWork::findAndRepleaceInDirWithInclude(const char* dir, const char *findMe, const char *replaceMe, const char* include[], int includeCount)
 {
     fs::path p = fs::system_complete(dir);
 
@@ -194,7 +194,7 @@ bool FileWork::findAndRepleaceInDirWithInclude(const char* dir, char *findMe, ch
     return 0;
 }
 
-bool FileWork::findAndRepleaceInDirWithIgnoreRecursion(const char* dir, char *findMe, char *replaceMe, char* ignore[], int ignoreCount)
+bool FileWork::findAndRepleaceInDirWithIgnoreRecursion(const char* dir, const char *findMe, const char *replaceMe, const char* ignore[], int ignoreCount)
 {
     fs::path p = fs::system_complete(dir);
 
@@ -251,7 +251,7 @@ bool FileWork::findAndRepleaceInDirWithIgnoreRecursion(const char* dir, char *fi
     return 0;
 }
 
-bool FileWork::copyFilesToNewDirWithIgnore(const char* oldDir, const char* newDir, char* ignore[], int ignoreCount)
+bool FileWork::copyFilesToNewDirWithIgnore(const char* oldDir, const char* newDir, const char* ignore[], int ignoreCount)
 {
     fs::path p = fs::system_complete(oldDir);
     fs::path np = fs::system_complete(newDir);
@@ -314,7 +314,7 @@ bool FileWork::copyFilesToNewDirWithIgnore(const char* oldDir, const char* newDi
     return 0;
 }
 
-bool FileWork::copyFilesToNewDirWithInclude(const char* oldDir, const char* newDir, char* include[], int includeCount)
+bool FileWork::copyFilesToNewDirWithInclude(const char* oldDir, const char* newDir, const char* include[], int includeCount)
 {
     fs::path p = fs::system_complete(oldDir);
     fs::path np = fs::system_complete(newDir);
@@ -377,7 +377,7 @@ bool FileWork::copyFilesToNewDirWithInclude(const char* oldDir, const char* newD
     return 0;
 }
 
-bool FileWork::copyFilesToNewDirWithIncludeDir(const char* oldDir, const char* newDir, char* includeDir[], int includeDirCount, char* includeFiles[], int includeFilesCount)
+bool FileWork::copyFilesToNewDirWithIncludeDir(const char* oldDir, const char* newDir, const char* includeDir[], int includeDirCount, const char* includeFiles[], int includeFilesCount)
 {
     fs::path p = fs::system_complete(oldDir);
     fs::path np = fs::system_complete(newDir);
@@ -408,11 +408,11 @@ bool FileWork::copyFilesToNewDirWithIncludeDir(const char* oldDir, const char* n
                         string slng;
                         if (lngIn == 1)
                         {
-                            slng = "/\\chs";
+                            slng = seg + "chs";
                         }
                         else
                         {
-                            slng = "/\\eng";
+                            slng = seg + "eng";
                         }
                         dirNow = dirNow + slng;
                         const char* c_dirNow = dirNow.c_str();
@@ -424,7 +424,7 @@ bool FileWork::copyFilesToNewDirWithIncludeDir(const char* oldDir, const char* n
                     if (includeFiles == NULL || searchWithKey(dir_itr->path().string(), includeFiles, includeFilesCount) == 1)
                     {
                         fs::path newDic = np;
-                        newDic += "/\\" + dir_itr->path().filename().string();
+                        newDic += seg + dir_itr->path().filename().string();
 
                         if (fs::is_regular_file(newDic))
                         {
@@ -451,7 +451,7 @@ bool FileWork::copyFilesToNewDirWithIncludeDir(const char* oldDir, const char* n
     return 0;
 }
 
-bool FileWork::copyFilesToNewDirWithRefDir(const char* oldDir, const char* newDir, const char* refDir, char* include[], int includeCount)
+bool FileWork::copyFilesToNewDirWithRefDir(const char* oldDir, const char* newDir, const char* refDir, const char* include[], int includeCount)
 {
     fs::path p = fs::system_complete(oldDir);
     fs::path np = fs::system_complete(newDir);
@@ -482,15 +482,15 @@ bool FileWork::copyFilesToNewDirWithRefDir(const char* oldDir, const char* newDi
                         string slng;
                         if (lngIn == 1)
                         {
-                            slng = "/\\chs";
+                            slng = seg + "chs";
                         }
                         else
                         {
-                            slng = "/\\eng";
+                            slng = seg + "eng";
                         }
                         dirNow = dirNow + slng;
                         const char* oldDIrChs = dirNow.c_str();
-                        copyFilesToNewDirWithInclude(oldDIrChs, newDir, NULL, NULL);
+                        copyFilesToNewDirWithInclude(oldDIrChs, newDir, NULL, 0);
                     }
                 }
                 else if (fs::is_regular_file(dir_itr->status()))
@@ -521,7 +521,7 @@ bool FileWork::copyFilesToNewDirWithRefDir(const char* oldDir, const char* newDi
     return 0;
 }
 
-bool FileWork::copyFilesToNewDirWithIgnoreRefDirs(const char* oldDir, char* refDir[], int refDirCount, const char* newDir, char* ignore[], int ignoreCount)
+bool FileWork::copyFilesToNewDirWithIgnoreRefDirs(const char* oldDir, const char* refDir[], int refDirCount, const char* newDir, const char* ignore[], int ignoreCount)
 {
     fs::path p = fs::system_complete(oldDir);
     fs::path np = fs::system_complete(newDir);
@@ -559,7 +559,7 @@ bool FileWork::copyFilesToNewDirWithIgnoreRefDirs(const char* oldDir, char* refD
                     {
 
                         fs::path newDic = np;
-                        newDic += "/\\" + dir_itr->path().filename().string();
+                        newDic += seg + dir_itr->path().filename().string();
 
                         if (fs::is_regular_file(newDic))
                         {
@@ -591,7 +591,7 @@ bool FileWork::copyFilesToNewDirWithIgnoreRefDirs(const char* oldDir, char* refD
     return 0;
 }
 
-bool FileWork::copyFilesToNewDirWithIgnoreRecursion(const char* oldDir, const char* newDir, char* ignore[], int ignoreCount)
+bool FileWork::copyFilesToNewDirWithIgnoreRecursion(const char* oldDir, const char* newDir, const char* ignore[], int ignoreCount)
 {
     fs::path p = fs::system_complete(oldDir);
     fs::path np = fs::system_complete(newDir);
@@ -682,11 +682,11 @@ bool FileWork::copyFileFolderToNewDir(const char* oldDir, const char* newDir)
                 if (fs::is_directory(dir_itr->status()))
                 {
                     string s_childDir = newDir;
-                    s_childDir += "/\\" + dir_itr->path().filename().string();
+                    s_childDir += seg + dir_itr->path().filename().string();
                     const char* c_childDir = s_childDir.c_str();
 
                     string s_p = oldDir;
-                    s_p += "/\\" + dir_itr->path().filename().string();
+                    s_p += seg + dir_itr->path().filename().string();
                     const char* c_p = s_p.c_str();
 
                     copyFileFolderToNewDir(c_p, c_childDir);
@@ -733,7 +733,7 @@ void FileWork::load_file(std::string& s, std::istream& is)
     }
 }
 
-int FileWork::searchWithKey(const string str, char* e[],  int eCount)
+int FileWork::searchWithKey(const string str, const char* e[],  int eCount)
 {
     if (e == NULL)
     {
@@ -765,13 +765,13 @@ int FileWork::searchWithKey(const string str, char* e[],  int eCount)
 
 int FileWork::searchWithKeyAndRefDir(const char* refDir, string str)
 {
-    rsize_t found = str.find_last_of("/\\");
+    rsize_t found = str.find_last_of(seg);
     string name = str.substr(found + 1);
     string boundaryName = name.append("[^\\d]");
 
     cout << "\n******folder name is: " << name << endl;
 
-    char* eFind[] = { (char*)boundaryName.c_str() };
+    const char* eFind[] = { (char*)boundaryName.c_str() };
 
     fs::path p = fs::system_complete(refDir);
 
@@ -817,11 +817,11 @@ int FileWork::searchWithKeyAndRefDir(const char* refDir, string str)
     return 0;
 }
 
-bool FileWork::renameFileInDir(const char* dir, char* find[], string name)
+bool FileWork::renameFileInDir(const char* dir, const char* find[], string name)
 {
     fs::path p = fs::system_complete(dir);
     fs::path np = p;
-    np += "/\\" + name + "\.MPF";
+    np += seg + name + "\.MPF";
 
     if (!fs::exists(p))
     {

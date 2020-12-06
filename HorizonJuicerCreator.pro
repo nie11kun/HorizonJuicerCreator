@@ -20,7 +20,6 @@ SOURCES += \
     horizonjuicercreator.cpp \
     readandwritejson.cpp \
     removecommitwindow.cpp \
-    runtime.cpp \
     setting.cpp
 
 HEADERS += \
@@ -33,7 +32,6 @@ HEADERS += \
     horizonjuicercreator.hpp \
     readandwritejson.hpp \
     removecommitwindow.hpp \
-    runtime.hpp \
     setting.hpp
 
 FORMS += \
@@ -42,7 +40,6 @@ FORMS += \
     history.ui \
     horizonjuicercreator.ui \
     removecommitwindow.ui \
-    runtime.ui \
     setting.ui
 
 TRANSLATIONS += \
@@ -53,13 +50,27 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-LIBS += -L"C:/Users/Marco Nie/Library/boost_1_72_0/stage/lib/" \
-        -llibboost_filesystem-mgw81-mt-x32-1_72 \
-        -llibboost_regex-mgw81-mt-x32-1_72
+win32: {
+    LIBS += -L"C:/Users/Marco Nie/Library/boost_1_72_0/stage/lib/" \
+                    -llibboost_filesystem-mgw81-mt-x32-1_72 \
+                    -llibboost_regex-mgw81-mt-x32-1_72
+    INCLUDEPATH += "C:/Users/Marco Nie/Library/boost_1_72_0"
+    DEPENDPATH += "C:/Users/Marco Nie/Library/boost_1_72_0"
+    RC_ICONS = ./car.ico
+}
 
-INCLUDEPATH += "C:/Users/Marco Nie/Library/boost_1_72_0"
-DEPENDPATH += "C:/Users/Marco Nie/Library/boost_1_72_0"
+macx: {
+    LIBS += -L"/Users/marconie/libs/boost_1_66_0/stage/lib/" \
+                    -lboost_filesystem \
+                    -lboost_regex
+    INCLUDEPATH += /Users/marconie/libs/boost_1_66_0
+    DEPENDPATH += /Users/marconie/libs/boost_1_66_0
+    ICON = ./car.icns
+}
 
 DISTFILES +=
 
 RESOURCES +=
+
+
+

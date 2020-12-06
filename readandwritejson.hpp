@@ -7,7 +7,11 @@
 class ReadAndWriteJson
 {
 public:
+#ifdef _WIN32
     ReadAndWriteJson(QString f = "./info.json");
+#else
+    ReadAndWriteJson(QString f = "/Users/marconie/libs/HorizonJuicerCreator.json");
+#endif
     QString file;
     QJsonObject readJsonToObj();
     void saveObjToJson(QJsonObject obj);

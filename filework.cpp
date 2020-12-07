@@ -284,7 +284,7 @@ bool FileWork::copyFilesToNewDirWithIgnore(const char* oldDir, const char* newDi
                     {
 
                         fs::path newDic = np;
-                        newDic += "/" + dir_itr->path().filename().string();
+                        newDic += seg + dir_itr->path().filename().string();
 
                         if (fs::is_regular_file(newDic))
                         {
@@ -347,7 +347,7 @@ bool FileWork::copyFilesToNewDirWithInclude(const char* oldDir, const char* newD
                     {
 
                         fs::path newDic = np;
-                        newDic += "/" + dir_itr->path().filename().string();
+                        newDic += seg + dir_itr->path().filename().string();
 
                         if (fs::is_regular_file(newDic))
                         {
@@ -406,7 +406,7 @@ bool FileWork::copyFilesToNewDirWithIncludeDir(const char* oldDir, const char* n
                     {
                         string dirNow = dir_itr->path().string();
                         string slng;
-                        if (lngIn == 1)
+                        if (lngIn == 0)
                         {
                             slng = seg + "chs";
                         }
@@ -480,7 +480,7 @@ bool FileWork::copyFilesToNewDirWithRefDir(const char* oldDir, const char* newDi
                     if (searchWithKeyAndRefDir(refDir, dirNow))
                     {
                         string slng;
-                        if (lngIn == 1)
+                        if (lngIn == 0)
                         {
                             slng = seg + "chs";
                         }
@@ -490,13 +490,13 @@ bool FileWork::copyFilesToNewDirWithRefDir(const char* oldDir, const char* newDi
                         }
                         dirNow = dirNow + slng;
                         const char* oldDIrChs = dirNow.c_str();
-                        copyFilesToNewDirWithInclude(oldDIrChs, newDir, NULL, 0);
+                        copyFilesToNewDirWithInclude(oldDIrChs, newDir, include, includeCount);
                     }
                 }
                 else if (fs::is_regular_file(dir_itr->status()))
                 {
                     fs::path newDic = np;
-                    newDic += "/" + dir_itr->path().filename().string();
+                    newDic += seg + dir_itr->path().filename().string();
 
                     if (fs::is_regular_file(newDic))
                     {
@@ -626,7 +626,7 @@ bool FileWork::copyFilesToNewDirWithIgnoreRecursion(const char* oldDir, const ch
                     {
 
                         fs::path newDic = np;
-                        newDic += "/" + dir_itr->path().filename().string();
+                        newDic += seg + dir_itr->path().filename().string();
 
                         if (fs::is_regular_file(newDic))
                         {
@@ -694,7 +694,7 @@ bool FileWork::copyFileFolderToNewDir(const char* oldDir, const char* newDir)
                 else if (fs::is_regular_file(dir_itr->status()))
                 {
                     fs::path newDic = np;
-                    newDic += "/" + dir_itr->path().filename().string();
+                    newDic += seg + dir_itr->path().filename().string();
 
                     if (fs::is_regular_file(newDic))
                     {

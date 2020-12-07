@@ -5,6 +5,7 @@
 #include "setting.hpp"
 #include "generatepro.h"
 #include <QThread>
+#include "readandwritejson.hpp"
 
 namespace Ui {
 class CreatorWindow;
@@ -46,6 +47,7 @@ private:
     Setting *setting;
     GeneratePro *generator;
     QThread *t;
+    ReadAndWriteJson *r;
 
 signals:
     void triggerProcess();

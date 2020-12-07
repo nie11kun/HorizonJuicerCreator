@@ -1,6 +1,5 @@
 #include "creatorwindow.hpp"
 #include "ui_creatorwindow.h"
-#include "readandwritejson.hpp"
 #include <QMenu>
 #include <QJsonDocument>
 #include <QFile>
@@ -19,6 +18,7 @@ CreatorWindow::CreatorWindow(QWidget *parent) :
     ui(new Ui::CreatorWindow)
 {
     ui->setupUi(this);
+    r = new ReadAndWriteJson;
     getMachineInfo();
     loadComboBoxSet();
 
@@ -41,12 +41,12 @@ CreatorWindow::CreatorWindow(QWidget *parent) :
 CreatorWindow::~CreatorWindow()
 {
     delete ui;
+    delete r;
 }
 
 void CreatorWindow::getMachineInfo() {
     ConvertCode c;
-    ReadAndWriteJson r;
-    QJsonObject obj = r.readJsonToObj();
+    QJsonObject obj = r->readJsonToObj();
 
     if (!obj["machineName"].isNull())
         ui->lineEditMachineName->setText(obj["machineName"].toString());
@@ -75,56 +75,8 @@ void CreatorWindow::getMachineInfo() {
 
 }
 
-void CreatorWindow::on_saveDataPushButton_clicked()
-{
-    ConvertCode c;
-
-    QString machineName = ui->lineEditMachineName->text();
-    QString machineNameLng = ui->lineEditMachineNameLng->text();
-    QString machineIndex = ui->lineEditMachineIndex->text();
-    QString customInfo = ui->lineEditCustomInfo->text();
-    int lng = ui->comboBoxLng->currentIndex();
-
-    if ((machineName !="") && (machineNameLng !="") && (machineIndex !="") && (customInfo !="")) {
-        ReadAndWriteJson r;
-        QJsonObject obj = r.readJsonToObj();
-
-        obj.insert("machineName", machineName);
-        obj.insert("machineNameLng", machineNameLng);
-        obj.insert("machineIndex", machineIndex);
-        obj.insert("customInfo", customInfo);
-        obj.insert("lng", lng);
-
-        obj.insert("machineType", ui->comboBoxMachineType->currentIndex());
-        obj.insert("ifHasScrewTap", ui->comboBoxIfHasScrewTap->currentIndex());
-        obj.insert("wareType", ui->comboBoxWareType->currentIndex());
-        obj.insert("ifHasWorm", ui->comboBoxIfHasWorm->currentIndex());
-        obj.insert("wheelType", ui->comboBoxWheelType->currentIndex());
-        obj.insert("shapeType", ui->comboBoxShapeType->currentIndex());
-        obj.insert("ifHasReOp", ui->comboBoxIfHasReOp->currentIndex());
-        obj.insert("ifOperation", ui->comboBoxIfOperation->currentIndex());
-        obj.insert("measureMethord", ui->comboBoxMeasureMethord->currentIndex());
-        obj.insert("ifCenter", ui->comboBoxIfCenter->currentIndex());
-        obj.insert("ifHasU", ui->comboBoxIfHasU->currentIndex());
-        obj.insert("ifHasA", ui->comboBoxIfHasA->currentIndex());
-        obj.insert("grindWheelType", ui->comboBoxGrindWheelType->currentIndex());
-        obj.insert("dressWheelType", ui->comboBoxDressWheelType->currentIndex());
-        obj.insert("roughFeedInput", ui->comboBoxRoughFeedInput->currentIndex());
-        obj.insert("ifRemoveComments", ui->comboBoxIfRemoveComments->currentIndex());
-
-        r.saveObjToJson(obj);
-
-        ui->labelInfo->setText("保存成功");
-
-    } else {
-        ui->labelInfo->setText("机床信息设置有误");
-    }
-
-}
-
 void CreatorWindow::loadComboBoxSet() {
-    ReadAndWriteJson r;
-    QJsonObject obj = r.readJsonToObj();
+    QJsonObject obj = r->readJsonToObj();
 
     if (!obj["machineType"].isNull())
         ui->comboBoxMachineType->setCurrentIndex(obj["machineType"].toInt());
@@ -288,12 +240,61 @@ void CreatorWindow::on_comboBoxIfCenter_currentIndexChanged(int index)
     centerSet(index);
 }
 
+void CreatorWindow::on_saveDataPushButton_clicked()
+{
+    ConvertCode c;
+
+    QString machineName = ui->lineEditMachineName->text();
+    QString machineNameLng = ui->lineEditMachineNameLng->text();
+    QString machineIndex = ui->lineEditMachineIndex->text();
+    QString customInfo = ui->lineEditCustomInfo->text();
+    int lng = ui->comboBoxLng->currentIndex();
+
+    if ((machineName !="") && (machineNameLng !="") && (machineIndex !="") && (customInfo !="")) {
+        QJsonObject obj = r->readJsonToObj();
+
+        qDebug() << obj << Qt::endl;
+
+        obj.insert("machineName", machineName);
+        obj.insert("machineNameLng", machineNameLng);
+        obj.insert("machineIndex", machineIndex);
+        obj.insert("customInfo", customInfo);
+        obj.insert("lng", lng);
+
+        obj.insert("machineType", ui->comboBoxMachineType->currentIndex());
+        obj.insert("ifHasScrewTap", ui->comboBoxIfHasScrewTap->currentIndex());
+        obj.insert("wareType", ui->comboBoxWareType->currentIndex());
+        obj.insert("ifHasWorm", ui->comboBoxIfHasWorm->currentIndex());
+        obj.insert("wheelType", ui->comboBoxWheelType->currentIndex());
+        obj.insert("shapeType", ui->comboBoxShapeType->currentIndex());
+        obj.insert("ifHasReOp", ui->comboBoxIfHasReOp->currentIndex());
+        obj.insert("ifOperation", ui->comboBoxIfOperation->currentIndex());
+        obj.insert("measureMethord", ui->comboBoxMeasureMethord->currentIndex());
+        obj.insert("ifCenter", ui->comboBoxIfCenter->currentIndex());
+        obj.insert("ifHasU", ui->comboBoxIfHasU->currentIndex());
+        obj.insert("ifHasA", ui->comboBoxIfHasA->currentIndex());
+        obj.insert("grindWheelType", ui->comboBoxGrindWheelType->currentIndex());
+        obj.insert("dressWheelType", ui->comboBoxDressWheelType->currentIndex());
+        obj.insert("roughFeedInput", ui->comboBoxRoughFeedInput->currentIndex());
+        obj.insert("ifRemoveComments", ui->comboBoxIfRemoveComments->currentIndex());
+
+        r->saveObjToJson(obj);
+
+        qDebug() << obj << Qt::endl;
+
+        ui->labelInfo->setText("保存成功");
+
+    } else {
+        ui->labelInfo->setText("机床信息设置有误");
+    }
+
+}
+
 void CreatorWindow::on_creatPushButton_clicked()
 {
     on_saveDataPushButton_clicked();
 
-    ReadAndWriteJson r;
-    QJsonObject obj = r.readJsonToObj();
+    QJsonObject obj = r->readJsonToObj();
 
     if (!obj["programDir"].isNull()) {
         QJsonObject a = obj["programDir"].toObject();
@@ -322,7 +323,6 @@ void CreatorWindow::startingProcess() {
 }
 
 void CreatorWindow::finishedProcess() {
-    ReadAndWriteJson r;
 
     ui->creatPushButton->setText("程序生成");
     ui->creatPushButton->setDisabled(false);
@@ -332,5 +332,5 @@ void CreatorWindow::finishedProcess() {
     ui->labelInfo->setStyleSheet("QLabel { color : red; }");
     ui->labelInfo->setText("程序已生成");
 
-    QDesktopServices::openUrl(QUrl("file:///" + r.getDestDir()));
+    QDesktopServices::openUrl(QUrl("file:///" + r->getDestDir()));
 }

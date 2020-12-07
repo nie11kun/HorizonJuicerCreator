@@ -656,7 +656,7 @@ void GeneratePro::startGenerate() {
 
     //************************************************
 
-    if (lng == 1)
+    if (lng == 0)
         hmiIco800DefaultSourceDir[0] += seg + "chs";
     else
         hmiIco800DefaultSourceDir[0] += seg + "eng";

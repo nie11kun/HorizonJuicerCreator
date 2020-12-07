@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>480</height>
+    <width>809</width>
+    <height>515</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>282</x>
      <y>11</y>
-     <width>193</width>
-     <height>448</height>
+     <width>208</width>
+     <height>493</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -413,7 +413,7 @@
      <x>530</x>
      <y>90</y>
      <width>202</width>
-     <height>224</height>
+     <height>230</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -451,7 +451,7 @@
      <x>10</x>
      <y>210</y>
      <width>211</width>
-     <height>69</height>
+     <height>85</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -469,14 +469,14 @@
    <property name="title">
     <string>其他设置</string>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_6">
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QLabel" name="labelIfRemoveComments">
         <property name="maximumSize">
          <size>
-          <width>55</width>
+          <width>70</width>
           <height>16777215</height>
          </size>
         </property>
@@ -616,13 +616,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>530</x>
      <y>430</y>
      <width>192</width>
-     <height>26</height>
+     <height>32</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_4">

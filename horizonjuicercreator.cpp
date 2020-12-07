@@ -7,36 +7,35 @@ HorizonJuicerCreator::HorizonJuicerCreator(QWidget *parent)
     , ui(new Ui::HorizonJuicerCreator)
 {
     ui->setupUi(this);
+    r = new ReadAndWriteJson;
+
     setVersion();
 }
 
 HorizonJuicerCreator::~HorizonJuicerCreator()
 {
     delete ui;
+    delete r;
 }
 
 void HorizonJuicerCreator::setVersion() {
-    ReadAndWriteJson r;
-    QJsonObject obj = r.readJsonToObj();
+    QJsonObject obj = r->readJsonToObj();
+
+    qDebug() << obj << Qt::endl;
 
     if (obj["version"].isNull() || obj["version"].toString() != version) {
         obj.insert("version", version);
 
         if (!obj["customInfo"].isNull()) {
-            ConvertCode c;
-            string s = obj["customInfo"].toString().toStdString();
-            s = c.UTF8ToGBK(s);
-            //s = c.GBKToUTF8(s);
-            obj.insert("customInfo", QString::fromStdString(s));
+            QString s = obj["customInfo"].toString();
+            obj.insert("customInfo", s);
         }
         if (!obj["machineNameLng"].isNull()) {
-            ConvertCode c;
-            string s = obj["machineNameLng"].toString().toStdString();
-            s = c.UTF8ToGBK(s);
-            obj.insert("machineNameLng", QString::fromStdString(s));
+            QString s = obj["machineNameLng"].toString();
+            obj.insert("machineNameLng", s);
         }
-
-        r.saveObjToJson(obj);
+        r->saveObjToJson(obj);
+        qDebug() << obj << Qt::endl;
     }
 }
 

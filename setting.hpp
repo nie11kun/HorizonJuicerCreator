@@ -2,6 +2,7 @@
 #define SETTING_HPP
 
 #include <QWidget>
+#include "readandwritejson.hpp"
 
 namespace Ui {
 class Setting;
@@ -29,6 +30,7 @@ private:
     QString sourceDir;
     QString destDir;
     void loadDir();
+    ReadAndWriteJson *r;
 };
 
 #endif // SETTING_HPP

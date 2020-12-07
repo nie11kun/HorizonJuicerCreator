@@ -24,6 +24,7 @@ QJsonObject ReadAndWriteJson::readJsonToObj() {
         QTextStream in(&file);
         QString s = in.readAll();
         file.close();
+        qDebug() << "**********************************\n" << s.toUtf8() << "\n**********************************\n";
         QJsonDocument doc = QJsonDocument::fromJson(s.toUtf8());
         QJsonObject obj = doc.object();
         return obj;
@@ -34,7 +35,6 @@ void ReadAndWriteJson::saveObjToJson(QJsonObject obj) {
 
     QJsonDocument jsonDoc;
     jsonDoc.setObject(obj);
-
 
     QFile file(this->file);
     if(!file.open(QIODevice::WriteOnly)) {
@@ -66,6 +66,8 @@ QString ReadAndWriteJson::getDestDir() {
 void ReadAndWriteJson::setDirs(QString a, QString b) {
     QJsonObject obj1 = this->readJsonToObj();
 
+    qDebug() << obj1 << Qt::endl;
+
     QJsonObject obj2;
     obj2.insert("sourceDir", a);
     obj2.insert("destDir", b);
@@ -87,6 +89,8 @@ void ReadAndWriteJson::setDirs(QString a, QString b) {
     }
 
     saveObjToJson(obj1);
+
+    qDebug() << obj1 << Qt::endl;
 
 }
 

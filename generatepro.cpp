@@ -612,7 +612,6 @@ void GeneratePro::startGenerate() {
     getJsonValue();
 
     FileWork project;
-    ConvertCode convert;
 
     specificationInfo.erase();
 
@@ -650,9 +649,8 @@ void GeneratePro::startGenerate() {
     char* toMachineIndex = (char*)machineIndex.c_str();
     //************************************************
 
-    string customInfoGBK = convert.UTF8ToGBK(customInfo);
     char* toCustomInfo = (char*)customInfo.c_str();
-    string machineNameForDirName = machineNameForFileName + "(#" + machineIndex + "-" + customInfoGBK + ")";
+    string machineNameForDirName = machineNameForFileName + "(#" + machineIndex + "-" + customInfo + ")";
 
     //************************************************
 

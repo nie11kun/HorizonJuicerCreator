@@ -9,8 +9,7 @@
 
 using namespace std;
 
-ReadAndWriteJson::ReadAndWriteJson(QString f)
-    :file(f)
+ReadAndWriteJson::ReadAndWriteJson()
 {
 
 }

@@ -1,6 +1,7 @@
 #include "horizonjuicercreator.hpp"
 #include "ui_horizonjuicercreator.h"
 #include "convertcode.hpp"
+#include <fstream>
 
 HorizonJuicerCreator::HorizonJuicerCreator(QWidget *parent)
     : QMainWindow(parent)
@@ -19,6 +20,10 @@ HorizonJuicerCreator::~HorizonJuicerCreator()
 }
 
 void HorizonJuicerCreator::setVersion() {
+
+    //ofstream file(r->file.toStdString());
+    //file.close();
+
     QJsonObject obj = r->readJsonToObj();
 
     qDebug() << obj << Qt::endl;

@@ -8,12 +8,12 @@
 class ReadAndWriteJson
 {
 public:
+    ReadAndWriteJson();
 #ifdef _WIN32
-    ReadAndWriteJson(QString f = QDir::homePath() + "/HorizonJuicerCreator.json");
+    QString file = QDir::homePath() + "/HorizonJuicerCreator.json";
 #else
-    ReadAndWriteJson(QString f = "/Users/marconie/libs/HorizonJuicerCreator.json");
+    QString file = "/Users/marconie/libs/HorizonJuicerCreator.json";
 #endif
-    QString file;
     QJsonObject readJsonToObj();
     void saveObjToJson(QJsonObject obj);
     QString getSourceDir();

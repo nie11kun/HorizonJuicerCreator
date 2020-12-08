@@ -1,7 +1,9 @@
 #include "horizonjuicercreator.hpp"
 #include "ui_horizonjuicercreator.h"
 #include "convertcode.hpp"
-#include <fstream>
+#include "boost/filesystem.hpp"
+
+namespace fs = boost::filesystem;
 
 HorizonJuicerCreator::HorizonJuicerCreator(QWidget *parent)
     : QMainWindow(parent)
@@ -21,8 +23,11 @@ HorizonJuicerCreator::~HorizonJuicerCreator()
 
 void HorizonJuicerCreator::setVersion() {
 
-    //ofstream file(r->file.toStdString());
-    //file.close();
+    fs::path a = r->file.toStdString();
+    if (!fs::exists(a)) {
+        fs::ofstream file(a);
+        file.close();
+    }
 
     QJsonObject obj = r->readJsonToObj();
 

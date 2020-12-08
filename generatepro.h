@@ -4,6 +4,8 @@
 #include <QObject>
 #include <string>
 #include "readandwritejson.hpp"
+#include "convertcode.hpp"
+#include "filework.hpp"
 
 using namespace std;
 
@@ -12,13 +14,18 @@ class GeneratePro : public QObject
     Q_OBJECT
 public:
     explicit GeneratePro(QObject *parent = nullptr);
+    ~GeneratePro();
 
 public slots:
     void startGenerate();
+    void getJsonValue();
     void test();
 
 private:
-    void getJsonValue();
+    ConvertCode *c;
+    ReadAndWriteJson *r;
+    FileWork *project;
+
     string debugDate;
     string specificationInfo;
 

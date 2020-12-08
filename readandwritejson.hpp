@@ -4,16 +4,14 @@
 #include <QString>
 #include <QJsonObject>
 #include <QDir>
+#include "convertcode.hpp"
 
 class ReadAndWriteJson
 {
 public:
     ReadAndWriteJson();
-#ifdef _WIN32
-    QString file = QDir::homePath() + "/HorizonJuicerCreator.json";
-#else
-    QString file = "/Users/marconie/libs/HorizonJuicerCreator.json";
-#endif
+    ~ReadAndWriteJson();
+    QString filePath;
     QJsonObject readJsonToObj();
     void saveObjToJson(QJsonObject obj);
     QString getSourceDir();
@@ -22,6 +20,13 @@ public:
     void setDirs(QString a, QString b);
 
 private:
+    ConvertCode *c;
+    QString fileName = "HorizonJuicerCreator.json";
+    #ifdef _WIN32
+    QString seg = "\\";
+    #else
+    QString seg = "/";
+    #endif
 
 };
 

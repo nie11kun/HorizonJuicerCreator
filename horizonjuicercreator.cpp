@@ -11,6 +11,7 @@ HorizonJuicerCreator::HorizonJuicerCreator(QWidget *parent)
 {
     ui->setupUi(this);
     r = new ReadAndWriteJson;
+    c = new ConvertCode;
 
     setVersion();
 }
@@ -19,11 +20,12 @@ HorizonJuicerCreator::~HorizonJuicerCreator()
 {
     delete ui;
     delete r;
+    delete c;
 }
 
 void HorizonJuicerCreator::setVersion() {
 
-    fs::path a = r->file.toStdString();
+    fs::path a = r->filePath.toStdString();
     if (!fs::exists(a)) {
         fs::ofstream file(a);
         file.close();
@@ -31,21 +33,11 @@ void HorizonJuicerCreator::setVersion() {
 
     QJsonObject obj = r->readJsonToObj();
 
-    qDebug() << obj << Qt::endl;
-
     if (obj["version"].isNull() || obj["version"].toString() != version) {
         obj.insert("version", version);
 
-        if (!obj["customInfo"].isNull()) {
-            QString s = obj["customInfo"].toString();
-            obj.insert("customInfo", s);
-        }
-        if (!obj["machineNameLng"].isNull()) {
-            QString s = obj["machineNameLng"].toString();
-            obj.insert("machineNameLng", s);
-        }
         r->saveObjToJson(obj);
-        qDebug() << obj << Qt::endl;
+        delete c;
     }
 }
 

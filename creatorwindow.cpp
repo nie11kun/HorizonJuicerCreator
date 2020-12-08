@@ -5,7 +5,6 @@
 #include <QFile>
 #include <iostream>
 #include <string>
-#include <convertcode.hpp>
 #include <QListView>
 #include <QDir>
 #include <QMovie>
@@ -19,6 +18,8 @@ CreatorWindow::CreatorWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     r = new ReadAndWriteJson;
+    c = new ConvertCode;
+
     getMachineInfo();
     loadComboBoxSet();
 
@@ -42,37 +43,26 @@ CreatorWindow::~CreatorWindow()
 {
     delete ui;
     delete r;
+    delete c;
 }
 
 void CreatorWindow::getMachineInfo() {
-    ConvertCode c;
     QJsonObject obj = r->readJsonToObj();
 
     if (!obj["machineName"].isNull())
         ui->lineEditMachineName->setText(obj["machineName"].toString());
     if (!obj["machineNameLng"].isNull()) {
-        string a = obj["machineNameLng"].toString().toStdString();
-        a = c.UTF8ToGBK(a);
-        ui->lineEditMachineNameLng->setText(QString::fromStdString(a));
+        QString a = obj["machineNameLng"].toString();
+        ui->lineEditMachineNameLng->setText(a);
     }
     if (!obj["machineIndex"].isNull())
         ui->lineEditMachineIndex->setText(obj["machineIndex"].toString());
     if (!obj["customInfo"].isNull()) {
-        string a = obj["customInfo"].toString().toStdString();
-        a = c.UTF8ToGBK(a);
-        ui->lineEditCustomInfo->setText(QString::fromStdString(a));
+        QString a = obj["customInfo"].toString();
+        ui->lineEditCustomInfo->setText(a);
     }
     if (!obj["lng"].isNull())
         ui->comboBoxLng->setCurrentIndex(obj["lng"].toInt());
-
-    /*
-    string b = obj["customInfo"].toString().toStdString();
-    cout << b << endl;
-    b = c.UTF8ToGBK(b);
-    b = c.UTF8ToGBK(b);
-    cout << b << endl;
-    */
-
 }
 
 void CreatorWindow::loadComboBoxSet() {
@@ -242,8 +232,6 @@ void CreatorWindow::on_comboBoxIfCenter_currentIndexChanged(int index)
 
 void CreatorWindow::on_saveDataPushButton_clicked()
 {
-    ConvertCode c;
-
     QString machineName = ui->lineEditMachineName->text();
     QString machineNameLng = ui->lineEditMachineNameLng->text();
     QString machineIndex = ui->lineEditMachineIndex->text();
@@ -252,8 +240,6 @@ void CreatorWindow::on_saveDataPushButton_clicked()
 
     if ((machineName !="") && (machineNameLng !="") && (machineIndex !="") && (customInfo !="")) {
         QJsonObject obj = r->readJsonToObj();
-
-        qDebug() << obj << Qt::endl;
 
         obj.insert("machineName", machineName);
         obj.insert("machineNameLng", machineNameLng);
@@ -280,14 +266,11 @@ void CreatorWindow::on_saveDataPushButton_clicked()
 
         r->saveObjToJson(obj);
 
-        qDebug() << obj << Qt::endl;
-
         ui->labelInfo->setText("保存成功");
 
     } else {
         ui->labelInfo->setText("机床信息设置有误");
     }
-
 }
 
 void CreatorWindow::on_creatPushButton_clicked()

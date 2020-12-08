@@ -27,7 +27,6 @@
 namespace fs = boost::filesystem;
 using namespace std;
 
-
 int lngIn;
 
 FileWork::FileWork()

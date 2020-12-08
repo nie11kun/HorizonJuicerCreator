@@ -6,6 +6,7 @@
 #include "generatepro.h"
 #include <QThread>
 #include "readandwritejson.hpp"
+#include "convertcode.hpp"
 
 namespace Ui {
 class CreatorWindow;
@@ -48,6 +49,7 @@ private:
     GeneratePro *generator;
     QThread *t;
     ReadAndWriteJson *r;
+    ConvertCode *c;
 
 signals:
     void triggerProcess();

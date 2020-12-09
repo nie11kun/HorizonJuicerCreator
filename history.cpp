@@ -6,6 +6,7 @@ History::History(QWidget *parent) :
     ui(new Ui::History)
 {
     ui->setupUi(this);
+    setWindowTitle("版本历史");
 }
 
 History::~History()

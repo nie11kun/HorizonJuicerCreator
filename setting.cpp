@@ -7,6 +7,7 @@ Setting::Setting(QWidget *parent) :
     ui(new Ui::Setting)
 {
     ui->setupUi(this);
+    setWindowTitle("设置");
     r = new ReadAndWriteJson;
 
     loadDir();

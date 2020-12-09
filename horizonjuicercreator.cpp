@@ -10,6 +10,7 @@ HorizonJuicerCreator::HorizonJuicerCreator(QWidget *parent)
     , ui(new Ui::HorizonJuicerCreator)
 {
     ui->setupUi(this);
+    setWindowTitle("HorizonJuicerCreator");
     r = new ReadAndWriteJson;
     c = new ConvertCode;
 

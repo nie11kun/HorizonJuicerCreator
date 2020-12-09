@@ -17,6 +17,7 @@ CreatorWindow::CreatorWindow(QWidget *parent) :
     ui(new Ui::CreatorWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("创建配置");
     r = new ReadAndWriteJson;
     c = new ConvertCode;
 

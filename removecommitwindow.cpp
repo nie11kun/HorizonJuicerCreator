@@ -93,5 +93,5 @@ void RemoveCommitWindow::finishedProcess() {
     ui->labelInfo->setStyleSheet("QLabel { color : red; }");
     ui->labelInfo->setText("注释删除完成");
 
-    // QDesktopServices::openUrl(QUrl("file:///" + r->getRemoveDir()));
+    // QDesktopServices::openUrl(QUrl("file:///" + r->getRemoveDir(), QUrl::TolerantMode));
 }

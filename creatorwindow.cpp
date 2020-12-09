@@ -316,5 +316,5 @@ void CreatorWindow::finishedProcess() {
     ui->labelInfo->setStyleSheet("QLabel { color : red; }");
     ui->labelInfo->setText("程序已生成");
 
-    QDesktopServices::openUrl(QUrl("file:///" + r->getDestDir()));
+    QDesktopServices::openUrl(QUrl("file:///" + r->getDestDir(), QUrl::TolerantMode));
 }

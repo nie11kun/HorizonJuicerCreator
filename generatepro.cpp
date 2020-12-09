@@ -1162,6 +1162,20 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
+
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsOnlyArc, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsArc, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsAllShape, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsOnlyArc, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsArc, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAllShape, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasOtherCommonShape, rmUnusedPart, NULL, 0);
+
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsSingleAndRound, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsSide, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsSingleAndRound, rmUnusedPart, NULL, 0);
+
             break;
         case 4:
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare1, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);

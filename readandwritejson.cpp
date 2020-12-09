@@ -97,3 +97,8 @@ QString ReadAndWriteJson::getVersionInfo() {
     QJsonObject obj1 = this->readJsonToObj();
     return obj1["version"].toString();
 }
+
+QString ReadAndWriteJson::getRemoveDir() {
+    QJsonObject obj = this->readJsonToObj();
+    return obj["removeDir"].toString();
+}

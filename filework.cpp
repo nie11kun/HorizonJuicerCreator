@@ -250,6 +250,63 @@ bool FileWork::findAndRepleaceInDirWithIgnoreRecursion(const char* dir, const ch
     return 0;
 }
 
+bool FileWork::findAndRepleaceInDirWithIncludeRecursion(const char* dir, const char *findMe, const char *replaceMe, const char* include[], int includeCount)
+{
+    fs::path p = fs::system_complete(dir);
+
+    if (!fs::exists(p))
+    {
+        std::cout << "\nsource directory error: " << p << std::endl;
+        return 1;
+    }
+
+    if (fs::is_directory(p))
+    {
+        std::cout << "\nIn directory: " << p << "\n\n";
+        fs::directory_iterator end_iter;
+        for (fs::directory_iterator dir_itr(p);
+            dir_itr != end_iter;
+            ++dir_itr)
+        {
+            try
+            {
+                if (fs::is_directory(dir_itr->status()))
+                {
+                    string dirNow = dir_itr->path().string();
+                    const char* c_dirNow = dirNow.c_str();
+                    this->findAndRepleaceInDirWithIncludeRecursion(c_dirNow, findMe, replaceMe, include, includeCount);
+                }
+                else if (fs::is_regular_file(dir_itr->status()))
+                {
+                    if (include == NULL || searchWithKey(dir_itr->path().filename().string(), include, includeCount) == 1)
+                    {
+                        findAndRepleaceInFile(dir_itr->path().string(), findMe, replaceMe);
+                    }
+                    else {
+                        cout << "******ignored file: " << dir_itr->path().filename().string() << endl;
+                    }
+                }
+                else
+                {
+                    std::cout << dir_itr->path().filename() << " [other]\n";
+                }
+
+            }
+            catch (const std::exception & ex)
+            {
+                std::cout << dir_itr->path().filename() << " " << ex.what() << std::endl;
+            }
+        }
+    }
+    else // must be a file
+    {
+        std::cout << "\nFound file: " << p << "\n";
+        findAndRepleaceInFile(p.string(), findMe, replaceMe);
+    }
+
+    return 0;
+}
+
 bool FileWork::copyFilesToNewDirWithIgnore(const char* oldDir, const char* newDir, const char* ignore[], int ignoreCount)
 {
     fs::path p = fs::system_complete(oldDir);

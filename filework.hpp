@@ -24,6 +24,7 @@ public:
     bool findAndRepleaceInDirWithIgnore(const char* dir, const char* findMe, const char* replaceMe, const char* ignore[], int ignoreCount);
     bool findAndRepleaceInDirWithInclude(const char* dir, const char* findMe, const char* replaceMe, const char* include[], int includeCount);
     bool findAndRepleaceInDirWithIgnoreRecursion(const char* dir, const char *findMe, const char *replaceMe, const char* ignore[], int ignoreCount);
+    bool findAndRepleaceInDirWithIncludeRecursion(const char* dir, const char *findMe, const char *replaceMe, const char* include[], int includeCount);
     bool copyFilesToNewDirWithIgnore(const char* oldDir, const char* newDir, const char* ignore[], int ignoreCount);
     bool copyFilesToNewDirWithInclude(const char* oldDir, const char* newDir, const char* include[], int includeCount);
     bool copyFilesToNewDirWithIncludeDir(const char* oldDir, const char* newDir, const char* includeDir[], int includeDirCount, const char* includeFiles[], int includeFilesCount);

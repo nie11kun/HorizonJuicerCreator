@@ -18,6 +18,7 @@ public:
     QString getDestDir();
     QString getVersionInfo();
     void setDirs(QString a, QString b);
+    QString getRemoveDir();
 
 private:
     ConvertCode *c;

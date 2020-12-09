@@ -19,6 +19,7 @@ SOURCES += \
     main.cpp \
     horizonjuicercreator.cpp \
     readandwritejson.cpp \
+    removecommit.cpp \
     removecommitwindow.cpp \
     setting.cpp
 
@@ -31,6 +32,7 @@ HEADERS += \
     history.hpp \
     horizonjuicercreator.hpp \
     readandwritejson.hpp \
+    removecommit.hpp \
     removecommitwindow.hpp \
     setting.hpp
 

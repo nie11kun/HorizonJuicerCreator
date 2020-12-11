@@ -56,6 +56,7 @@ private:
     int ifHasReOp;
     int ifHasScrewTap;
     int ifHasWorm;
+    int hmiMode;
 
 signals:
     void triggerStartingProcess();

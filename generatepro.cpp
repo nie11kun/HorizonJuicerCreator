@@ -31,6 +31,15 @@ void GeneratePro::test() {
 const char* isComments =
 "(;[^\n\*]+)";
 
+const char* isHmiStandard1 =
+        "(\\[\"\\\\.*?[^\n].*?\",)|"
+        "(,pa0)"
+;
+
+const char* isHmiStandard2 =
+        "(\\],ac)"
+;
+
 const char* commentsInFiles[] = {
     "com$",
     "spf$",
@@ -314,6 +323,14 @@ const char* ifIsHasOtherCommonShape =
 const char* rmUnusedPart =
 "(;)"
 ;
+const char* rmHmiStandard1 =
+"()"
+;
+
+const char* rmHmiStandard2 =
+"(,ac)"
+;
+
 const char* rmUnusedPartInHTML =
 "(<!--removed-->)"
 ;
@@ -502,6 +519,7 @@ void GeneratePro::getJsonValue(){
     ifHasReOp = obj["ifHasReOp"].toInt();
     ifHasScrewTap = obj["ifHasScrewTap"].toInt();
     ifHasWorm = obj["ifHasWorm"].toInt();
+    hmiMode = obj["hmiMode"].toInt();
 
     cout << softwareVersion << endl;
     cout << "-------------------" << endl;
@@ -530,6 +548,7 @@ void GeneratePro::getJsonValue(){
     cout << ifHasReOp << endl;
     cout << ifHasScrewTap << endl;
     cout << ifHasWorm << endl;
+    cout << hmiMode << endl;
     cout << "-------------------" << endl;
 }
 
@@ -1321,6 +1340,12 @@ void GeneratePro::startGenerate() {
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromDebugDate, toDebugDate, mpfMachineMainProgram, 1);
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromSpecificationInfo, toSpecificationInfo, mpfMachineMainProgram, 1);
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromCustomInfo, toCustomInfo, mpfMachineMainProgram, 1);
+
+        if (hmiMode == 1) {
+            cout << "\n\nHMi to compatible mode:\n";
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, isHmiStandard1, rmHmiStandard1, NULL, 0);
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, isHmiStandard2, rmHmiStandard2, NULL, 0);
+        }
 
         if (ifRemoveComments == 0)
         {

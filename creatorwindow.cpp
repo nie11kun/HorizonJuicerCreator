@@ -101,6 +101,8 @@ void CreatorWindow::loadComboBoxSet() {
         ui->comboBoxRoughFeedInput->setCurrentIndex(obj["roughFeedInput"].toInt());
     if (!obj["ifRemoveComments"].isNull())
         ui->comboBoxIfRemoveComments->setCurrentIndex(obj["ifRemoveComments"].toInt());
+    if (!obj["hmiMode"].isNull())
+        ui->comboBoxHMIMode->setCurrentIndex(obj["hmiMode"].toInt());
 
     machineTypeComboBoxSet(obj["machineType"].toInt());
 
@@ -264,6 +266,7 @@ void CreatorWindow::on_saveDataPushButton_clicked()
         obj.insert("dressWheelType", ui->comboBoxDressWheelType->currentIndex());
         obj.insert("roughFeedInput", ui->comboBoxRoughFeedInput->currentIndex());
         obj.insert("ifRemoveComments", ui->comboBoxIfRemoveComments->currentIndex());
+        obj.insert("hmiMode", ui->comboBoxHMIMode->currentIndex());
 
         r->saveObjToJson(obj);
 

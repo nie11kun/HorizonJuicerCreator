@@ -407,24 +407,24 @@ const char* hmiHlpIgnoreFiles[] = {
     "\.PNG$"
 };
 const char* commonProjFiles[] = {
-    "custom\.com$",
-    "dress\.com$",
-    "dressware\.com$",
-    "grind\.com$",
-    "info\.com$",
-    "process\.com$"
+    "a_custom\.com$",
+    "a_dress\.com$",
+    "a_dressware\.com$",
+    "a_grind\.com$",
+    "a_info\.com$",
+    "a_process\.com$"
 };
 const char* cbProjFiles[] = {
-    "shape\.com$",
-    "shapecommon\.com$"
+    "a_shape\.com$",
+    "a_shapecommon\.com$"
 };
 const char* autoProjFiles[] = {
-    "auto\.com$"
+    "a_auto\.com$"
 };
 const char* centerProjFiles[] = {
-    "centerduanmian\.com$",
-    "centermain\.com$",
-    "centerwaiyuan\.com$"
+    "a_centerduanmian\.com$",
+    "a_centermain\.com$",
+    "a_centerwaiyuan\.com$"
 };
 
 const char* ncPlcParaFiles[] = {

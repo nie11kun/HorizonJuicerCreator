@@ -9,6 +9,9 @@ About::About(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("关于");
     setVersionInfo();
+
+    ui->textBrowser->setOpenLinks(true);
+    ui->textBrowser->setOpenExternalLinks(true);
 }
 
 About::~About()

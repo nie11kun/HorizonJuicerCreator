@@ -277,6 +277,18 @@ const char* ifIsNotHasU =
 "([^\n]+ifIsNotHasU\\b)|"
 "([^\n]+\<!--ifIsNotHasULine--\>)"
 ;
+const char* ifIsNotHasUBack =
+"(;ifIsNotHasUBackBegin.*?;ifIsNotHasUBackEnd)|"
+"(\<!--ifIsNotHasUBackBegin--\>.*?\<!--ifIsNotHasUBackEnd--\>)|"
+"([^\n]+ifIsNotHasUBack\\b)|"
+"([^\n]+\<!--ifIsNotHasUBackLine--\>)"
+;
+const char* ifIsNotHasUFront =
+"(;ifIsNotHasUFrontBegin.*?;ifIsNotHasUFrontEnd)|"
+"(\<!--ifIsNotHasUFrontBegin--\>.*?\<!--ifIsNotHasUFrontEnd--\>)|"
+"([^\n]+ifIsNotHasUFront\\b)|"
+"([^\n]+\<!--ifIsNotHasUFrontLine--\>)"
+;
 const char* ifIsRoughToAmount =
 "(;ifIsRoughToAmountBegin.*?;ifIsRoughToAmountEnd)|"
 "(\<!--ifIsRoughToAmountBegin--\>.*?\<!--ifIsRoughToAmountEnd--\>)|"
@@ -371,6 +383,12 @@ const char* ifIsReOp =
 ;
 const char* itIsReOp =
 "(INI[78]=1)"
+;
+const char* ifIsProbeFront =
+"(TOOL_SET\\[43]\\=\\d)"
+;
+const char* itIsProbeFront =
+"(TOOL_SET[43]=-1)"
 ;
 //***************************************
 const char* fromMachineNameInMain =
@@ -508,7 +526,9 @@ void GeneratePro::getJsonValue(){
     ifOperation = obj["ifOperation"].toInt();
     ifCenter = obj["ifCenter"].toInt();
     ifHasU = obj["ifHasU"].toInt();
+    ifNotHasUExternalPos = obj["ifNotHasUExternalPos"].toInt();
     measureMethord = obj["measureMethord"].toInt();
+    probePos = obj["probePos"].toInt();
     wheelType = obj["wheelType"].toInt();
     shapeType = obj["shapeType"].toInt();
     ifHasA = obj["ifHasA"].toInt();
@@ -537,7 +557,9 @@ void GeneratePro::getJsonValue(){
     cout << ifOperation << endl;
     cout << ifCenter << endl;
     cout << ifHasU << endl;
+    cout << ifNotHasUExternalPos << endl;
     cout << measureMethord << endl;
+    cout << probePos << endl;
     cout << wheelType << endl;
     cout << shapeType << endl;
     cout << ifHasA << endl;
@@ -787,12 +809,19 @@ void GeneratePro::startGenerate() {
     if (machineType == 0)
         specificationInfo.append(to_string(ifHasReOp));
     specificationInfo.append(to_string(ifOperation));
-    if (ifOperation == 0)
+    if (ifOperation == 0) {
         specificationInfo.append(to_string(measureMethord));
-    if (machineType == 0) {
+        if (machineType == 1 && measureMethord != 0)
+            specificationInfo.append(to_string(probePos));
+    }
+    if (machineType == 1) {
         specificationInfo.append(to_string(ifCenter));
-        if (ifCenter == 0)
+        if (ifCenter == 0) {
             specificationInfo.append(to_string(ifHasU));
+            if (ifHasU == 1)
+                specificationInfo.append(to_string(ifNotHasUExternalPos));
+        }
+
     }
     specificationInfo.append(to_string(ifHasA));
     specificationInfo.append(to_string(grindWheelType));
@@ -998,11 +1027,24 @@ void GeneratePro::startGenerate() {
                 {
                     project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotHasU, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                     project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
+                    project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotHasUBack, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+                    project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasUBack, rmUnusedPart, NULL, 0);
+                    project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotHasUFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+                    project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasUFront, rmUnusedPart, NULL, 0);
                 }
                 else
                 {
                     project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsHasU, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                     project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
+
+                    if (ifNotHasUExternalPos == 0) {
+                        project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotHasUFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+                        project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasUFront, rmUnusedPart, NULL, 0);
+
+                    } else {
+                        project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotHasUBack, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+                        project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasUBack, rmUnusedPart, NULL, 0);
+                    }
                 }
             }
             else
@@ -1325,6 +1367,9 @@ void GeneratePro::startGenerate() {
             {
                 project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsReOp, itIsReOp, cmaMachineINIProgram, 1);
             }
+        }
+        if (machineType == 1 && probePos == 1) {
+            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsProbeFront, itIsProbeFront, cmaMachineINIProgram, 1);
         }
 
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromMachineNameInMain, toMachineNameInMain, mpfMachineMainProgram, 1);

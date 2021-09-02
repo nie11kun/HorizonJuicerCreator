@@ -87,10 +87,14 @@ void CreatorWindow::loadComboBoxSet() {
         ui->comboBoxIfOperation->setCurrentIndex(obj["ifOperation"].toInt());
     if (!obj["measureMethord"].isNull())
         ui->comboBoxMeasureMethord->setCurrentIndex(obj["measureMethord"].toInt());
+    if (!obj["probePos"].isNull())
+        ui->comboBoxProbePos->setCurrentIndex(obj["probePos"].toInt());
     if (!obj["ifCenter"].isNull())
         ui->comboBoxIfCenter->setCurrentIndex(obj["ifCenter"].toInt());
     if (!obj["ifHasU"].isNull())
         ui->comboBoxIfHasU->setCurrentIndex(obj["ifHasU"].toInt());
+    if (!obj["ifNotHasUExternalPos"].isNull())
+        ui->comboBoxIfNotHasUExternalPos->setCurrentIndex(obj["ifNotHasUExternalPos"].toInt());
     if (!obj["ifHasA"].isNull())
         ui->comboBoxIfHasA->setCurrentIndex(obj["ifHasA"].toInt());
     if (!obj["grindWheelType"].isNull())
@@ -144,6 +148,8 @@ void CreatorWindow::machineTypeComboBoxSet(int index) {
     wareTypeComboBoxSet(ui->comboBoxWareType->currentIndex());
     operationComboBoxSet(ui->comboBoxIfOperation->currentIndex());
     centerSet(ui->comboBoxIfCenter->currentIndex());
+    centerExternalSet(ui->comboBoxIfHasU->currentIndex());
+    probePosSet(ui->comboBoxMeasureMethord->currentIndex());
 
 }
 
@@ -200,15 +206,70 @@ void CreatorWindow::centerSet(int index) {
         ui->labelIfCenter->setHidden(true);
         ui->comboBoxIfHasU->setHidden(true);
         ui->labelIfHasU->setHidden(true);
+        ui->comboBoxIfNotHasUExternalPos->setHidden(true);
+        ui->labelIfNotHasUExternalPos->setHidden(true);
     } else {
         ui->comboBoxIfCenter->setHidden(false);
         ui->labelIfCenter->setHidden(false);
         if (index == 0 || index == NULL) {
             ui->comboBoxIfHasU->setHidden(false);
             ui->labelIfHasU->setHidden(false);
+            if (ui->comboBoxIfHasU->currentIndex() == 0 || ui->comboBoxIfHasU->currentIndex() == NULL) {
+                ui->comboBoxIfNotHasUExternalPos->setHidden(true);
+                ui->labelIfNotHasUExternalPos->setHidden(true);
+            } else {
+                ui->comboBoxIfNotHasUExternalPos->setHidden(false);
+                ui->labelIfNotHasUExternalPos->setHidden(false);
+            }
+            qobject_cast<QListView *>(ui->comboBoxMeasureMethord->view())->setRowHidden(0, true);
+            ui->comboBoxMeasureMethord->setCurrentIndex(1);
         } else {
             ui->comboBoxIfHasU->setHidden(true);
             ui->labelIfHasU->setHidden(true);
+            ui->comboBoxIfNotHasUExternalPos->setHidden(true);
+            ui->labelIfNotHasUExternalPos->setHidden(true);
+
+            qobject_cast<QListView *>(ui->comboBoxMeasureMethord->view())->setRowHidden(0, false);
+        }
+    }
+}
+
+void CreatorWindow::centerExternalSet(int index) {
+    if (ui->comboBoxMachineType->currentIndex() == 0 || ui->comboBoxMachineType->currentIndex() == NULL) {
+        ui->comboBoxIfNotHasUExternalPos->setHidden(true);
+        ui->labelIfNotHasUExternalPos->setHidden(true);
+    } else {
+        if (ui->comboBoxIfCenter->currentIndex() == 0 || ui->comboBoxIfCenter->currentIndex() == NULL) {
+            if (index == 0 || index == NULL) {
+                ui->comboBoxIfNotHasUExternalPos->setHidden(true);
+                ui->labelIfNotHasUExternalPos->setHidden(true);
+            } else {
+                ui->comboBoxIfNotHasUExternalPos->setHidden(false);
+                ui->labelIfNotHasUExternalPos->setHidden(false);
+            }
+        } else {
+            ui->comboBoxIfNotHasUExternalPos->setHidden(true);
+            ui->labelIfNotHasUExternalPos->setHidden(true);
+        }
+    }
+}
+
+void CreatorWindow::probePosSet(int index) {
+    if (ui->comboBoxMachineType->currentIndex() == 0 || ui->comboBoxMachineType->currentIndex() == NULL) {
+        ui->comboBoxProbePos->setHidden(true);
+        ui->labelProbePos->setHidden(true);
+    } else {
+        if (ui->comboBoxIfOperation->currentIndex() == 0 || ui->comboBoxIfOperation->currentIndex() == NULL) {
+            if (index == 0 || index == NULL) {
+                ui->comboBoxProbePos->setHidden(true);
+                ui->labelProbePos->setHidden(true);
+            } else {
+                ui->comboBoxProbePos->setHidden(false);
+                ui->labelProbePos->setHidden(false);
+            }
+        } else {
+            ui->comboBoxProbePos->setHidden(true);
+            ui->labelProbePos->setHidden(true);
         }
     }
 }
@@ -228,9 +289,19 @@ void CreatorWindow::on_comboBoxIfOperation_currentIndexChanged(int index)
     operationComboBoxSet(index);
 }
 
+void CreatorWindow::on_comboBoxMeasureMethord_currentIndexChanged(int index)
+{
+    probePosSet(index);
+}
+
 void CreatorWindow::on_comboBoxIfCenter_currentIndexChanged(int index)
 {
     centerSet(index);
+}
+
+void CreatorWindow::on_comboBoxIfHasU_currentIndexChanged(int index)
+{
+    centerExternalSet(index);
 }
 
 void CreatorWindow::on_saveDataPushButton_clicked()
@@ -259,8 +330,10 @@ void CreatorWindow::on_saveDataPushButton_clicked()
         obj.insert("ifHasReOp", ui->comboBoxIfHasReOp->currentIndex());
         obj.insert("ifOperation", ui->comboBoxIfOperation->currentIndex());
         obj.insert("measureMethord", ui->comboBoxMeasureMethord->currentIndex());
+        obj.insert("probePos", ui->comboBoxProbePos->currentIndex());
         obj.insert("ifCenter", ui->comboBoxIfCenter->currentIndex());
         obj.insert("ifHasU", ui->comboBoxIfHasU->currentIndex());
+        obj.insert("ifNotHasUExternalPos", ui->comboBoxIfNotHasUExternalPos->currentIndex());
         obj.insert("ifHasA", ui->comboBoxIfHasA->currentIndex());
         obj.insert("grindWheelType", ui->comboBoxGrindWheelType->currentIndex());
         obj.insert("dressWheelType", ui->comboBoxDressWheelType->currentIndex());
@@ -321,3 +394,4 @@ void CreatorWindow::finishedProcess() {
 
     QDesktopServices::openUrl(QUrl("file:///" + r->getDestDir(), QUrl::TolerantMode));
 }
+

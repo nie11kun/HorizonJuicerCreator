@@ -45,7 +45,9 @@ private:
     int ifOperation;
     int ifCenter;
     int ifHasU;
+    int ifNotHasUExternalPos;
     int measureMethord;
+    int probePos;
     int wheelType;
     int shapeType;
     int ifHasA;

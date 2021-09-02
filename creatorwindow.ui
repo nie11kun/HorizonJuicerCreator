@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>813</width>
-    <height>628</height>
+    <width>881</width>
+    <height>666</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -281,6 +281,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="labelProbePos">
+            <property name="text">
+             <string>测量孔位置</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QLabel" name="labelIfCenter">
             <property name="text">
              <string>磨削中心</string>
@@ -291,6 +298,13 @@
            <widget class="QLabel" name="labelIfHasU">
             <property name="text">
              <string>U轴</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelIfNotHasUExternalPos">
+            <property name="text">
+             <string>外磨位置</string>
             </property>
            </widget>
           </item>
@@ -488,6 +502,20 @@
            </widget>
           </item>
           <item>
+           <widget class="QComboBox" name="comboBoxProbePos">
+            <item>
+             <property name="text">
+              <string>工件背面</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>工件正面</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
            <widget class="QComboBox" name="comboBoxIfCenter">
             <item>
              <property name="text">
@@ -511,6 +539,20 @@
             <item>
              <property name="text">
               <string>无</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxIfNotHasUExternalPos">
+            <item>
+             <property name="text">
+              <string>后置</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>前置</string>
              </property>
             </item>
            </widget>

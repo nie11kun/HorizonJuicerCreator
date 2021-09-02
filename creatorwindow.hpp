@@ -37,6 +37,10 @@ private slots:
     void startingProcess();
     void finishedProcess();
 
+    void on_comboBoxIfHasU_currentIndexChanged(int index);
+
+    void on_comboBoxMeasureMethord_currentIndexChanged(int index);
+
 private:
     Ui::CreatorWindow *ui;
     void getMachineInfo();
@@ -44,7 +48,9 @@ private:
     void machineTypeComboBoxSet(int index);
     void wareTypeComboBoxSet(int index);
     void operationComboBoxSet(int index);
+    void probePosSet(int index);
     void centerSet(int index);
+    void centerExternalSet(int index);
     Setting *setting;
     GeneratePro *generator;
     QThread *t;

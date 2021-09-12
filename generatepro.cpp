@@ -1031,19 +1031,26 @@ void GeneratePro::startGenerate() {
                     project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasUBack, rmUnusedPart, NULL, 0);
                     project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotHasUFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                     project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasUFront, rmUnusedPart, NULL, 0);
+
+                    project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
+                    project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasUBack, rmUnusedPart, NULL, 0);
+                    project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasUFront, rmUnusedPart, NULL, 0);
                 }
                 else
                 {
                     project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsHasU, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                     project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
+                    project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
 
                     if (ifNotHasUExternalPos == 0) {
                         project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotHasUFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                         project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasUFront, rmUnusedPart, NULL, 0);
+                        project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasUFront, rmUnusedPart, NULL, 0);
 
                     } else {
                         project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotHasUBack, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                         project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasUBack, rmUnusedPart, NULL, 0);
+                        project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasUBack, rmUnusedPart, NULL, 0);
                     }
                 }
             }

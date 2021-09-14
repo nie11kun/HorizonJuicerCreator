@@ -606,6 +606,10 @@ void GeneratePro::startGenerate() {
         seg + "Source_Library" + seg + "CMA" + seg + "GRIND_CENTER"
     };
 
+    string jiaJuSourceDir[] = {
+        seg + "Source_Library" + seg + "CMA" + seg + "JIAJU_PART"
+    };
+
     string defSourceDir[] = {
         seg + "Source_Library" + seg + "DEF"
     };
@@ -741,6 +745,10 @@ void GeneratePro::startGenerate() {
 
     const char* c_centerSourceDir[] = {
         centerSourceDir[0].insert(0, sourceDir).c_str()
+    };
+
+    const char* c_jiaJuSourceDir[] = {
+        jiaJuSourceDir[0].insert(0, sourceDir).c_str()
     };
 
     const char* c_defSourceDir[] = {
@@ -930,6 +938,8 @@ void GeneratePro::startGenerate() {
                 project->copyFilesToNewDirWithIgnoreRecursion(c_centerSourceDir[0], c_cmaDestDir, NULL, 0);
                 project->copyFilesToNewDirWithInclude(c_hmiProjSourceDir[0], c_hmiProjDestDir, centerProjFiles, centerPFCount);
             }
+
+            project->copyFilesToNewDirWithIgnore(c_jiaJuSourceDir[0], c_cmaDestDir, NULL, 0);
         }
 
         cout << "\n\nreplacing in files:\n";

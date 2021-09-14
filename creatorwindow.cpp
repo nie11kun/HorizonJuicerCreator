@@ -198,6 +198,7 @@ void CreatorWindow::operationComboBoxSet(int index) {
         ui->comboBoxMeasureMethord->setHidden(true);
         ui->labelMeasureMethord->setHidden(true);
     }
+    probePosSet(ui->comboBoxMeasureMethord->currentIndex());
 }
 
 void CreatorWindow::centerSet(int index) {
@@ -232,6 +233,7 @@ void CreatorWindow::centerSet(int index) {
             qobject_cast<QListView *>(ui->comboBoxMeasureMethord->view())->setRowHidden(0, false);
         }
     }
+    centerExternalSet(ui->comboBoxIfHasU->currentIndex());
 }
 
 void CreatorWindow::centerExternalSet(int index) {

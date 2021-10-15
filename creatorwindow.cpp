@@ -101,8 +101,6 @@ void CreatorWindow::loadComboBoxSet() {
         ui->comboBoxGrindWheelType->setCurrentIndex(obj["grindWheelType"].toInt());
     if (!obj["dressWheelType"].isNull())
         ui->comboBoxDressWheelType->setCurrentIndex(obj["dressWheelType"].toInt());
-    if (!obj["roughFeedInput"].isNull())
-        ui->comboBoxRoughFeedInput->setCurrentIndex(obj["roughFeedInput"].toInt());
     if (!obj["ifRemoveComments"].isNull())
         ui->comboBoxIfRemoveComments->setCurrentIndex(obj["ifRemoveComments"].toInt());
     if (!obj["hmiMode"].isNull())
@@ -339,7 +337,6 @@ void CreatorWindow::on_saveDataPushButton_clicked()
         obj.insert("ifHasA", ui->comboBoxIfHasA->currentIndex());
         obj.insert("grindWheelType", ui->comboBoxGrindWheelType->currentIndex());
         obj.insert("dressWheelType", ui->comboBoxDressWheelType->currentIndex());
-        obj.insert("roughFeedInput", ui->comboBoxRoughFeedInput->currentIndex());
         obj.insert("ifRemoveComments", ui->comboBoxIfRemoveComments->currentIndex());
         obj.insert("hmiMode", ui->comboBoxHMIMode->currentIndex());
 

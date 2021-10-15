@@ -54,7 +54,6 @@ private:
     int grindWheelType;
     int dressWheelType;
     int ifRemoveComments;
-    int roughFeedInput;
     int ifHasReOp;
     int ifHasScrewTap;
     int ifHasWorm;

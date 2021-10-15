@@ -289,18 +289,6 @@ const char* ifIsNotHasUFront =
 "([^\n]+ifIsNotHasUFront\\b)|"
 "([^\n]+\<!--ifIsNotHasUFrontLine--\>)"
 ;
-const char* ifIsRoughToAmount =
-"(;ifIsRoughToAmountBegin.*?;ifIsRoughToAmountEnd)|"
-"(\<!--ifIsRoughToAmountBegin--\>.*?\<!--ifIsRoughToAmountEnd--\>)|"
-"([^\n]+ifIsRoughToAmount\\b)|"
-"([^\n]+\<!--ifIsRoughToAmountLine--\>)"
-;
-const char* ifIsNotRoughToAmount =
-"(;ifIsNotRoughToAmountBegin.*?;ifIsNotRoughToAmountEnd)|"
-"(\<!--ifIsNotRoughToAmountBegin--\>.*?\<!--ifIsNotRoughToAmountEnd--\>)|"
-"([^\n]+ifIsNotRoughToAmount\\b)|"
-"([^\n]+\<!--ifIsNotRoughToAmountLine--\>)"
-;
 const char* ifIsHasReOperate =
 "(;ifIsHasReOperateBegin.*?;ifIsHasReOperateEnd)|"
 "(\<!--ifIsHasReOperateBegin--\>.*?\<!--ifIsHasReOperateEnd--\>)|"
@@ -535,7 +523,6 @@ void GeneratePro::getJsonValue(){
     grindWheelType = obj["grindWheelType"].toInt();
     dressWheelType = obj["dressWheelType"].toInt();
     ifRemoveComments = obj["ifRemoveComments"].toInt();
-    roughFeedInput = obj["roughFeedInput"].toInt();
     ifHasReOp = obj["ifHasReOp"].toInt();
     ifHasScrewTap = obj["ifHasScrewTap"].toInt();
     ifHasWorm = obj["ifHasWorm"].toInt();
@@ -566,7 +553,6 @@ void GeneratePro::getJsonValue(){
     cout << grindWheelType << endl;
     cout << dressWheelType << endl;
     cout << ifRemoveComments << endl;
-    cout << roughFeedInput << endl;
     cout << ifHasReOp << endl;
     cout << ifHasScrewTap << endl;
     cout << ifHasWorm << endl;
@@ -834,7 +820,6 @@ void GeneratePro::startGenerate() {
     specificationInfo.append(to_string(ifHasA));
     specificationInfo.append(to_string(grindWheelType));
     specificationInfo.append(to_string(dressWheelType));
-    specificationInfo.append(to_string(roughFeedInput));
     specificationInfo.append(to_string(ifRemoveComments));
     char* toSpecificationInfo = (char*)specificationInfo.c_str();
     //************************************************
@@ -1333,17 +1318,6 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAllShape, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasOtherCommonShape, rmUnusedPart, NULL, 0);
             break;
-        }
-
-        if (roughFeedInput == 1)
-        {
-            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotRoughToAmount, rmUnusedPart, NULL, 0);
-            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotRoughToAmount, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-        }
-        else
-        {
-            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsRoughToAmount, rmUnusedPart, NULL, 0);
-            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsRoughToAmount, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
         }
 
         if (lng == 1)

@@ -39,6 +39,7 @@ private:
 
 signals:
     void triggerProcess();
+    void triggerBackToMain();
 };
 
 #endif // REMOVECOMMITWINDOW_HPP

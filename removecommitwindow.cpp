@@ -73,7 +73,8 @@ void RemoveCommitWindow::on_pushButtonStart_clicked()
 
 void RemoveCommitWindow::on_pushButtonCancel_clicked()
 {
-    QWidget::close();
+    emit triggerBackToMain();
+    this->close();
 }
 
 void RemoveCommitWindow::startingProcess() {

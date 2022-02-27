@@ -394,3 +394,9 @@ void CreatorWindow::finishedProcess() {
     QDesktopServices::openUrl(QUrl("file:///" + r->getDestDir(), QUrl::TolerantMode));
 }
 
+void CreatorWindow::on_backButton_clicked()
+{
+    emit triggerBackToMain();
+    this->close();
+}
+

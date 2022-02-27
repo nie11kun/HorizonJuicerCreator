@@ -41,6 +41,8 @@ private slots:
 
     void on_comboBoxMeasureMethord_currentIndexChanged(int index);
 
+    void on_backButton_clicked();
+
 private:
     Ui::CreatorWindow *ui;
     void getMachineInfo();
@@ -59,6 +61,7 @@ private:
 
 signals:
     void triggerProcess();
+    void triggerBackToMain();
 
 };
 

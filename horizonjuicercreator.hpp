@@ -33,6 +33,8 @@ private slots:
 
     void on_actionHistory_triggered();
 
+    void showWindow();
+
 private:
     Ui::HorizonJuicerCreator *ui;
     CreatorWindow *creatorWindow;

@@ -44,14 +44,28 @@ void HorizonJuicerCreator::setVersion() {
 
 void HorizonJuicerCreator::on_creatNewMachineButton_clicked()
 {
-    creatorWindow = new CreatorWindow();
+    creatorWindow = new CreatorWindow(ui->centralwidget);
+
+    connect(creatorWindow, SIGNAL(triggerBackToMain()), this, SLOT(showWindow()));
+
+    ui->creatNewMachineButton->hide();
+    ui->removeCommitsButton->hide();
     creatorWindow->show();
+
+    creatorWindow->setMaximumHeight(450);
+
 }
 
 void HorizonJuicerCreator::on_removeCommitsButton_clicked()
 {
-    removeCommitWindow = new RemoveCommitWindow();
+    removeCommitWindow = new RemoveCommitWindow(ui->centralwidget);
+
+    connect(removeCommitWindow, SIGNAL(triggerBackToMain()), this, SLOT(showWindow()));
+
+    ui->creatNewMachineButton->hide();
+    ui->removeCommitsButton->hide();
     removeCommitWindow->show();
+
 }
 
 void HorizonJuicerCreator::on_actionSettings_triggered()
@@ -70,4 +84,11 @@ void HorizonJuicerCreator::on_actionHistory_triggered()
 {
     history = new History();
     history->show();
+}
+
+void HorizonJuicerCreator::showWindow() {
+    ui->creatNewMachineButton->show();
+    ui->removeCommitsButton->show();
+
+    //this->show();
 }

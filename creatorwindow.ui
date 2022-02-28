@@ -684,6 +684,18 @@
      </property>
      <item>
       <widget class="QPushButton" name="backButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="text">
         <string>返回</string>
        </property>
@@ -696,6 +708,18 @@
        </property>
        <item>
         <widget class="QPushButton" name="saveDataPushButton">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>保存设置</string>
          </property>
@@ -703,6 +727,18 @@
        </item>
        <item>
         <widget class="QPushButton" name="creatPushButton">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>程序生成</string>
          </property>

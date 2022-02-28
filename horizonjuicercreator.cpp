@@ -52,7 +52,7 @@ void HorizonJuicerCreator::on_creatNewMachineButton_clicked()
     ui->removeCommitsButton->hide();
     creatorWindow->show();
 
-    creatorWindow->setMaximumHeight(450);
+    creatorWindow->setMaximumHeight(520);
 
 }
 

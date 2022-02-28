@@ -73,7 +73,8 @@ macx: {
 DISTFILES +=
 
 RESOURCES += \
-    resourse.qrc
+    resourse.qrc \
+    qdarkstyle/dark/style.qrc
 
 
 

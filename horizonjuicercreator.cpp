@@ -1,6 +1,5 @@
 #include "horizonjuicercreator.hpp"
 #include "ui_horizonjuicercreator.h"
-#include "convertcode.hpp"
 #include "boost/filesystem.hpp"
 
 namespace fs = boost::filesystem;
@@ -12,7 +11,6 @@ HorizonJuicerCreator::HorizonJuicerCreator(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("HorizonJuicerCreator");
     r = new ReadAndWriteJson;
-    c = new ConvertCode;
 
     setVersion();
 }
@@ -21,7 +19,6 @@ HorizonJuicerCreator::~HorizonJuicerCreator()
 {
     delete ui;
     delete r;
-    delete c;
 }
 
 void HorizonJuicerCreator::setVersion() {
@@ -38,7 +35,6 @@ void HorizonJuicerCreator::setVersion() {
         obj.insert("version", version);
 
         r->saveObjToJson(obj);
-        delete c;
     }
 }
 

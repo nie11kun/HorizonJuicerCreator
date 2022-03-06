@@ -36,7 +36,6 @@ RemoveCommitWindow::~RemoveCommitWindow()
     delete ui;
     delete r;
     delete remove;
-    delete t;
     delete c;
 }
 

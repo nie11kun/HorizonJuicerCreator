@@ -67,6 +67,7 @@ void HorizonJuicerCreator::on_removeCommitsButton_clicked()
 void HorizonJuicerCreator::on_actionSettings_triggered()
 {
     setting = new Setting();
+    setting->setWindowModality(Qt::ApplicationModal);//阻塞程序其他窗口
     setting->show();
 }
 

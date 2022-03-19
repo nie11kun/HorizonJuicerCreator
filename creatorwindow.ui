@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>690</height>
+    <height>726</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -247,8 +247,8 @@
          <enum>QLayout::SetDefaultConstraint</enum>
         </property>
         <item row="0" column="0">
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
            <widget class="QLabel" name="labelMachineType">
             <property name="minimumSize">
              <size>
@@ -261,112 +261,112 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="1" column="0">
            <widget class="QLabel" name="labelIfHasScrewTap">
             <property name="text">
              <string>是否磨丝锥</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="2" column="0">
            <widget class="QLabel" name="labelWareType">
             <property name="text">
              <string>修整器类型</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="3" column="0">
            <widget class="QLabel" name="labelIfHasWorm">
             <property name="text">
              <string>是否磨蜗杆</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="4" column="0">
            <widget class="QLabel" name="labelWheelType">
             <property name="text">
              <string>修整轮类型</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="5" column="0">
            <widget class="QLabel" name="labelShapeType">
             <property name="text">
              <string>齿形选择</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="6" column="0">
            <widget class="QLabel" name="labelIfHasReOp">
             <property name="text">
              <string>二次对刀</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="7" column="0">
            <widget class="QLabel" name="labelIfOperation">
             <property name="text">
              <string>自动对刀</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="8" column="0">
            <widget class="QLabel" name="labelMeasureMethord">
             <property name="text">
              <string>对刀机构</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="9" column="0">
            <widget class="QLabel" name="labelProbePos">
             <property name="text">
              <string>测量孔位置</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="10" column="0">
            <widget class="QLabel" name="labelIfCenter">
             <property name="text">
              <string>磨削中心</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="11" column="0">
            <widget class="QLabel" name="labelIfHasU">
             <property name="text">
              <string>U轴</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="12" column="0">
            <widget class="QLabel" name="labelIfNotHasUExternalPos">
             <property name="text">
              <string>外磨位置</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="13" column="0">
            <widget class="QLabel" name="labelIfHasA">
             <property name="text">
              <string>A轴</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="14" column="0">
            <widget class="QLabel" name="labelGrindWheelType">
             <property name="text">
              <string>砂轮驱动</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="15" column="0">
            <widget class="QLabel" name="labelExGrindWheelType">
             <property name="text">
              <string>外磨砂轮驱动</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="16" column="0">
            <widget class="QLabel" name="labelDressWheelType">
             <property name="text">
              <string>修整轮驱动</string>
@@ -376,8 +376,8 @@
          </layout>
         </item>
         <item row="0" column="1">
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
            <widget class="QComboBox" name="comboBoxMachineType">
             <property name="enabled">
              <bool>true</bool>
@@ -400,7 +400,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="1" column="0">
            <widget class="QComboBox" name="comboBoxIfHasScrewTap">
             <item>
              <property name="text">
@@ -414,7 +414,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="2" column="0">
            <widget class="QComboBox" name="comboBoxWareType">
             <item>
              <property name="text">
@@ -443,7 +443,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="3" column="0">
            <widget class="QComboBox" name="comboBoxIfHasWorm">
             <item>
              <property name="text">
@@ -457,7 +457,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="4" column="0">
            <widget class="QComboBox" name="comboBoxWheelType">
             <item>
              <property name="text">
@@ -471,7 +471,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="5" column="0">
            <widget class="QComboBox" name="comboBoxShapeType">
             <item>
              <property name="text">
@@ -485,7 +485,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="6" column="0">
            <widget class="QComboBox" name="comboBoxIfHasReOp">
             <item>
              <property name="text">
@@ -499,7 +499,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="7" column="0">
            <widget class="QComboBox" name="comboBoxIfOperation">
             <item>
              <property name="text">
@@ -513,7 +513,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="8" column="0">
            <widget class="QComboBox" name="comboBoxMeasureMethord">
             <property name="minimumSize">
              <size>
@@ -538,7 +538,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="9" column="0">
            <widget class="QComboBox" name="comboBoxProbePos">
             <item>
              <property name="text">
@@ -552,7 +552,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="10" column="0">
            <widget class="QComboBox" name="comboBoxIfCenter">
             <item>
              <property name="text">
@@ -566,7 +566,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="11" column="0">
            <widget class="QComboBox" name="comboBoxIfHasU">
             <item>
              <property name="text">
@@ -580,7 +580,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="12" column="0">
            <widget class="QComboBox" name="comboBoxIfNotHasUExternalPos">
             <item>
              <property name="text">
@@ -594,7 +594,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="13" column="0">
            <widget class="QComboBox" name="comboBoxIfHasA">
             <item>
              <property name="text">
@@ -608,7 +608,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="14" column="0">
            <widget class="QComboBox" name="comboBoxGrindWheelType">
             <item>
              <property name="text">
@@ -622,7 +622,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="15" column="0">
            <widget class="QComboBox" name="comboBoxExGrindWheelType">
             <item>
              <property name="text">
@@ -636,7 +636,7 @@
             </item>
            </widget>
           </item>
-          <item>
+          <item row="16" column="0">
            <widget class="QComboBox" name="comboBoxDressWheelType">
             <item>
              <property name="text">

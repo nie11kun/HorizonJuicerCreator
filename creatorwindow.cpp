@@ -99,6 +99,8 @@ void CreatorWindow::loadComboBoxSet() {
         ui->comboBoxIfHasA->setCurrentIndex(obj["ifHasA"].toInt());
     if (!obj["grindWheelType"].isNull())
         ui->comboBoxGrindWheelType->setCurrentIndex(obj["grindWheelType"].toInt());
+    if (!obj["exGrindWheelType"].isNull())
+        ui->comboBoxExGrindWheelType->setCurrentIndex(obj["exGrindWheelType"].toInt());
     if (!obj["dressWheelType"].isNull())
         ui->comboBoxDressWheelType->setCurrentIndex(obj["dressWheelType"].toInt());
     if (!obj["ifRemoveComments"].isNull())
@@ -126,6 +128,8 @@ void CreatorWindow::machineTypeComboBoxSet(int index) {
         ui->comboBoxIfHasReOp->setHidden(false);
         ui->labelIfHasReOp->setHidden(false);
 
+        ui->labelGrindWheelType->setText("外磨砂轮类型");
+
     } else {
         ui->comboBoxIfHasScrewTap->setHidden(true);
         ui->labelIfHasScrewTap->setHidden(true);
@@ -140,6 +144,8 @@ void CreatorWindow::machineTypeComboBoxSet(int index) {
 
         ui->comboBoxIfHasReOp->setHidden(true);
         ui->labelIfHasReOp->setHidden(true);
+
+        ui->labelGrindWheelType->setText("内磨砂轮类型");
 
     }
 
@@ -207,12 +213,16 @@ void CreatorWindow::centerSet(int index) {
         ui->labelIfHasU->setHidden(true);
         ui->comboBoxIfNotHasUExternalPos->setHidden(true);
         ui->labelIfNotHasUExternalPos->setHidden(true);
+        ui->comboBoxExGrindWheelType->setHidden(true);
+        ui->labelExGrindWheelType->setHidden(true);
     } else {
         ui->comboBoxIfCenter->setHidden(false);
         ui->labelIfCenter->setHidden(false);
         if (index == 0 || index == NULL) {
             ui->comboBoxIfHasU->setHidden(false);
             ui->labelIfHasU->setHidden(false);
+            ui->comboBoxExGrindWheelType->setHidden(false);
+            ui->labelExGrindWheelType->setHidden(false);
             if (ui->comboBoxIfHasU->currentIndex() == 0 || ui->comboBoxIfHasU->currentIndex() == NULL) {
                 ui->comboBoxIfNotHasUExternalPos->setHidden(true);
                 ui->labelIfNotHasUExternalPos->setHidden(true);
@@ -225,6 +235,8 @@ void CreatorWindow::centerSet(int index) {
         } else {
             ui->comboBoxIfHasU->setHidden(true);
             ui->labelIfHasU->setHidden(true);
+            ui->comboBoxExGrindWheelType->setHidden(true);
+            ui->labelExGrindWheelType->setHidden(true);
             ui->comboBoxIfNotHasUExternalPos->setHidden(true);
             ui->labelIfNotHasUExternalPos->setHidden(true);
 
@@ -336,6 +348,7 @@ void CreatorWindow::on_saveDataPushButton_clicked()
         obj.insert("ifNotHasUExternalPos", ui->comboBoxIfNotHasUExternalPos->currentIndex());
         obj.insert("ifHasA", ui->comboBoxIfHasA->currentIndex());
         obj.insert("grindWheelType", ui->comboBoxGrindWheelType->currentIndex());
+        obj.insert("exGrindWheelType", ui->comboBoxExGrindWheelType->currentIndex());
         obj.insert("dressWheelType", ui->comboBoxDressWheelType->currentIndex());
         obj.insert("ifRemoveComments", ui->comboBoxIfRemoveComments->currentIndex());
         obj.insert("hmiMode", ui->comboBoxHMIMode->currentIndex());

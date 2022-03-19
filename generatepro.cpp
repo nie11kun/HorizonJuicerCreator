@@ -354,6 +354,12 @@ const char* ifIsSiFuInGrindWheel =
 const char* itIsSiFuInGrindWheel =
 "(INI[36]=1)"
 ;
+const char* ifIsSiFuInExGrindWheel =
+"(INI\\[91]\\=\\d)"
+;
+const char* itIsSiFuInExGrindWheel =
+"(INI[91]=1)"
+;
 const char* ifIsSiFuInDressWheel =
 "(INI\\[37]\\=\\d)"
 ;
@@ -449,7 +455,8 @@ const char* mpfMachineMainProgram[] = {
     "INFO_INIT\.MPF$"
 };
 const char* cmaMachineINIProgram[] = {
-    "B_MACHINE_INI\.SPF$"
+    "B_MACHINE_INI\.SPF$",
+    "H_MACHINE_INI\.SPF$"
 };
 //*******************************************
 const char* MultiSymbel =
@@ -491,6 +498,7 @@ const int machinePic640Count = sizeof(machinePic640) / sizeof(machinePic640[0]);
 const int commentsInFilesCount = sizeof(commentsInFiles) / sizeof(commentsInFiles[0]);
 const int ncPlcParaCount = sizeof(ncPlcParaFiles) / sizeof(ncPlcParaFiles[0]);
 const int hmiHlpIgnoreFilesCount = sizeof(hmiHlpIgnoreFiles) / sizeof(hmiHlpIgnoreFiles[0]);
+const int cmaMachineINIProgramCount = sizeof(cmaMachineINIProgram) / sizeof(cmaMachineINIProgram[0]);
 
 //*******************************
 
@@ -521,6 +529,7 @@ void GeneratePro::getJsonValue(){
     shapeType = obj["shapeType"].toInt();
     ifHasA = obj["ifHasA"].toInt();
     grindWheelType = obj["grindWheelType"].toInt();
+    exGrindWheelType = obj["exGrindWheelType"].toInt();
     dressWheelType = obj["dressWheelType"].toInt();
     ifRemoveComments = obj["ifRemoveComments"].toInt();
     ifHasReOp = obj["ifHasReOp"].toInt();
@@ -551,6 +560,7 @@ void GeneratePro::getJsonValue(){
     cout << shapeType << endl;
     cout << ifHasA << endl;
     cout << grindWheelType << endl;
+    cout << exGrindWheelType << endl;
     cout << dressWheelType << endl;
     cout << ifRemoveComments << endl;
     cout << ifHasReOp << endl;
@@ -819,6 +829,10 @@ void GeneratePro::startGenerate() {
     }
     specificationInfo.append(to_string(ifHasA));
     specificationInfo.append(to_string(grindWheelType));
+    if (machineType == 1) {
+        if (ifCenter == 0)
+            specificationInfo.append(to_string(exGrindWheelType));
+    }
     specificationInfo.append(to_string(dressWheelType));
     specificationInfo.append(to_string(ifRemoveComments));
     char* toSpecificationInfo = (char*)specificationInfo.c_str();
@@ -1341,26 +1355,31 @@ void GeneratePro::startGenerate() {
 
         cout << "\n\nmodify machine spcifications:\n";
         if (ifHasA == 0) {
-            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsHasA, itIsHasA, cmaMachineINIProgram, 1);
+            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsHasA, itIsHasA, cmaMachineINIProgram, cmaMachineINIProgramCount);
         }
         if (grindWheelType == 0) {
-            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsSiFuInGrindWheel, itIsSiFuInGrindWheel, cmaMachineINIProgram, 1);
+            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsSiFuInGrindWheel, itIsSiFuInGrindWheel, cmaMachineINIProgram, cmaMachineINIProgramCount);
+        }
+        if (machineType == 1 && ifCenter == 0) {
+            if (exGrindWheelType == 0) {
+                project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsSiFuInExGrindWheel, itIsSiFuInExGrindWheel, cmaMachineINIProgram, cmaMachineINIProgramCount);
+            }
         }
         if (dressWheelType == 0) {
-            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsSiFuInDressWheel, itIsSiFuInDressWheel, cmaMachineINIProgram, 1);
+            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsSiFuInDressWheel, itIsSiFuInDressWheel, cmaMachineINIProgram, cmaMachineINIProgramCount);
         }
         if (ifOperation == 0) {
-            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsAutoOp, itIsAutoOp, cmaMachineINIProgram, 1);
+            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsAutoOp, itIsAutoOp, cmaMachineINIProgram, cmaMachineINIProgramCount);
         }
         if (machineType == 0)
         {
             if (ifHasReOp == 0)
             {
-                project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsReOp, itIsReOp, cmaMachineINIProgram, 1);
+                project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsReOp, itIsReOp, cmaMachineINIProgram, cmaMachineINIProgramCount);
             }
         }
         if (machineType == 1 && probePos == 1) {
-            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsProbeFront, itIsProbeFront, cmaMachineINIProgram, 1);
+            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsProbeFront, itIsProbeFront, cmaMachineINIProgram, cmaMachineINIProgramCount);
         }
 
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromMachineNameInMain, toMachineNameInMain, mpfMachineMainProgram, 1);

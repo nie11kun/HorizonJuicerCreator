@@ -52,6 +52,7 @@ private:
     int shapeType;
     int ifHasA;
     int grindWheelType;
+    int exGrindWheelType;
     int dressWheelType;
     int ifRemoveComments;
     int ifHasReOp;

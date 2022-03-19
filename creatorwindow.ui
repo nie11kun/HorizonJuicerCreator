@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>670</height>
+    <height>690</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -360,9 +360,16 @@
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="labelExGrindWheelType">
+            <property name="text">
+             <string>外磨砂轮驱动</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QLabel" name="labelDressWheelType">
             <property name="text">
-             <string>修正轮驱动</string>
+             <string>修整轮驱动</string>
             </property>
            </widget>
           </item>
@@ -603,6 +610,20 @@
           </item>
           <item>
            <widget class="QComboBox" name="comboBoxGrindWheelType">
+            <item>
+             <property name="text">
+              <string>伺服</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>变频器</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxExGrindWheelType">
             <item>
              <property name="text">
               <string>伺服</string>

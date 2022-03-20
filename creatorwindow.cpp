@@ -128,7 +128,7 @@ void CreatorWindow::machineTypeComboBoxSet(int index) {
         ui->comboBoxIfHasReOp->setHidden(false);
         ui->labelIfHasReOp->setHidden(false);
 
-        ui->labelGrindWheelType->setText("外磨砂轮类型");
+        ui->labelGrindWheelType->setText("外磨砂轮驱动");
 
     } else {
         ui->comboBoxIfHasScrewTap->setHidden(true);
@@ -145,7 +145,7 @@ void CreatorWindow::machineTypeComboBoxSet(int index) {
         ui->comboBoxIfHasReOp->setHidden(true);
         ui->labelIfHasReOp->setHidden(true);
 
-        ui->labelGrindWheelType->setText("内磨砂轮类型");
+        ui->labelGrindWheelType->setText("内磨砂轮驱动");
 
     }
 

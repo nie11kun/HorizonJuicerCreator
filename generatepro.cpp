@@ -1040,6 +1040,7 @@ void GeneratePro::startGenerate() {
                     project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasUBack, rmUnusedPart, NULL, 0);
                     project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotHasUFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                     project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasUFront, rmUnusedPart, NULL, 0);
+                    project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
 
                     project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
                     project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasUBack, rmUnusedPart, NULL, 0);
@@ -1049,6 +1050,7 @@ void GeneratePro::startGenerate() {
                 {
                     project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsHasU, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                     project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
+                    project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
                     project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
 
                     if (ifNotHasUExternalPos == 0) {
@@ -1069,6 +1071,8 @@ void GeneratePro::startGenerate() {
                 project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
                 project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
                 project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
             }
         }
 

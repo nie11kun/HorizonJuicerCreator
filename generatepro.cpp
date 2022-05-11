@@ -29,7 +29,7 @@ void GeneratePro::test() {
 #endif
 
 const char* isComments =
-"(;[^\n\*]+)";
+"(;[^\n\*\"]+)";
 
 const char* isHmiStandard1 =
         "(\\[\"\\\\.*?[^\n].*?\",)|"
@@ -424,6 +424,7 @@ const char* commonProjFiles[] = {
     "a_dressware\.com$",
     "a_grind\.com$",
     "a_info\.com$",
+    "a_backup_restore\.com$",
     "a_process\.com$"
 };
 const char* cbProjFiles[] = {
@@ -606,6 +607,10 @@ void GeneratePro::startGenerate() {
         seg + "Source_Library" + seg + "CMA" + seg + "JIAJU_PART"
     };
 
+    string backupRestoreSourceDir[] = {
+        seg + "Source_Library" + seg + "CMA" + seg + "Backup_Restore"
+    };
+
     string defSourceDir[] = {
         seg + "Source_Library" + seg + "DEF"
     };
@@ -747,6 +752,10 @@ void GeneratePro::startGenerate() {
         jiaJuSourceDir[0].insert(0, sourceDir).c_str()
     };
 
+    const char* c_backupRestoreSourceDir[] = {
+        backupRestoreSourceDir[0].insert(0, sourceDir).c_str()
+    };
+
     const char* c_defSourceDir[] = {
         defSourceDir[0].insert(0, sourceDir).c_str()
     };
@@ -867,6 +876,8 @@ void GeneratePro::startGenerate() {
 
         project->copyFilesToNewDirWithInclude(c_hmiProjSourceDir[0], c_hmiProjDestDir, commonProjFiles, commonPFCount);
         project->copyFilesToNewDirWithInclude(c_souceLibraryDir[0], c_distMainDir, ncPlcParaFiles, ncPlcParaCount);
+
+        project->copyFilesToNewDirWithIgnore(c_backupRestoreSourceDir[0], c_cmaDestDir, NULL, 0);
 
         if (machineType == 0)
         {

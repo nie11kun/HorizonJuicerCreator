@@ -29,7 +29,7 @@ void GeneratePro::test() {
 #endif
 
 const char* isComments =
-"(;[^\n\*\"]+)";
+"(;[^\n\*\"][^\n]+)";
 
 const char* isHmiStandard1 =
         "(\\[\"\\\\.*?[^\n].*?\",)|"

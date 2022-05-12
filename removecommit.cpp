@@ -18,7 +18,7 @@ RemoveCommit::~RemoveCommit() {
 
 void RemoveCommit::startProcess() {
     const char* isComments =
-    "(;[^\n\*]+)";
+    "(;[^\n\*\"][^\n]+)";
 
     const char* rmUnusedPart =
     "(;)"

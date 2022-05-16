@@ -1161,7 +1161,7 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXNeiBack, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXWai, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVH, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
@@ -1170,6 +1170,7 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
 
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
             break;
         case 1:
@@ -1183,6 +1184,8 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, 0);
 
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVW, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
             project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsVW, rmUnusedPart, NULL, 0);
 
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, 0);
@@ -1193,12 +1196,23 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXNeiFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXNeiBack, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXWai, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVH, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
 
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsOnlyArc, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsArc, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsAllShape, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsHasOtherCommonShape, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsOnlyArc, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsArc, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAllShape, rmUnusedPart, NULL, 0);
@@ -1223,28 +1237,45 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsV, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsV, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
             if (wheelType == 0)
             {
                 project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
             }
             else
             {
                 project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
             }
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXNeiBack, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
 
             if (machineType == 0)
             {
                 project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXNeiFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
             }
             else
             {
                 project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXWai, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
             }
 
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVH, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
 
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
             break;
         case 3:
@@ -1258,6 +1289,8 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, 0);
 
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsFrontDress, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsFrontDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
 
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, 0);
@@ -1267,10 +1300,19 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsV, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXNeiFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXWai, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVH, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsOnlyArc, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsArc, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsAllShape, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsHasOtherCommonShape, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsOnlyArc, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsArc, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAllShape, rmUnusedPart, NULL, 0);
@@ -1300,8 +1342,17 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsV, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXNeiBack, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXNeiFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXWai, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
             break;
         default:

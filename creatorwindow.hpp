@@ -21,7 +21,7 @@ public:
     ~CreatorWindow();
 
 private slots:
-    void on_saveDataPushButton_clicked();
+    int on_saveDataPushButton_clicked();
 
     void on_comboBoxMachineType_currentIndexChanged(int index);
 

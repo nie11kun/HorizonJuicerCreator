@@ -316,7 +316,7 @@ void CreatorWindow::on_comboBoxIfHasU_currentIndexChanged(int index)
     centerExternalSet(index);
 }
 
-void CreatorWindow::on_saveDataPushButton_clicked()
+int CreatorWindow::on_saveDataPushButton_clicked()
 {
     QString machineName = ui->lineEditMachineName->text();
     QString machineNameLng = ui->lineEditMachineNameLng->text();
@@ -356,15 +356,19 @@ void CreatorWindow::on_saveDataPushButton_clicked()
         r->saveObjToJson(obj);
 
         ui->labelInfo->setText("保存成功");
+        return true;
 
     } else {
         ui->labelInfo->setText("机床信息设置有误");
+        return false;
     }
 }
 
 void CreatorWindow::on_creatPushButton_clicked()
 {
-    on_saveDataPushButton_clicked();
+    int res = on_saveDataPushButton_clicked();
+    if (res == false)
+        return;
 
     QJsonObject obj = r->readJsonToObj();
 

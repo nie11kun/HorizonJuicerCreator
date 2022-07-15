@@ -425,7 +425,8 @@ const char* commonProjFiles[] = {
     "a_grind\.com$",
     "a_info\.com$",
     "a_backup_restore\.com$",
-    "a_process\.com$"
+    "a_process\.com$",
+    "a_stats\.com"
 };
 const char* cbProjFiles[] = {
     "a_shape\.com$",

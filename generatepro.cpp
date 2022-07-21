@@ -474,9 +474,6 @@ const char* Half =
 const char* XiaHua =
 "(_)"
 ;
-const char* HenGang =
-"(h)"//程序名称不允许横杠 - ，修改为 h 字符代替
-;
 
 //*****************************************
 
@@ -683,13 +680,10 @@ void GeneratePro::startGenerate() {
     }
 
     project->findAndReplaceInString(machineName, MultiSymbel, MultiRepleace);
-
-    project->findAndReplaceInString(machineName, MultiRepleace, XiaHua);
-    project->findAndReplaceInString(machineName, Half, HenGang);
+    project->findAndReplaceInString(machineName, Half, XiaHua);
     string machineNameForFileName = machineName;
 
-    project->findAndReplaceInString(machineName, XiaHua, MultiRepleace);
-    project->findAndReplaceInString(machineName, HenGang, Half);
+    project->findAndReplaceInString(machineName, XiaHua, Half);
     string machineNameForInfo = machineName;
 
     const char* toMachineNameInMain = (char*)machineNameForInfo.c_str();

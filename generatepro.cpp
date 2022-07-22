@@ -85,6 +85,12 @@ const char* ifIsAuto =
 "([^\n]+ifIsAuto\\b)|"
 "([^\n]+\<!--ifIsAutoLine--\>)"
 ;
+const char* ifIsNotAuto =
+"(;ifIsNotAutoBegin.*?;ifIsNotAutoEnd)|"
+"(\<!--ifIsNotAutoBegin--\>.*?\<!--ifIsNotAutoEnd--\>)|"
+"([^\n]+ifIsNotAuto\\b)|"
+"([^\n]+\<!--ifIsNotAutoLine--\>)"
+;
 const char* ifIsExternal =
 "(;ifIsExternalBegin.*?;ifIsExternalEnd)|"
 "(\<!--ifIsExternalBegin--\>.*?\<!--ifIsExternalEnd--\>)|"
@@ -343,46 +349,64 @@ const char* toEngInPanel =
 ;
 //*****************************************
 const char* ifIsHasA =
-"(INI\\[16]\\=\\d)"
+"(;ifIsHasABegin.*?;ifIsHasAEnd)|"
+"(\<!--ifIsHasABegin--\>.*?\<!--ifIsHasAEnd--\>)|"
+"([^\n]+ifIsHasA\\b)|"
+"([^\n]+\<!--ifIsHasALine--\>)"
 ;
-const char* itIsHasA =
-"(INI[16]=1)"
+const char* ifIsNotHasA =
+"(;ifIsNotHasABegin.*?;ifIsNotHasAEnd)|"
+"(\<!--ifIsNotHasABegin--\>.*?\<!--ifIsNotHasAEnd--\>)|"
+"([^\n]+ifIsNotHasA\\b)|"
+"([^\n]+\<!--ifIsNotHasALine--\>)"
 ;
 const char* ifIsSiFuInGrindWheel =
-"(INI\\[36]\\=\\d)"
+"(;ifIsSiFuInGrindWheelBegin.*?;ifIsSiFuInGrindWheelEnd)|"
+"(\<!--ifIsSiFuInGrindWheelBegin--\>.*?\<!--ifIsSiFuInGrindWheelEnd--\>)|"
+"([^\n]+ifIsSiFuInGrindWheel\\b)|"
+"([^\n]+\<!--ifIsSiFuInGrindWheelLine--\>)"
 ;
-const char* itIsSiFuInGrindWheel =
-"(INI[36]=1)"
+const char* ifIsNotSiFuInGrindWheel =
+"(;ifIsNotSiFuInGrindWheelBegin.*?;ifIsNotSiFuInGrindWheelEnd)|"
+"(\<!--ifIsNotSiFuInGrindWheelBegin--\>.*?\<!--ifIsNotSiFuInGrindWheelEnd--\>)|"
+"([^\n]+ifIsNotSiFuInGrindWheel\\b)|"
+"([^\n]+\<!--ifIsNotSiFuInGrindWheelLine--\>)"
 ;
 const char* ifIsSiFuInExGrindWheel =
-"(INI\\[91]\\=\\d)"
+"(;ifIsSiFuInExGrindWheelBegin.*?;ifIsSiFuInExGrindWheelEnd)|"
+"(\<!--ifIsSiFuInExGrindWheelBegin--\>.*?\<!--ifIsSiFuInExGrindWheelEnd--\>)|"
+"([^\n]+ifIsSiFuInExGrindWheel\\b)|"
+"([^\n]+\<!--ifIsSiFuInExGrindWheelLine--\>)"
 ;
-const char* itIsSiFuInExGrindWheel =
-"(INI[91]=1)"
+const char* ifIsNotSiFuInExGrindWheel =
+"(;ifIsNotSiFuInExGrindWheelBegin.*?;ifIsNotSiFuInExGrindWheelEnd)|"
+"(\<!--ifIsNotSiFuInExGrindWheelBegin--\>.*?\<!--ifIsNotSiFuInExGrindWheelEnd--\>)|"
+"([^\n]+ifIsNotSiFuInExGrindWheel\\b)|"
+"([^\n]+\<!--ifIsNotSiFuInExGrindWheelLine--\>)"
 ;
 const char* ifIsSiFuInDressWheel =
-"(INI\\[37]\\=\\d)"
+"(;ifIsSiFuInDressWheelBegin.*?;ifIsSiFuInDressWheelEnd)|"
+"(\<!--ifIsSiFuInDressWheelBegin--\>.*?\<!--ifIsSiFuInDressWheelEnd--\>)|"
+"([^\n]+ifIsSiFuInDressWheel\\b)|"
+"([^\n]+\<!--ifIsSiFuInDressWheelLine--\>)"
 ;
-const char* itIsSiFuInDressWheel =
-"(INI[37]=1)"
-;
-const char* ifIsAutoOp =
-"(INI\\[69]\\=\\d)"
-;
-const char* itIsAutoOp =
-"(INI[69]=1)"
-;
-const char* ifIsReOp =
-"(INI\\[78]\\=\\d)"
-;
-const char* itIsReOp =
-"(INI[78]=1)"
+const char* ifIsNotSiFuInDressWheel =
+"(;ifIsNotSiFuInDressWheelBegin.*?;ifIsNotSiFuInDressWheelEnd)|"
+"(\<!--ifIsNotSiFuInDressWheelBegin--\>.*?\<!--ifIsNotSiFuInDressWheelEnd--\>)|"
+"([^\n]+ifIsNotSiFuInDressWheel\\b)|"
+"([^\n]+\<!--ifIsNotSiFuInDressWheelLine--\>)"
 ;
 const char* ifIsProbeFront =
-"(TOOL_SET\\[43]\\=\\d)"
+"(;ifIsProbeFrontBegin.*?;ifIsProbeFrontEnd)|"
+"(\<!--ifIsProbeFrontBegin--\>.*?\<!--ifIsProbeFrontEnd--\>)|"
+"([^\n]+ifIsProbeFront\\b)|"
+"([^\n]+\<!--ifIsProbeFrontLine--\>)"
 ;
-const char* itIsProbeFront =
-"(TOOL_SET[43]=-1)"
+const char* ifIsNotProbeFront =
+"(;ifIsNotProbeFrontBegin.*?;ifIsNotProbeFrontEnd)|"
+"(\<!--ifIsNotProbeFrontBegin--\>.*?\<!--ifIsNotProbeFrontEnd--\>)|"
+"([^\n]+ifIsNotProbeFront\\b)|"
+"([^\n]+\<!--ifIsNotProbeFrontLine--\>)"
 ;
 //***************************************
 const char* fromMachineNameInMain =
@@ -426,7 +450,8 @@ const char* commonProjFiles[] = {
     "a_info\.com$",
     "a_backup_restore\.com$",
     "a_process\.com$",
-    "a_stats\.com"
+    "a_stats\.com$",
+    "a_setting\.com$"
 };
 const char* cbProjFiles[] = {
     "a_shape\.com$",
@@ -456,9 +481,8 @@ const char* machinePic640[] = {
 const char* mpfMachineMainProgram[] = {
     "INFO_INIT\.MPF$"
 };
-const char* cmaMachineINIProgram[] = {
-    "B_MACHINE_INI\.SPF$",
-    "H_MACHINE_INI\.SPF$"
+const char* projMachineSettingHMI[] = {
+    "a_setting\.com$"
 };
 //*******************************************
 const char* MultiSymbel =
@@ -497,7 +521,7 @@ const int machinePic640Count = sizeof(machinePic640) / sizeof(machinePic640[0]);
 const int commentsInFilesCount = sizeof(commentsInFiles) / sizeof(commentsInFiles[0]);
 const int ncPlcParaCount = sizeof(ncPlcParaFiles) / sizeof(ncPlcParaFiles[0]);
 const int hmiHlpIgnoreFilesCount = sizeof(hmiHlpIgnoreFiles) / sizeof(hmiHlpIgnoreFiles[0]);
-const int cmaMachineINIProgramCount = sizeof(cmaMachineINIProgram) / sizeof(cmaMachineINIProgram[0]);
+const int projMachineSettingHMICount = sizeof(projMachineSettingHMI) / sizeof(projMachineSettingHMI[0]);
 
 //*******************************
 
@@ -1037,6 +1061,7 @@ void GeneratePro::startGenerate() {
                 project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotCenter, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
                 project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsNotCenter, rmUnusedPart, NULL, 0);
                 project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotCenter, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotCenter, rmUnusedPart, NULL, 0);
                 project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsInternalOnly, rmUnusedPart, NULL, 0);
                 if (ifHasU == 0)
                 {
@@ -1079,6 +1104,7 @@ void GeneratePro::startGenerate() {
                 project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
                 project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
                 project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
             }
         }
 
@@ -1415,34 +1441,65 @@ void GeneratePro::startGenerate() {
         project->copyFilesToNewDirWithIncludeDir(c_hmiRepositorySourceDir[0], c_hmiIco640DestDir, c_machineName, 1, machinePic640, machinePic640Count);
 
         cout << "\n\nmodify machine spcifications:\n";
-        if (ifHasA == 0) {
-            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsHasA, itIsHasA, cmaMachineINIProgram, cmaMachineINIProgramCount);
-        }
-        if (grindWheelType == 0) {
-            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsSiFuInGrindWheel, itIsSiFuInGrindWheel, cmaMachineINIProgram, cmaMachineINIProgramCount);
-        }
-        if (machineType == 1 && ifCenter == 0) {
-            if (exGrindWheelType == 0) {
-                project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsSiFuInExGrindWheel, itIsSiFuInExGrindWheel, cmaMachineINIProgram, cmaMachineINIProgramCount);
-            }
-        }
-        if (dressWheelType == 0) {
-            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsSiFuInDressWheel, itIsSiFuInDressWheel, cmaMachineINIProgram, cmaMachineINIProgramCount);
-        }
-        if (ifOperation == 0) {
-            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsAutoOp, itIsAutoOp, cmaMachineINIProgram, cmaMachineINIProgramCount);
-        }
-        if (machineType == 0)
-        {
-            if (ifHasReOp == 0)
-            {
-                project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsReOp, itIsReOp, cmaMachineINIProgram, cmaMachineINIProgramCount);
-            }
-        }
-        if (machineType == 1 && probePos == 1) {
-            project->findAndRepleaceInDirWithInclude(c_cmaDestDir, ifIsProbeFront, itIsProbeFront, cmaMachineINIProgram, cmaMachineINIProgramCount);
+        if (ifHasA == 0) {//有A轴
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsNotHasA, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+        } else {//无A轴
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsHasA, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
         }
 
+        if (grindWheelType == 0) {//伺服电机
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsNotSiFuInGrindWheel, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+        } else {//变频器
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsSiFuInGrindWheel, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+        }
+
+        if (machineType == 1 && ifCenter == 0) {//内螺纹且是磨削中心
+            if (exGrindWheelType == 0) {//伺服电机
+                project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsNotSiFuInExGrindWheel, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+            } else {
+                project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsSiFuInExGrindWheel, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+            }
+        } else {//不是磨削中心
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsSiFuInExGrindWheel, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsNotSiFuInExGrindWheel, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+        }
+
+        if (dressWheelType == 0) {//伺服电机
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsNotSiFuInDressWheel, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+        } else {//变频器
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsSiFuInDressWheel, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+        }
+
+        if (ifOperation == 0) {//有自动对刀
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsNotAuto, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+        } else {
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsAuto, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+        }
+
+        if (machineType == 0)//外螺纹
+        {
+            if (ifHasReOp == 0)//有二次对刀
+            {
+                project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsNotHasReOperate, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+            } else {//没有二次对刀
+                project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsHasReOperate, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+            }
+        } else {//其他情况都没有二次对刀
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsHasReOperate, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+        }
+
+        if (machineType == 1 && ifOperation == 0 && measureMethord == 1) {//内螺纹测头自动对刀
+            if (probePos == 1) {//内螺纹且是测头测量工件前孔
+                project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsNotProbeFront, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+            } else {
+                project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsProbeFront, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+            }
+        } else {
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsProbeFront, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+            project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsNotProbeFront, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
+        }
+
+        cout << "\n\nmodify machine infomation:\n";
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromMachineNameInMain, toMachineNameInMain, mpfMachineMainProgram, 1);
         project->findAndRepleaceInDirWithInclude(c_hmiLngDestDir, fromMachineNameInMain, toMachineNameInMain, NULL, 0);
 

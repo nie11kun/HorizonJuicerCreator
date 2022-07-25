@@ -1015,6 +1015,7 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsInternalOnly, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsInternal, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
 
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsInternal, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsCenter, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);

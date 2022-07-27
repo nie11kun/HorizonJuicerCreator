@@ -2,6 +2,9 @@
 #include <iostream>
 #include "filework.hpp"
 #include "boost/filesystem.hpp"
+#include <string>
+#include <cstdlib> // Header file needed to use srand and rand
+#include <ctime> // Header file needed to use time
 
 namespace fs = boost::filesystem;
 
@@ -430,6 +433,9 @@ const char* fromSoftwareVersion =
 const char* fromSpecificationInfo =
 "(specificationInfo)"
 ;
+const char* frompasswordSource =
+"(passwordSource)"
+;
 //***************************************
 
 const char* swIncludeFiles[] = {
@@ -724,6 +730,13 @@ void GeneratePro::startGenerate() {
     string customInfoGBK = c->UTF8ToGBK(customInfo);
     string machineNameForDirName = machineNameForFileName + "(#" + machineIndex + "-" + customInfoGBK + ")";
 
+    //***********************************************
+
+    srand((int)time(0));//随机数种子
+    int passwordInt = (rand() % (999999 - 100000 + 1)) + 100000;//随机产生 100000 - 999999 的数
+
+    std::string passwordStr = std::to_string(passwordInt);
+    const char* topasswordSource = (char*)passwordStr.c_str();
     //************************************************
 
     if (lng == 0)
@@ -1514,6 +1527,10 @@ void GeneratePro::startGenerate() {
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromDebugDate, toDebugDate, mpfMachineMainProgram, 1);
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromSpecificationInfo, toSpecificationInfo, mpfMachineMainProgram, 1);
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromCustomInfo, toCustomInfo, mpfMachineMainProgram, 1);
+
+        //modify setting screen's password
+        //cout << passwordStr;
+        project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, frompasswordSource, topasswordSource, projMachineSettingHMI, projMachineSettingHMICount);
 
         if (hmiMode == 1) {
             cout << "\n\nHMi to compatible mode:\n";

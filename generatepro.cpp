@@ -471,11 +471,6 @@ const char* centerProjFiles[] = {
     "a_centermain\.com$",
     "a_centerwaiyuan\.com$"
 };
-
-const char* ncPlcParaFiles[] = {
-    "NC_PLC-variates\.xml$"
-};
-
 const char* machinePic800[] = {
     "panel_0_0",
     "panel_0_1"
@@ -525,7 +520,6 @@ const int swxzSDCount = sizeof(swxzSourceDirRef) / sizeof(swxzSourceDirRef[0]);
 const int machinePic800Count = sizeof(machinePic800) / sizeof(machinePic800[0]);
 const int machinePic640Count = sizeof(machinePic640) / sizeof(machinePic640[0]);
 const int commentsInFilesCount = sizeof(commentsInFiles) / sizeof(commentsInFiles[0]);
-const int ncPlcParaCount = sizeof(ncPlcParaFiles) / sizeof(ncPlcParaFiles[0]);
 const int hmiHlpIgnoreFilesCount = sizeof(hmiHlpIgnoreFiles) / sizeof(hmiHlpIgnoreFiles[0]);
 const int projMachineSettingHMICount = sizeof(projMachineSettingHMI) / sizeof(projMachineSettingHMI[0]);
 
@@ -676,6 +670,9 @@ void GeneratePro::startGenerate() {
     string screwTapSourceDir[] = {
         seg + "Source_Library" + seg + "CMA" + seg + "SCREW_TAP"
     };
+    string userSourceDir[] = {
+        seg + "Source_Library" + seg + "user"
+    };
 
     string cmaDirRef = seg + "CMA";
     string mpfDirRef = seg + "MPF";
@@ -689,6 +686,7 @@ void GeneratePro::startGenerate() {
     string hmiLngDirRef = seg + "HMI" + seg + "lng";
     string hmiProjDirRef = seg + "HMI" + seg + "proj";
     string hmiHlpDirRef = seg + "HMI" + seg + "hlp";
+    string userDirRef = seg + "user";
 
     //*********************************************
 
@@ -823,6 +821,9 @@ void GeneratePro::startGenerate() {
     const char* c_screwTapSourceDir[] = {
         screwTapSourceDir[0].insert(0, sourceDir).c_str()
     };
+    const char* c_userSourceDir[] = {
+        userSourceDir[0].insert(0, sourceDir).c_str()
+    };
 
     const char* c_DestDirParent = destDirParent.c_str();
     const char* c_distMainDir = destDir.c_str();
@@ -838,6 +839,7 @@ void GeneratePro::startGenerate() {
     //const char* c_hmiIco800DefaultDestDir = hmiIco800DefaultDirRef.insert(0, destDir).c_str();
     const char* c_hmiLngDestDir = hmiLngDirRef.insert(0, destDir).c_str();
     const char* c_hmiProjDestDir = hmiProjDirRef.insert(0, destDir).c_str();
+    const char* c_userDestDir = userDirRef.insert(0, destDir).c_str();
 
     //*********************************************************
 
@@ -907,9 +909,10 @@ void GeneratePro::startGenerate() {
         project->copyFilesToNewDirWithIgnore(c_hmiIco800DefaultSourceDir[0], c_hmiIco800DestDir, NULL, 0);
 
         project->copyFilesToNewDirWithInclude(c_hmiProjSourceDir[0], c_hmiProjDestDir, commonProjFiles, commonPFCount);
-        project->copyFilesToNewDirWithInclude(c_souceLibraryDir[0], c_distMainDir, ncPlcParaFiles, ncPlcParaCount);
 
         project->copyFilesToNewDirWithIgnore(c_backupRestoreSourceDir[0], c_cmaDestDir, NULL, 0);
+
+        project->copyFileFolderToNewDir(c_userSourceDir[0], c_userDestDir);
 
         if (machineType == 0)
         {

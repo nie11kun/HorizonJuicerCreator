@@ -411,6 +411,18 @@ const char* ifIsNotProbeFront =
 "([^\n]+ifIsNotProbeFront\\b)|"
 "([^\n]+\<!--ifIsNotProbeFrontLine--\>)"
 ;
+const char* ifIsHasLoadingArm =
+"(;ifIsHasLoadingArmBegin.*?;ifIsHasLoadingArmEnd)|"
+"(\<!--ifIsHasLoadingArmBegin--\>.*?\<!--ifIsHasLoadingArmEnd--\>)|"
+"([^\n]+ifIsHasLoadingArm\\b)|"
+"([^\n]+\<!--ifIsHasLoadingArmLine--\>)"
+;
+const char* ifIsNotHasLoadingArm =
+"(;ifIsNotHasLoadingArmBegin.*?;ifIsNotHasLoadingArmEnd)|"
+"(\<!--ifIsNotHasLoadingArmBegin--\>.*?\<!--ifIsNotHasLoadingArmEnd--\>)|"
+"([^\n]+ifIsNotHasLoadingArm\\b)|"
+"([^\n]+\<!--ifIsNotHasLoadingArmLine--\>)"
+;
 //***************************************
 const char* fromMachineNameInMain =
 "(machineName)"
@@ -559,6 +571,7 @@ void GeneratePro::getJsonValue(){
     ifHasScrewTap = obj["ifHasScrewTap"].toInt();
     ifHasWorm = obj["ifHasWorm"].toInt();
     hmiMode = obj["hmiMode"].toInt();
+    ifHasLoadingArm = obj["ifHasLoadingArm"].toInt();
 
     cout << softwareVersion << endl;
     cout << "-------------------" << endl;
@@ -590,6 +603,7 @@ void GeneratePro::getJsonValue(){
     cout << ifHasScrewTap << endl;
     cout << ifHasWorm << endl;
     cout << hmiMode << endl;
+    cout << ifHasLoadingArm << endl;
     cout << "-------------------" << endl;
 }
 
@@ -669,6 +683,9 @@ void GeneratePro::startGenerate() {
     };
     string screwTapSourceDir[] = {
         seg + "Source_Library" + seg + "CMA" + seg + "SCREW_TAP"
+    };
+    string loadingArmSourceDir[] = {
+        seg + "Source_Library" + seg + "CMA" + seg + "JiXieShouRelative"
     };
     string userSourceDir[] = {
         seg + "Source_Library" + seg + "user"
@@ -851,6 +868,9 @@ void GeneratePro::startGenerate() {
     const char* c_screwTapSourceDir[] = {
         screwTapSourceDir[0].insert(0, sourceDir).c_str()
     };
+    const char* c_loadingArmSourceDir[] = {
+        loadingArmSourceDir[0].insert(0, sourceDir).c_str()
+    };
     const char* c_userSourceDir[] = {
         userSourceDir[0].insert(0, sourceDir).c_str()
     };
@@ -925,6 +945,7 @@ void GeneratePro::startGenerate() {
     }
     specificationInfo.append(to_string(dressWheelType));
     specificationInfo.append(to_string(ifRemoveComments));
+    specificationInfo.append(to_string(ifHasLoadingArm));
     char* toSpecificationInfo = (char*)specificationInfo.c_str();
     //************************************************
 
@@ -1061,6 +1082,11 @@ void GeneratePro::startGenerate() {
             project->copyFilesToNewDirWithIgnore(c_jiaJuSourceDir[0], c_cmaDestDir, NULL, 0);
         }
 
+        if (ifHasLoadingArm == 1)//有机械手
+        {
+            project->copyFilesToNewDirWithIgnore(c_loadingArmSourceDir[0], c_cmaDestDir, NULL, 0);
+        }
+
         cout << "\n\nreplacing in files:\n";
         if (machineType == 0)
         {
@@ -1113,6 +1139,13 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsInternal, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsInternal, rmUnusedPart, NULL, 0);
+
+            project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
 
             if (ifHasScrewTap == 1)
             {
@@ -1193,9 +1226,14 @@ void GeneratePro::startGenerate() {
                 project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
                 project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
                 project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
-                project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
-                project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
                 project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsCenter, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasU, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasU, rmUnusedPart, NULL, 0);
+
             }
         }
 
@@ -1510,6 +1548,17 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAllShape, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasOtherCommonShape, rmUnusedPart, NULL, 0);
             break;
+        }
+
+        if (ifHasLoadingArm == 1)//有机械手
+        {
+            project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsNotHasLoadingArm, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasLoadingArm, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotHasLoadingArm, rmUnusedPart, NULL, 0);
+        } else {
+            project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsHasLoadingArm, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasLoadingArm, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasLoadingArm, rmUnusedPart, NULL, 0);
         }
 
         if (lng == 1)

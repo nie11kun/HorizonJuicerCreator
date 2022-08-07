@@ -59,6 +59,7 @@ private:
     int ifHasScrewTap;
     int ifHasWorm;
     int hmiMode;
+    int ifHasLoadingArm;
 
 signals:
     void triggerStartingProcess();

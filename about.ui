@@ -304,7 +304,7 @@ p, li { white-space: pre-wrap; }
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;DRESSER[139]&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;预设为 0 (0否1是) (修整界面输入外部程序名称)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;预设为 0 (0否1是) (修整界面输入外部程序名称 变量名:SHAPE_EXTERNAL)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;外部齿型程序无外围延长部分修整&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;

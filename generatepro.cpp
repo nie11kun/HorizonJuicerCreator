@@ -1276,6 +1276,8 @@ void GeneratePro::startGenerate() {
             default:
                 break;
             }
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotAuto, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotAuto, rmUnusedPart, NULL, 0);
         }
         else
         {

@@ -1283,6 +1283,7 @@ void GeneratePro::startGenerate() {
         {
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsAuto, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAuto, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsAuto, rmUnusedPart, NULL, 0);
         }
 
         switch (wareType)

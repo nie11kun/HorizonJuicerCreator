@@ -123,8 +123,9 @@ void CreatorWindow::machineTypeComboBoxSet(int index) {
         qobject_cast<QListView *>(ui->comboBoxWareType->view())->setRowHidden(2, false);
         qobject_cast<QListView *>(ui->comboBoxWareType->view())->setRowHidden(3, true);
         qobject_cast<QListView *>(ui->comboBoxWareType->view())->setRowHidden(4, false);
+        qobject_cast<QListView *>(ui->comboBoxWareType->view())->setRowHidden(5, true);
 
-        if (ui->comboBoxWareType->currentIndex() == 3)
+        if (ui->comboBoxWareType->currentIndex() == 3 || ui->comboBoxWareType->currentIndex() == 5)
             ui->comboBoxWareType->setCurrentIndex(0);
 
         ui->comboBoxIfHasReOp->setHidden(false);
@@ -140,6 +141,7 @@ void CreatorWindow::machineTypeComboBoxSet(int index) {
         qobject_cast<QListView *>(ui->comboBoxWareType->view())->setRowHidden(2, false);
         qobject_cast<QListView *>(ui->comboBoxWareType->view())->setRowHidden(3, false);
         qobject_cast<QListView *>(ui->comboBoxWareType->view())->setRowHidden(4, true);
+        qobject_cast<QListView *>(ui->comboBoxWareType->view())->setRowHidden(5, false);
 
         if (ui->comboBoxWareType->currentIndex() == 0 || ui->comboBoxWareType->currentIndex() == 1 || ui->comboBoxWareType->currentIndex() == 4)
             ui->comboBoxWareType->setCurrentIndex(2);
@@ -168,7 +170,7 @@ void CreatorWindow::wareTypeComboBoxSet(int index) {
         ui->labelIfHasWorm->setHidden(true);
     }
 
-    if (index == 0 || index == 2 || index == NULL) {
+    if (index == 0 || index == 2 || index == 5 || index == NULL) {
         ui->comboBoxWheelType->setHidden(false);
         ui->labelWheelType->setHidden(false);
         ui->comboBoxShapeType->setHidden(false);

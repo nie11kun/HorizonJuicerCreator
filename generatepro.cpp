@@ -423,6 +423,18 @@ const char* ifIsNotHasLoadingArm =
 "([^\n]+ifIsNotHasLoadingArm\\b)|"
 "([^\n]+\<!--ifIsNotHasLoadingArmLine--\>)"
 ;
+const char* ifIsXW =
+"(;ifIsXWBegin.*?;ifIsXWEnd)|"
+"(\<!--ifIsXWBegin--\>.*?\<!--ifIsXWEnd--\>)|"
+"([^\n]+ifIsXW\\b)|"
+"([^\n]+\<!--ifIsXWLine--\>)"
+;
+const char* ifIsNotXW =
+"(;ifIsNotXWBegin.*?;ifIsNotXWEnd)|"
+"(\<!--ifIsNotXWBegin--\>.*?\<!--ifIsNotXWEnd--\>)|"
+"([^\n]+ifIsNotXW\\b)|"
+"([^\n]+\<!--ifIsNotXWLine--\>)"
+;
 //***************************************
 const char* fromMachineNameInMain =
 "(machineName)"
@@ -916,7 +928,7 @@ void GeneratePro::startGenerate() {
     specificationInfo.append(to_string(wareType));
     if (machineType == 0 && (wareType == 0 || wareType == 2))
         specificationInfo.append(to_string(ifHasWorm));
-    if (wareType == 0 || wareType == 2) {
+    if (wareType == 0 || wareType == 2 ||  wareType == 5) {
         specificationInfo.append(to_string(wheelType));
         specificationInfo.append(to_string(shapeType));
     }
@@ -1161,6 +1173,12 @@ void GeneratePro::startGenerate() {
                 project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotScrewTap, rmUnusedPart, NULL, 0);
                 project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotScrewTap, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             }
+
+            project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiHlpDestDir, ifIsXW, rmUnusedPart, NULL, 0);
         }
         else
         {
@@ -1284,6 +1302,14 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsAuto, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsAuto, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsAuto, rmUnusedPart, NULL, 0);
+        }
+
+        if (wareType != 5) {
+            project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiHlpDestDir, ifIsXW, rmUnusedPart, NULL, 0);
         }
 
         switch (wareType)
@@ -1507,6 +1533,66 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
+            break;
+        case 5:
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare1, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare2, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare4, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsDressWare5, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare1, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare2, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare4, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, 0);
+
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsV, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVWSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsV, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
+            if (wheelType == 0)
+            {
+                project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
+            }
+            else
+            {
+                project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXZSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
+            }
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXNeiBack, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
+
+            if (machineType == 0)
+            {
+                project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXNeiFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
+            }
+            else
+            {
+                project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
+                project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXWai, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
+            }
+
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVH, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
+
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
+            project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsNotXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_hmiHlpDestDir, ifIsNotXW, rmUnusedPart, NULL, 0);
+            
             break;
         default:
             break;

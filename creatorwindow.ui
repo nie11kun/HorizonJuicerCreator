@@ -462,6 +462,11 @@
               <string>液压</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>XW</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="3" column="0">

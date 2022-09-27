@@ -484,7 +484,6 @@ const char* commonProjFiles[] = {
     "a_setting\.com$"
 };
 const char* cbProjFiles[] = {
-    "a_shape\.com$",
     "a_shapecommon\.com$"
 };
 const char* autoProjFiles[] = {
@@ -526,9 +525,9 @@ const char* XiaHua =
 
 //*****************************************
 
-const char* snxzSourceDirRef[] = { "SN$", "X_Z$" };
-const char* swvwSourceDirRef[] = { "SW$", "V_W$" };
-const char* swxzSourceDirRef[] = { "SW$", "X_Z$" };
+const char* snxzSourceDirRef[] = {"X_Z$" };
+const char* swvwSourceDirRef[] = {"V_W$" };
+const char* swxzSourceDirRef[] = {"X_Z$" };
 
 //*******************************************
 
@@ -631,8 +630,7 @@ void GeneratePro::startGenerate() {
 
     string commonSourceDir[] = {
         seg + "Source_Library" + seg + "CMA",
-        seg + "Source_Library" + seg + "CMA" + seg + "DRESS_PART",
-        seg + "Source_Library" + seg + "CMA" + seg + "DRESS_PART" + seg + "shape"
+        seg + "Source_Library" + seg + "CMA" + seg + "DRESS_PART"
     };
     string commonShapeDir[] = {
         seg + "Source_Library" + seg + "CMA" + seg + "DRESS_PART" + seg + "CommonShape"

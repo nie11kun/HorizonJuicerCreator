@@ -97,8 +97,19 @@
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QLabel" name="labelError">
+       <property name="font">
+        <font>
+         <italic>false</italic>
+         <bold>false</bold>
+         <underline>true</underline>
+         <strikeout>false</strikeout>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(200, 151, 151);</string>
+       </property>
        <property name="text">
-        <string/>
+        <string>源仓库地址需索引到 Horizon-Juicer 文件夹</string>
        </property>
       </widget>
      </item>

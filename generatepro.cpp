@@ -1734,7 +1734,7 @@ void GeneratePro::startGenerate() {
         project->findAndRepleaceInDirWithInclude(c_hmiLngDestDir, fromMachineNameCHS, toMachineNameLng, NULL, 0);
 
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromMachineIndex, toMachineIndex, mpfMachineMainProgram, 1);
-        project->findAndRepleaceInDirWithInclude(c_hmiLngDestDir, fromMachineIndex, toMachineIndex, NULL, 0);
+        project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, fromMachineIndex, toMachineIndex, NULL, 0);
 
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromSoftwareVersion, toSoftwareVersion, mpfMachineMainProgram, 1);
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromDebugDate, toDebugDate, mpfMachineMainProgram, 1);

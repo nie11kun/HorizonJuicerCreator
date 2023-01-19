@@ -525,9 +525,9 @@ const char* XiaHua =
 
 //*****************************************
 
-const char* snxzSourceDirRef[] = {"X_Z$" };
-const char* swvwSourceDirRef[] = {"V_W$" };
-const char* swxzSourceDirRef[] = {"X_Z$" };
+const char* snxzSourceDirRef[] = { "SN$", "X_Z$" };
+const char* swvwSourceDirRef[] = { "SW$", "V_W$" };
+const char* swxzSourceDirRef[] = { "SW$", "X_Z$" };
 
 //*******************************************
 

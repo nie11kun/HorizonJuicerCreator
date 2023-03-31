@@ -579,6 +579,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;预设为 0 (磨削界面) (外螺纹不显示)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;内螺纹反向孔倒角-倒角终点X向补偿参数显示&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;TECHNOLOGY[291]&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;预设为 0 (反向孔倒角界面) (外螺纹不显示)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;螺纹两端变径磨削界面开启&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;TECHNOLOGY[108]&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;

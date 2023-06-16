@@ -1176,7 +1176,8 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsXW, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXW, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsXW, rmUnusedPart, NULL, 0);
-            project->findAndRepleaceInDirWithIgnore(c_hmiHlpDestDir, ifIsXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXW, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
         }
         else
         {
@@ -1307,7 +1308,8 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsXW, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXW, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsXW, rmUnusedPart, NULL, 0);
-            project->findAndRepleaceInDirWithIgnore(c_hmiHlpDestDir, ifIsXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXW, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+
         }
 
         switch (wareType)
@@ -1589,7 +1591,7 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotXW, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotXW, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotXW, rmUnusedPart, NULL, 0);
-            project->findAndRepleaceInDirWithIgnore(c_hmiHlpDestDir, ifIsNotXW, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotXW, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             
             break;
         default:

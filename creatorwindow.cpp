@@ -234,8 +234,8 @@ void CreatorWindow::centerSet(int index) {
                 ui->comboBoxIfNotHasUExternalPos->setHidden(false);
                 ui->labelIfNotHasUExternalPos->setHidden(false);
             }
-            qobject_cast<QListView *>(ui->comboBoxMeasureMethord->view())->setRowHidden(0, true);
-            ui->comboBoxMeasureMethord->setCurrentIndex(1);
+            //qobject_cast<QListView *>(ui->comboBoxMeasureMethord->view())->setRowHidden(0, false);
+            //ui->comboBoxMeasureMethord->setCurrentIndex(1);
         } else {
             ui->comboBoxIfHasU->setHidden(true);
             ui->labelIfHasU->setHidden(true);
@@ -244,7 +244,7 @@ void CreatorWindow::centerSet(int index) {
             ui->comboBoxIfNotHasUExternalPos->setHidden(true);
             ui->labelIfNotHasUExternalPos->setHidden(true);
 
-            qobject_cast<QListView *>(ui->comboBoxMeasureMethord->view())->setRowHidden(0, false);
+            //qobject_cast<QListView *>(ui->comboBoxMeasureMethord->view())->setRowHidden(0, false);
         }
     }
     centerExternalSet(ui->comboBoxIfHasU->currentIndex());

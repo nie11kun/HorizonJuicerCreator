@@ -325,7 +325,7 @@ p, li { white-space: pre-wrap; }
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;DRESSER[57]&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;预设为 1 (0否1是)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;预设为 0 (0否1是)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;三角齿型-带丝底凹槽&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
@@ -412,6 +412,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;TECHNOLOGY[128]&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;预设为 0 (0否1是) (没有自动对刀则隐藏) (外螺纹不显示)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;自动对刀内螺纹测量机构类型选择&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;TECHNOLOGY[158]&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;根据配置自动预设 (0开关1测头) (没有自动对刀则隐藏) (外螺纹不显示)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;首件工件对刀c起始角度&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
@@ -618,7 +625,7 @@ p, li { white-space: pre-wrap; }
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;TECHNOLOGY[126]&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;预设为 1 (工艺界面) (进刀量梯度变化 每头进刀位置补偿 等)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;预设为 0 (工艺界面) (进刀量梯度变化 每头进刀位置补偿 等)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;&lt;/td&gt;
 &lt;td style=&quot; padding-left:10; padding-right:10; padding-top:5; padding-bottom:5; border-top:1px; border-top-color:#000000; border-top-style:solid;&quot;&gt;&lt;/td&gt;

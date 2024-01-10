@@ -1180,13 +1180,6 @@ void GeneratePro::startGenerate() {
                 project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotScrewTap, rmUnusedPart, NULL, 0);
                 project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsNotScrewTap, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             }
-
-            project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsXW, rmUnusedPart, NULL, 0);
-            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsXW, rmUnusedPart, NULL, 0);
-            project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXW, rmUnusedPart, NULL, 0);
-            project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsXW, rmUnusedPart, NULL, 0);
-            project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXW, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
-
         }
         else
         {

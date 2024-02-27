@@ -513,6 +513,10 @@ const char* parameterFiles[] = {
     "Parameter_Index\.md$",
     "M-sympol_Index\.md$"
 };
+
+const char* hlpMachineMainHelpIndex[] = {
+    "index\.html$"
+};
 //*******************************************
 const char* MultiSymbel =
 "(×)|"
@@ -1741,14 +1745,18 @@ void GeneratePro::startGenerate() {
         cout << "\n\nmodify machine infomation:\n";
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromMachineNameInMain, toMachineNameInMain, mpfMachineMainProgram, 1);
         project->findAndRepleaceInDirWithInclude(c_hmiLngDestDir, fromMachineNameInMain, toMachineNameInMain, NULL, 0);
+        project->findAndRepleaceInDirWithIncludeRecursion(c_hmiHlpDestDir, fromMachineNameInMain, toMachineNameInMain, hlpMachineMainHelpIndex, 1);
 
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromMachineNameCHS, toMachineNameLng, mpfMachineMainProgram, 1);
         project->findAndRepleaceInDirWithInclude(c_hmiLngDestDir, fromMachineNameCHS, toMachineNameLng, NULL, 0);
+        project->findAndRepleaceInDirWithIncludeRecursion(c_hmiHlpDestDir, fromMachineNameCHS, toMachineNameLng, hlpMachineMainHelpIndex, 1);
 
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromMachineIndex, toMachineIndex, mpfMachineMainProgram, 1);
         project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, fromMachineIndex, toMachineIndex, NULL, 0);
 
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromSoftwareVersion, toSoftwareVersion, mpfMachineMainProgram, 1);
+        project->findAndRepleaceInDirWithIncludeRecursion(c_hmiHlpDestDir, fromSoftwareVersion, toSoftwareVersion, hlpMachineMainHelpIndex, 1);
+
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromDebugDate, toDebugDate, mpfMachineMainProgram, 1);
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromSpecificationInfo, toSpecificationInfo, mpfMachineMainProgram, 1);
         project->findAndRepleaceInDirWithInclude(c_mpfDestDir, fromCustomInfo, toCustomInfo, mpfMachineMainProgram, 1);

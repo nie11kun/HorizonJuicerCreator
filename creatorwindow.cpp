@@ -277,8 +277,8 @@ void CreatorWindow::probePosSet(int index) {
     } else {
         if (ui->comboBoxIfOperation->currentIndex() == 0 || ui->comboBoxIfOperation->currentIndex() == NULL) {
             if (index == 0 || index == NULL) {
-                ui->comboBoxProbePos->setHidden(true);
-                ui->labelProbePos->setHidden(true);
+                ui->comboBoxProbePos->setHidden(false);
+                ui->labelProbePos->setHidden(false);
             } else {
                 ui->comboBoxProbePos->setHidden(false);
                 ui->labelProbePos->setHidden(false);

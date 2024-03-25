@@ -341,7 +341,7 @@
           <item row="9" column="0">
            <widget class="QLabel" name="labelProbePos">
             <property name="text">
-             <string>测量孔位置</string>
+             <string>测量方向</string>
             </property>
            </widget>
           </item>
@@ -568,12 +568,12 @@
            <widget class="QComboBox" name="comboBoxProbePos">
             <item>
              <property name="text">
-              <string>工件背面</string>
+              <string>向前测量</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>工件正面</string>
+              <string>向后测量</string>
              </property>
             </item>
            </widget>

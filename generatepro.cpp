@@ -946,7 +946,7 @@ void GeneratePro::startGenerate() {
     specificationInfo.append(to_string(ifOperation));
     if (ifOperation == 0) {
         specificationInfo.append(to_string(measureMethord));
-        if (machineType == 1 && measureMethord != 0)
+        if (machineType == 1)
             specificationInfo.append(to_string(probePos));
     }
     if (machineType == 1) {
@@ -1731,7 +1731,7 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsHasReOperate, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
         }
 
-        if (machineType == 1 && ifOperation == 0 && measureMethord == 1) {//内螺纹测头自动对刀
+        if (machineType == 1 && ifOperation == 0) {//内螺纹自动对刀
             if (probePos == 1) {//内螺纹且是测头测量工件前孔
                 project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, ifIsNotProbeFront, rmUnusedPart, projMachineSettingHMI, projMachineSettingHMICount);
             } else {

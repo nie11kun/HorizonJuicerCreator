@@ -1,8 +1,8 @@
 #include "horizonjuicercreator.hpp"
 #include "ui_horizonjuicercreator.h"
-#include "boost/filesystem.hpp"
+#include <fstream>
 
-namespace fs = boost::filesystem;
+namespace fs = std::filesystem;
 
 HorizonJuicerCreator::HorizonJuicerCreator(QWidget *parent)
     : QMainWindow(parent)
@@ -25,7 +25,7 @@ void HorizonJuicerCreator::setVersion() {
 
     fs::path a = r->filePath.toStdString();
     if (!fs::exists(a)) {
-        fs::ofstream file(a);
+        std::ofstream file(a);
         file.close();
     }
 

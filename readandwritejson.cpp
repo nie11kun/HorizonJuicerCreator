@@ -26,7 +26,7 @@ QJsonObject ReadAndWriteJson::readJsonToObj() {
         abort();
     } else {
         QTextStream in(&file);
-        in.setEncoding(QStringConverter::Utf8);// if not set code to utf8, chinese will error when is odd number.
+        in.setCodec("utf8");// if not set code to utf8, chinese will error when is odd number.
         QString s = in.readAll();
         file.close();
         QJsonDocument doc = QJsonDocument::fromJson(s.toUtf8());

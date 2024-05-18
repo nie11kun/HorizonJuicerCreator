@@ -62,11 +62,11 @@ win32: {
 }
 
 macx: {
-    LIBS += -L"/Users/marconie/libs/boost_1_84_0/stage/lib/" \
+    LIBS += -L"/Users/marconie/libs/boost_1_75_0/stage/lib/" \
                     -lboost_filesystem \
                     -lboost_regex
-    INCLUDEPATH += /Users/marconie/libs/boost_1_84_0
-    DEPENDPATH += /Users/marconie/libs/boost_1_84_0
+    INCLUDEPATH += /Users/marconie/libs/boost_1_75_0
+    DEPENDPATH += /Users/marconie/libs/boost_1_75_0
     ICON = ./car.icns
 }
 

@@ -695,6 +695,9 @@ void GeneratePro::startGenerate() {
     string hmiHlpSourceDir[] = {
         seg + "Source_Library" + seg + "HMI" + seg + "hlp"
     };
+    string hmiHlpChsSourceDir[] = {
+        seg + "Source_Library" + seg + "HMI" + seg + "hlp" + seg + "chs"
+    };
     string hmiProjSourceDir[] = {
         seg + "Source_Library" + seg + "HMI" + seg + "proj"
     };
@@ -752,6 +755,8 @@ void GeneratePro::startGenerate() {
 
     string oemSinumerikHmiIcoIco640DestDirRef = oemSinumerikHmiIcoDestDirRef + seg + "ico640";
     string oemSinumerikHmiIcoIco800DestDirRef = oemSinumerikHmiIcoDestDirRef + seg + "ico800";
+
+    string oemSinumerikHmiHlpChsDestDirRef = oemSinumerikHmiDestDirRef + seg + "hlp" + seg + "chs";
 
     string siemensSinumerikHmiProjDestDirRef = siemensSinumerikHmiDestDirRef + seg + "proj";
 
@@ -879,6 +884,9 @@ void GeneratePro::startGenerate() {
     const char* c_hmiHlpSourceDir[] = {
         hmiHlpSourceDir[0].insert(0, sourceDir).c_str()
     };
+    const char* c_hmiHlpChsSourceDir[] = {
+        hmiHlpChsSourceDir[0].insert(0, sourceDir).c_str()
+    };
     const char* c_hmiProjSourceDir[] = {
         hmiProjSourceDir[0].insert(0, sourceDir).c_str()
     };
@@ -922,6 +930,7 @@ void GeneratePro::startGenerate() {
     const char* c_hmiIcoDestDir = oemSinumerikHmiIcoDestDirRef.insert(0, destDir).c_str();
     const char* c_hmiCfgDestDir = oemSinumerikHmiCfgDestDirRef.insert(0, destDir).c_str();
     const char* c_hmiHlpDestDir = oemSinumerikHmiHlpDestDirRef.insert(0, destDir).c_str();
+    const char* c_hmiHlpChsDestDir = oemSinumerikHmiHlpChsDestDirRef.insert(0, destDir).c_str();
     const char* c_hmiLngDestDir = oemSinumerikHmiLngDestDirRef.insert(0, destDir).c_str();
 
     const char* c_hmiIco640DestDir = oemSinumerikHmiIcoIco640DestDirRef.insert(0, destDir).c_str();
@@ -996,6 +1005,8 @@ void GeneratePro::startGenerate() {
         fs::path cfcardSiemensSinumerikHmiIcoPath = fs::system_complete(c_hmiIcoDestDir);
         fs::path cfcardSiemensSinumerikHmiIcoIco800Path = fs::system_complete(c_hmiIco800DestDir);
 
+        fs::path cfcardOemSinumerikHmiHlpPath = fs::system_complete(c_hmiHlpDestDir);
+
         fs::create_directory(destPathParent);
         fs::create_directory(destPath);
 
@@ -1014,12 +1025,18 @@ void GeneratePro::startGenerate() {
         fs::create_directory(cfcardSiemensSinumerikHmiIcoPath);
         fs::create_directory(cfcardSiemensSinumerikHmiIcoIco800Path);
 
+        fs::create_directory(cfcardOemSinumerikHmiHlpPath);
+
         //*****************************************************************
 
         cout << "\n\ncopy files:\n";
         project->copyFilesToNewDirWithIgnore(c_defSourceDir[0], c_defDestDir, NULL, 0);
         project->copyFilesToNewDirWithIgnore(c_hmiCfgSourceDir[0], c_hmiCfgDestDir, NULL, 0);
-        project->copyFileFolderToNewDir(c_hmiHlpSourceDir[0], c_hmiHlpDestDir);
+        if (lng == 0) {
+            project->copyFileFolderToNewDir(c_hmiHlpChsSourceDir[0], c_hmiHlpChsDestDir);
+        } else {
+            project->copyFileFolderToNewDir(c_hmiHlpSourceDir[0], c_hmiHlpDestDir);
+        }
         project->copyFilesToNewDirWithIgnore(c_hmiLngSourceDir[0], c_hmiLngDestDir, NULL, 0);
         project->copyFilesToNewDirWithIgnore(c_hmiIco640SourceDir[0], c_hmiIco640DestDir, NULL, 0);
         project->copyFilesToNewDirWithIgnore(c_hmiIco800DefaultSourceDir[0], c_hmiIco800DestDir, NULL, 0);

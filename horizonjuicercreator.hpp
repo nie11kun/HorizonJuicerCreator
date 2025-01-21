@@ -43,6 +43,6 @@ private:
     History *history;
     void setVersion();
     ReadAndWriteJson *r;
-    QString version = "3.18.9";
+    QString version = "3.18.10";
 };
 #endif // HORIZONJUICERCREATOR_H

@@ -834,6 +834,7 @@ void GeneratePro::startGenerate() {
 
     string oemSinumerikHmiIcoIco640DestDirRef = oemSinumerikHmiIcoDestDirRef + seg + "ico640";
     string oemSinumerikHmiIcoIco800DestDirRef = oemSinumerikHmiIcoDestDirRef + seg + "ico800";
+    string oemSinumerikHmiIcoIco1024DestDirRef = oemSinumerikHmiIcoDestDirRef + seg + "ico1024";
 
     string oemSinumerikHmiHlpChsDestDirRef = oemSinumerikHmiDestDirRef + seg + "hlp" + seg + "chs";
 
@@ -1014,6 +1015,7 @@ void GeneratePro::startGenerate() {
 
     const char* c_hmiIco640DestDir = oemSinumerikHmiIcoIco640DestDirRef.insert(0, destDir).c_str();
     const char* c_hmiIco800DestDir = oemSinumerikHmiIcoIco800DestDirRef.insert(0, destDir).c_str();
+    const char* c_hmiIco1024DestDir = oemSinumerikHmiIcoIco1024DestDirRef.insert(0, destDir).c_str();
 
     const char* c_hmiProjDestDir = siemensSinumerikHmiProjDestDirRef.insert(0, destDir).c_str();
 
@@ -1083,6 +1085,7 @@ void GeneratePro::startGenerate() {
 
         fs::path cfcardSiemensSinumerikHmiIcoPath = fs::system_complete(c_hmiIcoDestDir);
         fs::path cfcardSiemensSinumerikHmiIcoIco800Path = fs::system_complete(c_hmiIco800DestDir);
+        fs::path cfcardSiemensSinumerikHmiIcoIco1024Path = fs::system_complete(c_hmiIco1024DestDir);
 
         fs::path cfcardOemSinumerikHmiHlpPath = fs::system_complete(c_hmiHlpDestDir);
 
@@ -1885,6 +1888,8 @@ void GeneratePro::startGenerate() {
             project->resizeImageInDirWithInclude(c_hmiIco800DestDir, hjLogoResolution, hjLogoFiles, hjLogoFilesCount);
             project->resizeImageInDirWithInclude(c_hmiIco800DestDir, switchLogoResolution, switchLogoFiles, switchLogoFilesCount);
             project->resizeImageInDirWithInclude(c_hmiIco800DestDir, panelLogoResolution, panelLogoFiles, panelLogoFilesCount);
+
+            fs::rename(cfcardSiemensSinumerikHmiIcoIco800Path, cfcardSiemensSinumerikHmiIcoIco1024Path);
         }
 
         if (ifRemoveComments == 0)

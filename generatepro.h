@@ -19,6 +19,7 @@ public:
 public slots:
     void startGenerate();
     void getJsonValue();
+    string getReplaceJsonValue();
     void test();
 
 private:
@@ -59,6 +60,7 @@ private:
     int ifHasScrewTap;
     int ifHasWorm;
     int hmiMode;
+    int systemMode;
     int ifHasLoadingArm;
 
 signals:

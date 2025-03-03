@@ -107,6 +107,8 @@ void CreatorWindow::loadComboBoxSet() {
         ui->comboBoxIfRemoveComments->setCurrentIndex(obj["ifRemoveComments"].toInt());
     if (!obj["hmiMode"].isNull())
         ui->comboBoxHMIMode->setCurrentIndex(obj["hmiMode"].toInt());
+    if (!obj["systemMode"].isNull())
+        ui->comboBoxSystemMode->setCurrentIndex(obj["systemMode"].toInt());
     if (!obj["ifHasLoadingArm"].isNull())
         ui->comboBoxLoadingArm->setCurrentIndex(obj["ifHasLoadingArm"].toInt());
 
@@ -356,6 +358,7 @@ int CreatorWindow::on_saveDataPushButton_clicked()
         obj.insert("dressWheelType", ui->comboBoxDressWheelType->currentIndex());
         obj.insert("ifRemoveComments", ui->comboBoxIfRemoveComments->currentIndex());
         obj.insert("hmiMode", ui->comboBoxHMIMode->currentIndex());
+        obj.insert("systemMode", ui->comboBoxSystemMode->currentIndex());
         obj.insert("ifHasLoadingArm", ui->comboBoxLoadingArm->currentIndex());
 
         r->saveObjToJson(obj);

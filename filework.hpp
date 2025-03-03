@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -21,6 +22,8 @@ public:
     int lngIn;
     bool findAndReplaceInString(string &in, const char* find, const char* replace);
     bool findAndRepleaceInFile(string filename, const char* findMe, const char* replaceMe);
+    bool findAndReplaceFromJSONWithIgnore(const char* dir, const char* jsonData, const char* ignore[], int ignoreCount);
+    bool findAndReplaceMultipleInFile(const std::string& filePath, const std::map<std::string, std::string>& replacements);
     bool findAndRepleaceInDirWithIgnore(const char* dir, const char* findMe, const char* replaceMe, const char* ignore[], int ignoreCount);
     bool findAndRepleaceInDirWithInclude(const char* dir, const char* findMe, const char* replaceMe, const char* include[], int includeCount);
     bool findAndRepleaceInDirWithIgnoreRecursion(const char* dir, const char *findMe, const char *replaceMe, const char* ignore[], int ignoreCount);
@@ -37,6 +40,8 @@ public:
     int searchWithKeyAndRefDir(const char* refDir, string str);
     bool renameFileInDir(const char* dir, const char* find[], string name);
     void readFileLineByLineToCout(string filename);
+    bool resizeImageFile(const std::string &filePath, int targetWidth, int targetHeight);
+    bool resizeImageInDirWithInclude(const char* dir, const char* resolution, const char* include[], int includeCount);
 protected:
 private:
 #ifdef _WIN32

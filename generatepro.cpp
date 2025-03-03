@@ -5,6 +5,9 @@
 #include <string>
 #include <cstdlib> // Header file needed to use srand and rand
 #include <ctime> // Header file needed to use time
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QByteArray>
 
 namespace fs = boost::filesystem;
 
@@ -517,6 +520,34 @@ const char* parameterFiles[] = {
 const char* hlpMachineMainHelpIndex[] = {
     "index\.html$"
 };
+
+const char* cfgOneFiles[] = {
+    "slnavigationmenu"
+};
+
+const char*ico640OneFiles[] = {
+    "dm_custom\.png$"
+};
+
+const char*customLogoFiles[] = {
+    "custom\.png$"
+};
+const char* customLogoResolution = "51*51";
+
+const char*hjLogoFiles[] = {
+    "logo\.png$"
+};
+const char* hjLogoResolution = "126*30";
+
+const char*switchLogoFiles[] = {
+    "S_"
+};
+const char* switchLogoResolution = "40*40";
+
+const char*panelLogoFiles[] = {
+    "panel_"
+};
+const char* panelLogoResolution = "1170*595";
 //*******************************************
 const char* MultiSymbel =
 "(×)|"
@@ -555,7 +586,12 @@ const int commentsInFilesCount = sizeof(commentsInFiles) / sizeof(commentsInFile
 const int hmiHlpIgnoreFilesCount = sizeof(hmiHlpIgnoreFiles) / sizeof(hmiHlpIgnoreFiles[0]);
 const int projMachineSettingHMICount = sizeof(projMachineSettingHMI) / sizeof(projMachineSettingHMI[0]);
 const int parameterFilesCount = sizeof(parameterFiles) / sizeof(parameterFiles[0]);
-
+const int cfgOneFilesCount = sizeof(cfgOneFiles) / sizeof(cfgOneFiles[0]);
+const int ico640OneFilesCount = sizeof(ico640OneFiles) / sizeof(ico640OneFiles[0]);
+const int customLogoFilesCount = sizeof(customLogoFiles) / sizeof(customLogoFiles[0]);
+const int hjLogoFilesCount = sizeof(hjLogoFiles) / sizeof(hjLogoFiles[0]);
+const int switchLogoFilesCount = sizeof(switchLogoFiles) / sizeof(switchLogoFiles[0]);
+const int panelLogoFilesCount = sizeof(panelLogoFiles) / sizeof(panelLogoFiles[0]);
 //*******************************
 
 void GeneratePro::getJsonValue(){
@@ -592,6 +628,7 @@ void GeneratePro::getJsonValue(){
     ifHasScrewTap = obj["ifHasScrewTap"].toInt();
     ifHasWorm = obj["ifHasWorm"].toInt();
     hmiMode = obj["hmiMode"].toInt();
+    systemMode = obj["systemMode"].toInt();
     ifHasLoadingArm = obj["ifHasLoadingArm"].toInt();
 
     cout << softwareVersion << endl;
@@ -624,14 +661,48 @@ void GeneratePro::getJsonValue(){
     cout << ifHasScrewTap << endl;
     cout << ifHasWorm << endl;
     cout << hmiMode << endl;
+    cout << systemMode << endl;
     cout << ifHasLoadingArm << endl;
     cout << "-------------------" << endl;
+}
+
+string GeneratePro::getReplaceJsonValue() {
+    // 读取Qt资源文件
+    QFile file(":./oneReplace.json");
+    if (!file.open(QIODevice::ReadOnly)) {
+        std::cerr << "can not open json file: :./oneReplace.json" << std::endl;
+        return {};
+    }
+
+    // 读取文件内容
+    QByteArray jsonData = file.readAll();
+    file.close();
+
+    // 使用Qt的JSON解析功能
+    QJsonParseError error;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData, &error);
+
+    if (error.error != QJsonParseError::NoError) {
+        std::cerr << "JSON parse error: " << error.errorString().toStdString() << std::endl;
+        return {};
+    }
+
+    // 将解析后的JSON转回字符串（保证格式正确）
+    QByteArray formattedJson = jsonDoc.toJson(QJsonDocument::Compact);
+    std::string jsonContent(formattedJson.constData(), formattedJson.size());
+
+    return jsonContent;
 }
 
 void GeneratePro::startGenerate() {
     emit triggerStartingProcess();
 
     getJsonValue();
+
+    std::string jsonString = getReplaceJsonValue();
+    const char* c_oneReplaceValue = jsonString.c_str();
+
+    // std::cout << c_oneReplaceValue << std::endl;
 
     //****************************************************
     string souceLibraryDir[] = {
@@ -738,7 +809,15 @@ void GeneratePro::startGenerate() {
 
     string userDestDirRef = cfcardDestDirRef + seg + "user";
     string oemDestDirRef = cfcardDestDirRef + seg + "oem";
-    string siemensDestDirRef = cfcardDestDirRef + seg + "siemens";
+
+    string siemensDestDirRef;
+
+    if (systemMode == 0) {
+        siemensDestDirRef = cfcardDestDirRef + seg + "siemens";
+
+    } else {
+        siemensDestDirRef = cfcardDestDirRef + seg + "oem";
+    }
 
     //string userSinumerikDestDirRef = userDestDirRef + seg + "sinumerik";
     string oemSinumerikDestDirRef = oemDestDirRef + seg + "sinumerik";
@@ -1031,14 +1110,22 @@ void GeneratePro::startGenerate() {
 
         cout << "\n\ncopy files:\n";
         project->copyFilesToNewDirWithIgnore(c_defSourceDir[0], c_defDestDir, NULL, 0);
-        project->copyFilesToNewDirWithIgnore(c_hmiCfgSourceDir[0], c_hmiCfgDestDir, NULL, 0);
+        if (systemMode == 0) {
+            project->copyFilesToNewDirWithIgnore(c_hmiCfgSourceDir[0], c_hmiCfgDestDir, cfgOneFiles, cfgOneFilesCount);
+        } else {
+            project->copyFilesToNewDirWithIgnore(c_hmiCfgSourceDir[0], c_hmiCfgDestDir, NULL, 0);
+        }
         if (lng == 0) {
             project->copyFileFolderToNewDir(c_hmiHlpChsSourceDir[0], c_hmiHlpChsDestDir);
         } else {
             project->copyFileFolderToNewDir(c_hmiHlpSourceDir[0], c_hmiHlpDestDir);
         }
         project->copyFilesToNewDirWithIgnore(c_hmiLngSourceDir[0], c_hmiLngDestDir, NULL, 0);
-        project->copyFilesToNewDirWithIgnore(c_hmiIco640SourceDir[0], c_hmiIco640DestDir, NULL, 0);
+        if (systemMode == 0) {
+            project->copyFilesToNewDirWithIgnore(c_hmiIco640SourceDir[0], c_hmiIco640DestDir, ico640OneFiles, ico640OneFilesCount);
+        } else {
+            project->copyFilesToNewDirWithIgnore(c_hmiIco640SourceDir[0], c_hmiIco640DestDir, NULL, 0);
+        }
         project->copyFilesToNewDirWithIgnore(c_hmiIco800DefaultSourceDir[0], c_hmiIco800DestDir, NULL, 0);
 
         project->copyFilesToNewDirWithInclude(c_hmiProjSourceDir[0], c_hmiProjDestDir, commonProjFiles, commonPFCount);
@@ -1786,6 +1873,18 @@ void GeneratePro::startGenerate() {
             cout << "\n\nHMi to compatible mode:\n";
             project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, isHmiStandard1, rmHmiStandard1, NULL, 0);
             project->findAndRepleaceInDirWithInclude(c_hmiProjDestDir, isHmiStandard2, rmHmiStandard2, NULL, 0);
+        }
+
+        if (systemMode == 1) {
+            project->findAndReplaceFromJSONWithIgnore(c_mpfDestDir, c_oneReplaceValue, NULL, 0);
+            project->findAndReplaceFromJSONWithIgnore(c_cmaDestDir, c_oneReplaceValue, NULL, 0);
+            project->findAndReplaceFromJSONWithIgnore(c_hmiProjDestDir, c_oneReplaceValue, NULL, 0);
+            project->findAndReplaceFromJSONWithIgnore(c_cfcardUserDestDir, c_oneReplaceValue, NULL, 0);
+
+            project->resizeImageInDirWithInclude(c_hmiIco800DestDir, customLogoResolution, customLogoFiles, customLogoFilesCount);
+            project->resizeImageInDirWithInclude(c_hmiIco800DestDir, hjLogoResolution, hjLogoFiles, hjLogoFilesCount);
+            project->resizeImageInDirWithInclude(c_hmiIco800DestDir, switchLogoResolution, switchLogoFiles, switchLogoFilesCount);
+            project->resizeImageInDirWithInclude(c_hmiIco800DestDir, panelLogoResolution, panelLogoFiles, panelLogoFilesCount);
         }
 
         if (ifRemoveComments == 0)

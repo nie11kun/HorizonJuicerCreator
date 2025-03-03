@@ -23,15 +23,35 @@
 #include "boost/progress.hpp"
 #include <iostream>
 #include <sstream>
+#include <map>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <QString>
+#include <QStringList>
+#include <QImage>
 
 namespace fs = boost::filesystem;
 using namespace std;
+namespace pt = boost::property_tree;
 
 int lngIn;
 
 FileWork::FileWork()
 {
 
+}
+
+// 转义所有正则表达式的特殊字符
+std::string escapeRegex(const std::string &s) {
+    const std::string specialChars = ".^$|()[]*+?{}\\";
+    std::string result;
+    for (char c : s) {
+        if (specialChars.find(c) != std::string::npos) {
+            result.push_back('\\');
+        }
+        result.push_back(c);
+    }
+    return result;
 }
 
 bool FileWork::findAndReplaceInString(string &in, const char* find, const char* replace)
@@ -81,6 +101,110 @@ bool FileWork::findAndRepleaceInFile(string filename, const char* findMe, const 
 
     }
     return 0;
+}
+
+bool FileWork::findAndReplaceFromJSONWithIgnore(const char* dir, const char* jsonData, const char* ignore[], int ignoreCount)
+{
+    // 解析JSON并创建替换映射
+    std::map<std::string, std::string> replacements;
+    std::istringstream jsonStream(jsonData);
+    pt::ptree root;
+
+    if (jsonData == nullptr || strlen(jsonData) == 0) {
+        std::cerr << "error ：jsonData is null" << std::endl;
+        return false;
+    }
+
+    try {
+        pt::read_json(jsonStream, root);
+        for (const auto& pair : root) {
+            replacements[pair.first] = pair.second.get_value<std::string>();
+        }
+    }
+    catch (const std::exception& ex) {
+        std::cerr << "JSON parse error: " << ex.what() << std::endl;
+        return false;
+    }
+
+    fs::path p = fs::system_complete(dir);
+
+    if (!fs::exists(p)) {
+        std::cout << "\nsource dir error: " << p << std::endl;
+        return false;
+    }
+
+    if (fs::is_directory(p)) {
+        std::cout << "\nin dir: " << p << "\n\n";
+        fs::directory_iterator end_iter;
+        for (fs::directory_iterator dir_itr(p); dir_itr != end_iter; ++dir_itr) {
+            try {
+                if (fs::is_directory(dir_itr->status())) {
+                    // 如果需要可以处理子目录
+                    this->findAndReplaceFromJSONWithIgnore(dir_itr->path().string().c_str(), jsonData, ignore, ignoreCount);
+                }
+                else if (fs::is_regular_file(dir_itr->status())) {
+                    if (ignore == NULL || searchWithKey(dir_itr->path().filename().string(), ignore, ignoreCount) == 0) {
+                        // 使用所有替换处理文件
+                        findAndReplaceMultipleInFile(dir_itr->path().string(), replacements);
+                    }
+                    else {
+                        cout << "******ignored file: " << dir_itr->path().filename().string() << endl;
+                    }
+                }
+                else {
+                    std::cout << dir_itr->path().filename() << " [others]\n";
+                }
+            }
+            catch (const std::exception& ex) {
+                std::cout << dir_itr->path().filename() << " " << ex.what() << std::endl;
+            }
+        }
+    }
+    else { // 必须是文件
+        std::cout << "\nfinding file: " << p << "\n";
+        findAndReplaceMultipleInFile(p.string(), replacements);
+    }
+
+    return true;
+}
+
+bool FileWork::findAndReplaceMultipleInFile(const std::string& filePath, const std::map<std::string, std::string>& replacements)
+{
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
+        std::cerr << "open file error: " << filePath << std::endl;
+        return false;
+    }
+
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    file.close();
+
+    std::string content = buffer.str();
+    std::string original = content;
+
+    // 对每个要替换的字符串进行转义，然后执行替换
+    for (const auto& pair : replacements) {
+        // 使用自定义的 escapeRegex 函数进行转义
+        std::string escapedPattern = escapeRegex(pair.first);
+        boost::regex pattern(escapedPattern);
+        content = boost::regex_replace(content, pattern, pair.second);
+    }
+
+    // 如果内容发生变化，则写回文件
+    if (content != original) {
+        std::ofstream outFile(filePath);
+        if (!outFile.is_open()) {
+            std::cerr << "writing file error: " << filePath << std::endl;
+            return false;
+        }
+
+        outFile << content;
+        outFile.close();
+        std::cout << "updating file: " << filePath << std::endl;
+    }
+
+    return true;
 }
 
 bool FileWork::findAndRepleaceInDirWithIgnore(const char* dir, const char *findMe, const char *replaceMe, const char* ignore[], int ignoreCount)
@@ -948,4 +1072,92 @@ void FileWork::readFileLineByLineToCout(string filename)
         cout << line << endl;
     }
     fs.close();
+}
+
+bool FileWork::resizeImageFile(const std::string &filePath, int targetWidth, int targetHeight)
+{
+    QImage image;
+    // 尝试加载图片
+    if (!image.load(QString::fromStdString(filePath))) {
+        std::cout << "loading picture error: " << filePath << std::endl;
+        return false;
+    }
+    // 使用 scaled() 调整图片尺寸，此处设置为忽略宽高比（可根据需要选择 Qt::KeepAspectRatio）
+    QImage newImage = image.scaled(targetWidth, targetHeight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+    // 保存图片到原路径（也可以保存为新文件）
+    if (!newImage.save(QString::fromStdString(filePath))) {
+        std::cout << "saving picture error: " << filePath << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool FileWork::resizeImageInDirWithInclude(const char* dir, const char* resolution, const char* include[], int includeCount)
+{
+    // 获取目录的完整路径
+    fs::path p = fs::system_complete(dir);
+    if (!fs::exists(p))
+    {
+        std::cout << "\nwrong dir: " << p << std::endl;
+        return false;
+    }
+
+    // 解析目标分辨率字符串，例如 "1170*595"
+    QString resStr = QString::fromUtf8(resolution);
+    QStringList resList = resStr.split('*');
+    if (resList.size() != 2)
+    {
+        std::cout << "resolution format invaild: " << resolution << std::endl;
+        return false;
+    }
+    int targetWidth = resList[0].toInt();
+    int targetHeight = resList[1].toInt();
+
+    // 如果是目录，则遍历目录中的所有文件
+    if (fs::is_directory(p))
+    {
+        std::cout << "\nprocessing dir: " << p << "\n\n";
+        fs::directory_iterator end_iter;
+        for (fs::directory_iterator dir_itr(p); dir_itr != end_iter; ++dir_itr)
+        {
+            try
+            {
+                if (fs::is_directory(dir_itr->status()))
+                {
+                    // 如果需要可递归处理子目录
+                }
+                else if (fs::is_regular_file(dir_itr->status()))
+                {
+                    // 根据 include 参数判断是否需要处理该文件
+                    if (include == NULL || searchWithKey(dir_itr->path().filename().string(), include, includeCount) == 1)
+                    {
+                        if (!resizeImageFile(dir_itr->path().string(), targetWidth, targetHeight))
+                        {
+                            std::cout << "resizing error: " << dir_itr->path().filename().string() << std::endl;
+                        }
+                    }
+                    else {
+                        std::cout << "******ignored: " << dir_itr->path().filename().string() << std::endl;
+                    }
+                }
+                else
+                {
+                    std::cout << dir_itr->path().filename() << " [others]\n";
+                }
+            }
+            catch (const std::exception & ex)
+            {
+                std::cout << dir_itr->path().filename() << " " << ex.what() << std::endl;
+            }
+        }
+    }
+    else // 如果 p 不是目录，而是单个文件
+    {
+        std::cout << "\nfinding file: " << p << "\n";
+        if (!resizeImageFile(p.string(), targetWidth, targetHeight))
+        {
+            std::cout << "resizing error: " << p.string() << std::endl;
+        }
+    }
+    return true;
 }

@@ -331,6 +331,18 @@ const char* ifIsHasOtherCommonShape =
 "([^\n]+ifIsHasOtherCommonShape\\b)|"
 "([^\n]+\<!--ifIsHasOtherCommonShapeLine--\>)"
 ;
+const char* ifIsOneSystem =
+"(;ifIsOneSystemBegin.*?;ifIsOneSystemEnd)|"
+"(\<!--ifIsOneSystemBegin--\>.*?\<!--ifIsOneSystemEnd--\>)|"
+"([^\n]+ifIsOneSystem\\b)|"
+"([^\n]+\<!--ifIsOneSystemLine--\>)"
+;
+const char* ifIsNotOneSystem =
+"(;ifIsNotOneSystemBegin.*?;ifIsNotOneSystemEnd)|"
+"(\<!--ifIsNotOneSystemBegin--\>.*?\<!--ifIsNotOneSystemEnd--\>)|"
+"([^\n]+ifIsNotOneSystem\\b)|"
+"([^\n]+\<!--ifIsNotOneSystemLine--\>)"
+;
 //----------------------------------------
 const char* rmUnusedPart =
 "(;)"
@@ -1890,6 +1902,10 @@ void GeneratePro::startGenerate() {
             project->resizeImageInDirWithInclude(c_hmiIco800DestDir, panelLogoResolution, panelLogoFiles, panelLogoFilesCount);
 
             fs::rename(cfcardSiemensSinumerikHmiIcoIco800Path, cfcardSiemensSinumerikHmiIcoIco1024Path);
+
+            project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
+        } else {
+            project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsOneSystem, rmUnusedPart, NULL, 0);
         }
 
         if (ifRemoveComments == 0)

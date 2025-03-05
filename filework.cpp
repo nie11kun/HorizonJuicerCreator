@@ -118,6 +118,10 @@ bool FileWork::findAndReplaceFromJSONWithIgnore(const char* dir, const char* jso
     try {
         pt::read_json(jsonStream, root);
         for (const auto& pair : root) {
+            // 如果键名为空，直接跳过
+            if (pair.first.empty()) {
+                continue;
+            }
             replacements[pair.first] = pair.second.get_value<std::string>();
         }
     }

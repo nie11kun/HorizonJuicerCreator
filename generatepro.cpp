@@ -1102,6 +1102,12 @@ void GeneratePro::startGenerate() {
         fs::path cfcardOemSinumerikHmiHlpPath = fs::system_complete(c_hmiHlpDestDir);
 
         fs::create_directory(destPathParent);
+
+        // 如果文件夹已经存在则删除
+        if (fs::exists(destPath)) {
+            fs::remove_all(destPath);
+            std::cout << "Removed existing directory: " << destPath << std::endl;
+        }
         fs::create_directory(destPath);
 
         fs::create_directory(cfcardPath);

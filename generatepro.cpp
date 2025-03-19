@@ -1910,8 +1910,10 @@ void GeneratePro::startGenerate() {
             fs::rename(cfcardSiemensSinumerikHmiIcoIco800Path, cfcardSiemensSinumerikHmiIcoIco1024Path);
 
             project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
         } else {
             project->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsOneSystem, rmUnusedPart, NULL, 0);
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsOneSystem, rmUnusedPart, NULL, 0);
         }
 
         if (ifRemoveComments == 0)

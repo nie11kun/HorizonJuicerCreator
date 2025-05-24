@@ -1487,6 +1487,7 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
 
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
@@ -1523,7 +1524,7 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXWai, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVH, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
-
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
@@ -1591,7 +1592,7 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVH, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
-
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
@@ -1606,6 +1607,7 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare3, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, 0);
 
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsFrontDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsFrontDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsFrontDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
@@ -1669,6 +1671,7 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXNeiFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsXWai, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
@@ -1723,6 +1726,7 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsVH, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 
 
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnoreRecursion(c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
 

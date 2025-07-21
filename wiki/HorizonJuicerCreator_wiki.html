@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HorizonJuicerCreator_wiki</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <style type='text/css'>/* Base body styles */
+body {
+    /* Consolidated font stack */
+    font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /* Base text color for the page */
+    color: #111;
+    /* Page background color */
+    background-color: #fbfbfb;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern" 1;
+    -moz-font-feature-settings: "kern" 1;
+    -o-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+    padding: 30px;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 600px) {
+    body {
+        padding: 5px;
+    }
+    body>#content {
+        /* Using !important here, be mindful if further overrides are needed */
+        padding: 0px 20px 20px 20px !important;
+    }
+}
+
+/* Main content container styling */
+body>#content {
+    margin: 0px auto; /* Simplified margin */
+    max-width: 900px;
+    border: 1px solid #e1e4e8;
+    padding: 10px 40px 20px 40px; /* Combined padding */
+    border-radius: 2px;
+}
+
+/* Details/Summary element styling */
+summary {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Horizontal rule styling */
+hr {
+    background-color: #bbb;
+    height: 1px;
+    margin: 1em 0;
+    padding: 0;
+    border: none;
+}
+
+/*
+ * NOTE: The .hljs-operator override was removed.
+ * It was likely a symptom of the color conflicts.
+ * If specific operator colors are still needed after fixing main conflicts,
+ * add specific overrides carefully based on the chosen theme.
+ */
+/*
+.hljs-operator {
+    color: #868686;
+}
+*/
+
+/**
+ * Links
+ */
+a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+/* :visited style same as a, can be combined if desired */
+a:visited {
+    color: #0366d6;
+}
+
+a:hover {
+    color: #0366d6;
+    text-decoration: underline;
+}
+
+/**
+ * Code blocks container (<pre>)
+ * IMPORTANT: background-color removed to allow Highlight.js dark themes
+ * to control the background. If you want a light background for code,
+ * remove this comment and use a LIGHT Highlight.js theme instead.
+ */
+pre {
+    /* background-color: #f6f8fa; */ /* REMOVED for dark theme compatibility */
+    border-radius: 3px;
+    font-size: 85%; /* Makes text slightly smaller than surrounding text */
+    line-height: 1.45;
+    overflow: auto; /* Adds scrollbars if code overflows */
+    padding: 16px;
+    /* Optional: Add a subtle border if needed when background is controlled by theme */
+    /* border: 1px solid #333; */
+}
+
+/**
+ * Inline code (not in <pre>)
+ */
+code {
+    background-color: rgba(27, 31, 35, .05); /* Subtle background for inline code */
+    border-radius: 3px;
+    font-size: 85%; /* Match pre's relative size */
+    margin: 0;
+    word-wrap: break-word; /* Allow inline code to wrap */
+    padding: .2em .4em;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+}
+
+/**
+ * Code inside <pre> blocks - Resetting styles applied by the general 'code' rule
+ */
+pre > code {
+    background-color: transparent; /* Inherit background from pre (or theme) */
+    border: 0;
+    display: inline; /* Should technically be block or inline-block for layout consistency? Often okay as inline. */
+    font-size: 100%; /* Inherit font size from pre */
+    line-height: inherit; /* Inherit line height from pre */
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    word-wrap: normal; /* Prevent wrapping within the pre block unless intended */
+}
+
+
+/**
+ * Blockquotes
+ */
+blockquote {
+    margin-left: 30px;
+    margin-top: 0px;
+    margin-bottom: 16px;
+    padding: 0 1em;
+    color: #828282; /* Base color for blockquote text */
+    border-left: 4px solid #e8e8e8;
+    padding-left: 15px;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-style: italic;
+}
+
+/* Styles for elements *inside* blockquotes */
+blockquote * {
+    font-style: normal !important; /* Force non-italic */
+    letter-spacing: 0;
+    color: #6a737d !important; /* Override inherited color, using !important */
+}
+
+
+/**
+ * Tables
+ */
+table {
+    /* border-spacing: 2px; */ /* Usually overridden by border-collapse */
+    display: block; /* Needed for overflow */
+    font-size: 14px;
+    overflow: auto;
+    width: 100%;
+    margin-bottom: 16px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+td, th { /* Combined rule for td and th */
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+th {
+    font-weight: 600;
+}
+
+tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f6f8fa; /* Zebra striping */
+}
+
+
+/**
+ * Other elements
+ */
+img {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+p {
+    line-height: 1.5; /* Match body line-height */
+    font-weight: 400;
+    font-size: 16px;
+    color: #24292e; /* Specific paragraph color */
+    margin-top: 0; /* Default spacing handled by margin-bottom */
+    margin-bottom: 16px; /* Consistent bottom margin */
+}
+
+ul, ol /* Added ol for ordered lists */ {
+    margin-top: 0;
+    margin-bottom: 16px; /* Consistent bottom margin */
+    padding-left: 2em; /* Indentation for lists */
+}
+
+li {
+    color: #24292e; /* Specific list item color */
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+li + li {
+    margin-top: 0.25em; /* Spacing between list items */
+}
+
+/*
+ * NOTE: Removed the universal '*' selector rule that was setting color: #24292e;
+ * It conflicted with syntax highlighting themes. Base colors are set on body or specific elements.
+ */
+/*
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #24292e;
+}
+*/
+
+/* Redundant :visited rule removed as it's same as a */
+/*
+a:visited {
+    color: #0366d6;
+}
+*/
+
+/* Heading styles */
+h1,
+h2,
+h3,
+h4, /* Added h4, h5, h6 for consistency */
+h5,
+h6 {
+    margin-top: 24px; /* Space above headings */
+    margin-bottom: 16px; /* Space below headings */
+    font-weight: 600; /* Bolder headings */
+    line-height: 1.25;
+    color: #111; /* Base heading color */
+    border-bottom: 1px solid #eaecef; /* Underline for h1-h3 */
+    padding-bottom: .3em; /* Space between text and underline */
+}
+
+/* Remove border for lower-level headings */
+h4, h5, h6 {
+    border-bottom: none;
+}
+
+/* Font override for elements within highlighted code. Removed !important */
+code > * {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.mermaid {
+    display: flex;       /* 使用 Flexbox 布局 */
+    justify-content: center; /* 水平居中子元素 */
+}</style>
+  <style type='text/css'>pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*
+
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+
+*/
+.hljs {
+  color: #abb2bf;
+  background: #282c34
+}
+.hljs-comment,
+.hljs-quote {
+  color: #5c6370;
+  font-style: italic
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #c678dd
+}
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e06c75
+}
+.hljs-literal {
+  color: #56b6c2
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta .hljs-string {
+  color: #98c379
+}
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #d19a66
+}
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #61aeee
+}
+.hljs-built_in,
+.hljs-title.class_,
+.hljs-class .hljs-title {
+  color: #e6c07b
+}
+.hljs-emphasis {
+  font-style: italic
+}
+.hljs-strong {
+  font-weight: bold
+}
+.hljs-link {
+  text-decoration: underline
+}</style>
+</head>
+<body>
+  <div id='content'>
+<h1 id="wiki-documentation-horizonjuicercreator">Wiki Documentation HorizonJuicerCreator</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#page-1">项目概述</a></li>
+<li><a href="#page-2">系统架构概览</a></li>
+<li><a href="#page-3">核心功能概述</a></li>
+<li><a href="#page-4">功能细节</a></li>
+<li><a href="#page-5">数据管理与流程</a></li>
+<li><a href="#page-6">前端组件</a></li>
+<li><a href="#page-7">后端系统</a></li>
+</ul>
+<p><a id='page-1'></a></p>
+<h2 id="项目概述">项目概述</h2>
+<h3 id="related-pages">Related Pages</h3>
+<p>Related topics: <a href="#page-2">系统架构概览</a></p>
+<p><details><br />
+<summary>Relevant source files</summary></p>
+<ul>
+<li><a href="generatepro.cpp">generatepro.cpp</a></li>
+<li><a href="creatorwindow.cpp">creatorwindow.cpp</a></li>
+</ul>
+<!-- Add additional relevant files if fewer than 5 were provided -->
+<p></details></p>
+<h1 id="项目概述-1">项目概述</h1>
+<h2 id="介绍">介绍</h2>
+<p>HorizonJuicerCreator 项目是一个用于生成和管理专用于西门子数控系统CNC加工软件的工具，专注于自动化文件处理和配置生成。该项目主要用于读取 JSON 配置文件，根据不同的机器类型和配置选项生成所需的文件结构和内容。项目的核心功能包括读取配置、处理文件路径、生成特定目录结构以及执行文件复制和替换操作。</p>
+<h2 id="详细部分">详细部分</h2>
+<h3 id="配置读取和初始化">配置读取和初始化</h3>
+<p>项目的核心组件之一是 <code>GeneratePro</code> 类，它负责读取 JSON 配置文件并初始化相关参数。这些参数包括机器名称、类型、语言设置、操作模式等。该类通过 <code>getJsonValue</code> 方法从配置文件中提取信息，并将其存储为类成员变量，以供后续处理使用。</p>
+<pre><code class="hljs" class="cpp language-cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GeneratePro::getJsonValue</span><span class="hljs-params">()</span></span>{
+    QJsonObject obj = r-&gt;<span class="hljs-built_in">readJsonToObj</span>();
+    <span class="hljs-comment">// 读取配置文件中的相关参数</span>
+    softwareVersion = obj[<span class="hljs-string">&quot;version&quot;</span>].<span class="hljs-built_in">toString</span>().<span class="hljs-built_in">toStdString</span>();
+    sourceDir = obj2[<span class="hljs-string">&quot;sourceDir&quot;</span>].<span class="hljs-built_in">toString</span>().<span class="hljs-built_in">toStdString</span>();
+    destDir = obj2[<span class="hljs-string">&quot;destDir&quot;</span>].<span class="hljs-built_in">toString</span>().<span class="hljs-built_in">toStdString</span>();
+    <span class="hljs-comment">// 其他参数初始化</span>
+}</code></pre>
+<p>Sources: <a href="">generatepro.cpp:420-480</a></p>
+<h3 id="文件路径和目录结构">文件路径和目录结构</h3>
+<p>项目中定义了一系列目录路径，这些路径根据不同的系统和配置选项进行动态生成。通过定义文件路径常量，项目能够根据不同的配置需求生成所需的文件结构。</p>
+<pre><code class="hljs" class="cpp language-cpp">string hmiIco800SourceDir[] = {
+    seg + <span class="hljs-string">&quot;Source_Library&quot;</span> + seg + <span class="hljs-string">&quot;HMI&quot;</span> + seg + <span class="hljs-string">&quot;ico&quot;</span> + seg + <span class="hljs-string">&quot;ico800&quot;</span>
+};</code></pre>
+<p>Sources: <a href="">generatepro.cpp:20-50</a></p>
+<h3 id="文件复制和替换">文件复制和替换</h3>
+<p>项目实现了复杂的文件复制和替换逻辑，以便根据配置生成正确的文件结构和内容。<code>GeneratePro</code> 类通过调用 <code>copyFilesToNewDirWithIgnore</code> 和 <code>findAndRepleaceInDirWithIgnore</code> 等方法实现文件操作。</p>
+<pre><code class="hljs" class="cpp language-cpp">project-&gt;<span class="hljs-built_in">copyFilesToNewDirWithIgnore</span>(c_hmiIco640SourceDir[<span class="hljs-number">0</span>], c_hmiIco640DestDir, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>);
+project-&gt;<span class="hljs-built_in">findAndRepleaceInDirWithIgnore</span>(c_hmiProjDestDir, ifIsENG, rmUnusedPart, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>);</code></pre>
+<p>Sources: <a href="">generatepro.cpp:600-650</a></p>
+<h3 id="用户界面交互">用户界面交互</h3>
+<p><code>CreatorWindow</code> 类提供了用户界面交互功能，允许用户通过界面输入配置参数，并触发配置生成过程。该类使用 Qt 框架实现界面布局和事件处理。</p>
+<pre><code class="hljs" class="cpp language-cpp">CreatorWindow::<span class="hljs-built_in">CreatorWindow</span>(QWidget *parent) : <span class="hljs-built_in">QWidget</span>(parent), <span class="hljs-built_in">ui</span>(<span class="hljs-keyword">new</span> Ui::CreatorWindow) {
+    ui-&gt;<span class="hljs-built_in">setupUi</span>(<span class="hljs-keyword">this</span>);
+    <span class="hljs-built_in">setWindowTitle</span>(<span class="hljs-string">&quot;创建配置&quot;</span>);
+    <span class="hljs-comment">// 连接信号和槽</span>
+    <span class="hljs-built_in">connect</span>(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">triggerProcess</span>()), generator, <span class="hljs-built_in">SLOT</span>(<span class="hljs-built_in">startGenerate</span>()));
+}</code></pre>
+<p>Sources: <a href="">creatorwindow.cpp:10-50</a></p>
+<h3 id="mermaid-图表">Mermaid 图表</h3>
+<div class="mermaid">graph TD;
+    A[读取配置文件] --> B[初始化参数];
+    B --> C[生成目录结构];
+    C --> D[复制文件];
+    D --> E[完成生成];</div>
+<p>此流程图展示了项目的核心流程，从读取配置文件到最终完成生成的整个过程。Sources: <a href="">generatepro.cpp:420-650</a></p>
+<h2 id="总结">总结</h2>
+<p>HorizonJuicerCreator 项目通过自动化配置生成和文件管理，为用户提供了高效的工具来处理复杂的文件结构和配置需求。项目的模块化设计和灵活的配置选项使其能够适应多种使用场景，并提供了一种简化配置管理的解决方案。</p>
+<hr />
+<p><a id='page-2'></a></p>
+<h2 id="系统架构概览">系统架构概览</h2>
+<h3 id="related-pages-1">Related Pages</h3>
+<p>Related topics: <a href="#page-3">核心功能概述</a></p>
+<p><details><br />
+<summary>Relevant source files</summary></p>
+<ul>
+<li><a href="generatepro.cpp">generatepro.cpp</a></li>
+<li><a href="creatorwindow.cpp">creatorwindow.cpp</a></li>
+<li><a href="creatorwindow.hpp">creatorwindow.hpp</a></li>
+<li><a href="filework.cpp">filework.cpp</a></li>
+<li><a href="generatepro.h">generatepro.h</a><br />
+</details></li>
+</ul>
+<h1 id="系统架构概览-1">系统架构概览</h1>
+<h2 id="介绍-1">介绍</h2>
+<p>在本项目中，"系统架构概览" 主要涉及生成程序配置和处理文件的逻辑。该系统的核心是生成配置文件和管理文件的模块化设计，旨在简化项目的创建和维护过程。通过该系统，用户可以方便地配置机器信息和生成所需的程序文件。</p>
+<h2 id="架构组件">架构组件</h2>
+<h3 id="核心模块">核心模块</h3>
+<h4 id="generatepro-类">GeneratePro 类</h4>
+<p><code>GeneratePro</code> 类负责读取 JSON 配置文件并生成相应的程序配置。它通过 <code>QJsonObject</code> 解析 JSON 数据，并根据用户输入生成目标目录和配置文件。</p>
+<pre><code class="hljs" class="cpp language-cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GeneratePro::getJsonValue</span><span class="hljs-params">()</span></span>{
+    QJsonObject obj = r-&gt;<span class="hljs-built_in">readJsonToObj</span>();
+    <span class="hljs-comment">// 获取并处理 JSON 数据</span>
+}</code></pre>
+<p>Sources: <a href="">generatepro.cpp:1-10</a></p>
+<h4 id="creatorwindow-类">CreatorWindow 类</h4>
+<p><code>CreatorWindow</code> 类是应用程序的主窗口，负责用户界面交互和触发生成过程。它通过信号和槽机制与 <code>GeneratePro</code> 类进行通信。</p>
+<pre><code class="hljs" class="cpp language-cpp">CreatorWindow::<span class="hljs-built_in">CreatorWindow</span>(QWidget *parent) :
+    <span class="hljs-built_in">QWidget</span>(parent),
+    <span class="hljs-built_in">ui</span>(<span class="hljs-keyword">new</span> Ui::CreatorWindow)
+{
+    ui-&gt;<span class="hljs-built_in">setupUi</span>(<span class="hljs-keyword">this</span>);
+    <span class="hljs-comment">// 初始化组件和信号槽连接</span>
+}</code></pre>
+<p>Sources: <a href="">creatorwindow.cpp:1-10</a></p>
+<h3 id="数据流">数据流</h3>
+<h4 id="文件管理">文件管理</h4>
+<p><code>FileWork</code> 类提供了一组文件操作函数，用于在指定目录中复制和替换文件。它使用 Boost Filesystem 库来实现文件系统操作。</p>
+<pre><code class="hljs" class="cpp language-cpp">fs::path p = fs::<span class="hljs-built_in">system_complete</span>(dir);
+<span class="hljs-keyword">if</span> (fs::<span class="hljs-built_in">is_directory</span>(p))
+{
+    <span class="hljs-comment">// 遍历目录并处理文件</span>
+}</code></pre>
+<p>Sources: <a href="">filework.cpp:1-10</a></p>
+<h2 id="数据结构">数据结构</h2>
+<h3 id="json-配置解析">JSON 配置解析</h3>
+<p>系统通过 JSON 文件存储和读取配置数据。以下是 JSON 解析的示例：</p>
+<pre><code class="hljs" class="cpp language-cpp">QJsonObject obj = r-&gt;<span class="hljs-built_in">readJsonToObj</span>();
+QString machineName = obj[<span class="hljs-string">&quot;machineName&quot;</span>].<span class="hljs-built_in">toString</span>();</code></pre>
+<p>Sources: <a href="">generatepro.cpp:11-15</a></p>
+<h2 id="流程图">流程图</h2>
+<div class="mermaid">graph TD
+    A[用户输入] --> B[CreatorWindow 处理]
+    B --> C[触发 GeneratePro]
+    C --> D[读取 JSON 配置]
+    D --> E[生成目标文件]
+    E --> F[完成生成]</div>
+<p>此流程图展示了从用户输入到生成文件的整个流程。</p>
+<h2 id="配置选项表">配置选项表</h2>
+<table>
+<thead>
+<tr>
+<th id="配置项">配置项</th>
+<th id="类型">类型</th>
+<th id="描述">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>machineName</td>
+<td>字符串</td>
+<td>机器名称</td>
+</tr>
+<tr>
+<td>machineType</td>
+<td>整数</td>
+<td>机器类型</td>
+</tr>
+<tr>
+<td>ifHasScrewTap</td>
+<td>布尔</td>
+<td>是否有螺纹加工功能</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <a href="">generatepro.cpp:16-25</a></p>
+<h2 id="总结-1">总结</h2>
+<p>"系统架构概览" 详细描述了项目中核心模块的设计和数据流动。通过模块化的设计和清晰的数据结构，系统能够有效地生成和管理配置文件。这一架构在提高用户效率和系统可维护性方面起到了重要作用。</p>
+<hr />
+<p><a id='page-3'></a></p>
+<h2 id="核心功能概述">核心功能概述</h2>
+<h3 id="related-pages-2">Related Pages</h3>
+<p>Related topics: <a href="#page-4">功能细节</a></p>
+<p><details><br />
+<summary>Relevant source files</summary></p>
+<ul>
+<li><a href="generatepro.cpp">generatepro.cpp</a></li>
+<li><a href="creatorwindow.hpp">creatorwindow.hpp</a></li>
+<li><a href="creatorwindow.cpp">creatorwindow.cpp</a></li>
+</ul>
+<!-- 添加更多相关文件以确保至少有5个 -->
+<p></details></p>
+<h1 id="核心功能概述-1">核心功能概述</h1>
+<p>在本项目中，"核心功能概述"主要涉及程序生成和配置窗口的实现。该功能模块旨在通过用户界面允许用户配置和生成特定的项目文件夹结构，并根据配置自动化文件的复制和替换操作。</p>
+<h2 id="功能介绍">功能介绍</h2>
+<p>该模块主要由两个核心类构成：<code>GeneratePro</code>和<code>CreatorWindow</code>。<code>GeneratePro</code>负责生成项目文件夹的结构以及文件的复制和替换操作；而<code>CreatorWindow</code>则提供一个用户界面，允许用户输入和选择项目配置参数。</p>
+<h2 id="生成程序逻辑">生成程序逻辑</h2>
+<h3 id="generatepro类"><code>GeneratePro</code>类</h3>
+<p><code>GeneratePro</code>类的主要功能是根据用户的配置生成项目文件夹结构。该类使用了文件系统操作来创建目录并复制所需的文件，同时进行必要的字符串替换以确保文件内容符合配置要求。</p>
+<h4 id="数据流图">数据流图</h4>
+<div class="mermaid">graph TD
+    A[用户输入配置] --> B[GeneratePro::getJsonValue]
+    B --> C[读取JSON配置]
+    C --> D[创建目录结构]
+    D --> E[复制文件]
+    E --> F[替换文件内容]</div>
+<p>在上述数据流中，<code>getJsonValue</code>方法从JSON配置文件中读取用户输入的参数，然后根据这些参数创建目录结构并复制相关文件，最后进行文件内容的替换以适应配置。  <br />
+来源: <a href="">generatepro.cpp:1-100</a></p>
+<h2 id="配置窗口逻辑">配置窗口逻辑</h2>
+<h3 id="creatorwindow类"><code>CreatorWindow</code>类</h3>
+<p><code>CreatorWindow</code>类提供了一个图形用户界面，允许用户输入配置参数并触发生成过程。该类通过信号和槽机制与<code>GeneratePro</code>进行交互，确保用户输入能够实时应用于生成过程。</p>
+<h4 id="类结构图">类结构图</h4>
+<div class="mermaid">classDiagram
+    class CreatorWindow {
+        - Ui::CreatorWindow *ui
+        - ReadAndWriteJson *r
+        - ConvertCode *c
+        - GeneratePro *generator
+        - QThread *t
+        + getMachineInfo()
+        + loadComboBoxSet()
+    }
+    class GeneratePro
+    CreatorWindow --> GeneratePro</div>
+<p>在此类结构图中，<code>CreatorWindow</code>通过一个指针<code>generator</code>与<code>GeneratePro</code>类进行交互，利用Qt的信号槽机制来处理用户事件和生成过程。  <br />
+来源: <a href="">creatorwindow.hpp:1-100</a>, <a href="">creatorwindow.cpp:1-100</a></p>
+<h2 id="配置参数表">配置参数表</h2>
+<table>
+<thead>
+<tr>
+<th id="参数名称">参数名称</th>
+<th id="类型">类型</th>
+<th id="默认值">默认值</th>
+<th id="描述">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>machineName</td>
+<td>字符串</td>
+<td>无</td>
+<td>机器名称</td>
+</tr>
+<tr>
+<td>machineIndex</td>
+<td>整数</td>
+<td>无</td>
+<td>机器索引</td>
+</tr>
+<tr>
+<td>customInfo</td>
+<td>字符串</td>
+<td>无</td>
+<td>自定义信息</td>
+</tr>
+<tr>
+<td>lng</td>
+<td>整数</td>
+<td>0</td>
+<td>语言选择，0为中文，1为英文</td>
+</tr>
+</tbody>
+</table>
+<p>来源: <a href="">generatepro.cpp:101-200</a>, <a href="">creatorwindow.cpp:101-200</a></p>
+<h2 id="总结-2">总结</h2>
+<p>通过<code>GeneratePro</code>和<code>CreatorWindow</code>类的配合，本项目实现了一个灵活的配置和生成系统。用户可以通过图形界面输入所需的配置参数，系统将自动生成符合这些配置的项目文件结构。这种自动化的实现不仅提高了开发效率，也确保了配置的一致性和准确性。</p>
+<hr />
+<p><a id='page-4'></a></p>
+<h2 id="功能细节">功能细节</h2>
+<h3 id="related-pages-3">Related Pages</h3>
+<p>Related topics: <a href="#page-3">核心功能概述</a></p>
+<p><details><br />
+<summary>Relevant source files</summary></p>
+<ul>
+<li><a href="generatepro.cpp">generatepro.cpp</a></li>
+<li><a href="generatepro.h">generatepro.h</a></li>
+<li><a href="creatorwindow.cpp">creatorwindow.cpp</a></li>
+<li><a href="creatorwindow.hpp">creatorwindow.hpp</a></li>
+<li><a href="filework.hpp">filework.hpp</a><br />
+</details></li>
+</ul>
+<h1 id="功能细节-1">功能细节</h1>
+<h2 id="介绍-2">介绍</h2>
+<p>在本项目中，"功能细节" 主要涉及到生成项目配置和处理文件操作的功能模块。这些模块的目的是通过读取和解析 JSON 配置文件来生成项目目录结构，并根据用户输入来调整生成的配置文件。功能模块还包括文件复制和目录创建的操作，以确保项目结构的正确性和完整性。</p>
+<h2 id="详细部分-1">详细部分</h2>
+<h3 id="配置生成模块">配置生成模块</h3>
+<p>该模块负责从 JSON 配置文件中读取信息，并基于这些信息生成项目的必要文件和目录。</p>
+<h4 id="关键类与函数">关键类与函数</h4>
+<ul>
+<li><code>GeneratePro::getJsonValue()</code>: 从 JSON 文件中读取配置数据，并将其存储在类的成员变量中。</li>
+<li><code>GeneratePro::startGenerate()</code>: 启动配置生成过程，调用必要的文件操作函数来创建目录和复制文件。</li>
+</ul>
+<h4 id="数据流-1">数据流</h4>
+<div class="mermaid">graph TD
+    A[读取 JSON 文件] --> B{解析 JSON 数据}
+    B --> C[存储配置数据]
+    C --> D[生成目录结构]
+    D --> E[复制必要文件]</div>
+<p>该数据流展示了配置生成模块的基本操作流程，从读取 JSON 文件到最终生成目录结构和复制文件。  <br />
+Sources: <a href="">generatepro.cpp:1-50</a></p>
+<h3 id="文件操作模块">文件操作模块</h3>
+<p>文件操作模块主要负责项目文件的复制、目录的创建以及对文件内容的替换操作。</p>
+<h4 id="关键类与函数-1">关键类与函数</h4>
+<ul>
+<li><code>FileWork::copyFilesToNewDirWithIgnore()</code>: 将文件从源目录复制到目标目录，支持忽略特定文件。</li>
+<li><code>FileWork::findAndRepleaceInDirWithIgnore()</code>: 在目录中查找并替换文件内容，支持忽略特定文件。</li>
+</ul>
+<h4 id="类图">类图</h4>
+<div class="mermaid">classDiagram
+    class FileWork {
+        +copyFilesToNewDirWithIgnore(sourceDir, destDir, ignoreFiles)
+        +findAndRepleaceInDirWithIgnore(dir, searchPattern, replacePattern, ignoreFiles)
+    }</div>
+<p>该类图展示了 <code>FileWork</code> 类的主要方法，说明其在文件操作中的作用。  <br />
+Sources: <a href="">filework.hpp:10-50</a></p>
+<h3 id="用户界面模块">用户界面模块</h3>
+<p>用户界面模块通过 Qt 提供了一个用于输入和显示配置数据的界面。</p>
+<h4 id="关键类与函数-2">关键类与函数</h4>
+<ul>
+<li><code>CreatorWindow::getMachineInfo()</code>: 从 JSON 文件中获取机器信息并在界面中显示。</li>
+<li><code>CreatorWindow::loadComboBoxSet()</code>: 加载下拉框的默认设置。</li>
+</ul>
+<h4 id="序列图">序列图</h4>
+<div class="mermaid">sequenceDiagram
+    participant UI as 用户界面
+    participant RW as ReadAndWriteJson
+    participant CW as CreatorWindow
+
+    UI ->> RW: 请求读取 JSON 数据
+    RW -->> UI: 返回 JSON 数据
+    UI ->> CW: 更新界面组件
+    CW -->> UI: 显示数据</div>
+<p>此序列图展示了用户界面模块如何与 <code>ReadAndWriteJson</code> 类交互以更新界面组件。  <br />
+Sources: <a href="">creatorwindow.cpp:10-50</a></p>
+<h2 id="配置选项表-1">配置选项表</h2>
+<table>
+<thead>
+<tr>
+<th id="配置选项">配置选项</th>
+<th id="类型">类型</th>
+<th id="默认值">默认值</th>
+<th id="描述">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>machineType</td>
+<td>整数</td>
+<td>0</td>
+<td>机器类型</td>
+</tr>
+<tr>
+<td>wareType</td>
+<td>整数</td>
+<td>0</td>
+<td>软件类型</td>
+</tr>
+<tr>
+<td>ifOperation</td>
+<td>布尔值</td>
+<td>false</td>
+<td>是否进行操作</td>
+</tr>
+<tr>
+<td>ifHasU</td>
+<td>布尔值</td>
+<td>false</td>
+<td>是否具有 U 轴</td>
+</tr>
+<tr>
+<td>ifHasWorm</td>
+<td>布尔值</td>
+<td>false</td>
+<td>是否具有蜗杆</td>
+</tr>
+</tbody>
+</table>
+<p>此表总结了配置文件中的一些关键选项及其默认值。  <br />
+Sources: <a href="">generatepro.cpp:60-100</a></p>
+<h2 id="结论">结论</h2>
+<p>"功能细节" 模块在项目中扮演着关键角色，通过配置生成和文件操作功能确保项目的自动化生成和维护。这些功能为用户提供了灵活的配置和管理选项，使得项目的初始化和配置变得更加高效和可靠。</p>
+<hr />
+<p><a id='page-5'></a></p>
+<h2 id="数据管理与流程">数据管理与流程</h2>
+<h3 id="related-pages-4">Related Pages</h3>
+<p>Related topics: <a href="#page-6">前端组件</a></p>
+<p><details><br />
+<summary>Relevant source files</summary></p>
+<ul>
+<li><a href="generatepro.cpp">generatepro.cpp</a></li>
+<li><a href="creatorwindow.cpp">creatorwindow.cpp</a></li>
+</ul>
+<!-- Add additional relevant files if fewer than 5 were provided -->
+<p></details></p>
+<h1 id="数据管理与流程-1">数据管理与流程</h1>
+<h2 id="介绍-3">介绍</h2>
+<p>在本项目中，“数据管理与流程”模块主要负责管理软件的配置和生成过程。此模块的核心功能包括从配置文件中读取数据、生成所需的文件和目录结构、并根据特定的逻辑和条件执行文件复制和替换操作。该模块与用户界面紧密集成，允许用户通过图形界面设置和调整参数，从而影响生成过程的结果。</p>
+<h2 id="详细部分-2">详细部分</h2>
+<h3 id="配置读取与数据初始化">配置读取与数据初始化</h3>
+<p>此部分负责从JSON配置文件中读取初始设置，并将其应用于软件的各个组件中。配置文件包含机器名称、语言选项、软件版本等关键信息。</p>
+<pre><code class="hljs" class="cpp language-cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GeneratePro::getJsonValue</span><span class="hljs-params">()</span></span>{
+    QJsonObject obj = r-&gt;<span class="hljs-built_in">readJsonToObj</span>();
+    softwareVersion = obj[<span class="hljs-string">&quot;version&quot;</span>].<span class="hljs-built_in">toString</span>().<span class="hljs-built_in">toStdString</span>();
+    sourceDir = obj2[<span class="hljs-string">&quot;sourceDir&quot;</span>].<span class="hljs-built_in">toString</span>().<span class="hljs-built_in">toStdString</span>();
+    destDir = obj2[<span class="hljs-string">&quot;destDir&quot;</span>].<span class="hljs-built_in">toString</span>().<span class="hljs-built_in">toStdString</span>();
+    machineName = obj[<span class="hljs-string">&quot;machineName&quot;</span>].<span class="hljs-built_in">toString</span>().<span class="hljs-built_in">toStdString</span>();
+    <span class="hljs-comment">// 其他变量初始化</span>
+}
+Sources: [generatepro.cpp:<span class="hljs-number">270</span><span class="hljs-number">-286</span>](<span class="hljs-string">&quot;&quot;</span>)</code></pre>
+<h3 id="文件生成与目录结构">文件生成与目录结构</h3>
+<p>根据读取的配置，生成相应的目录结构并将必要的文件复制到目标目录。此过程包括创建所需的文件夹、处理路径信息、以及根据语言选项和其他条件执行文件的选择性复制。</p>
+<pre><code class="hljs" class="cpp language-cpp">cout &lt;&lt; <span class="hljs-string">&quot;\n\ncreating needed folders:\n&quot;</span>;
+fs::<span class="hljs-built_in">create_directory</span>(destPathParent);
+<span class="hljs-comment">// 创建其他目录</span>
+Sources: [generatepro.cpp:<span class="hljs-number">326</span><span class="hljs-number">-340</span>](<span class="hljs-string">&quot;&quot;</span>)</code></pre>
+<h3 id="文件复制与替换逻辑">文件复制与替换逻辑</h3>
+<p>在文件复制过程中，系统根据特定的逻辑和条件执行文件的复制和内容替换。不同的配置选项将影响哪些文件被复制以及如何处理文件内容。</p>
+<pre><code class="hljs" class="cpp language-cpp">project-&gt;<span class="hljs-built_in">copyFilesToNewDirWithIgnore</span>(c_defSourceDir[<span class="hljs-number">0</span>], c_defDestDir, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>);
+<span class="hljs-keyword">if</span> (systemMode == <span class="hljs-number">0</span>) {
+    project-&gt;<span class="hljs-built_in">copyFilesToNewDirWithIgnore</span>(c_hmiCfgSourceDir[<span class="hljs-number">0</span>], c_hmiCfgDestDir, cfgOneFiles, cfgOneFilesCount);
+} <span class="hljs-keyword">else</span> {
+    project-&gt;<span class="hljs-built_in">copyFilesToNewDirWithIgnore</span>(c_hmiCfgSourceDir[<span class="hljs-number">0</span>], c_hmiCfgDestDir, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>);
+}
+Sources: [generatepro.cpp:<span class="hljs-number">602</span><span class="hljs-number">-608</span>](<span class="hljs-string">&quot;&quot;</span>)</code></pre>
+<h3 id="用户界面与交互">用户界面与交互</h3>
+<p>用户通过界面输入和调整配置，界面与生成模块通过信号槽机制进行交互，确保生成过程根据用户输入正确执行。</p>
+<pre><code class="hljs" class="cpp language-cpp"><span class="hljs-built_in">connect</span>(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">triggerProcess</span>()), generator, <span class="hljs-built_in">SLOT</span>(<span class="hljs-built_in">startGenerate</span>()));
+<span class="hljs-built_in">connect</span>(generator, <span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">triggerStartingProcess</span>()), <span class="hljs-keyword">this</span>, <span class="hljs-built_in">SLOT</span>(<span class="hljs-built_in">startingProcess</span>()));
+<span class="hljs-built_in">connect</span>(generator, <span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">triggerFinishedProcess</span>()), <span class="hljs-keyword">this</span>, <span class="hljs-built_in">SLOT</span>(<span class="hljs-built_in">finishedProcess</span>()));
+Sources: [creatorwindow.cpp:<span class="hljs-number">30</span><span class="hljs-number">-34</span>](<span class="hljs-string">&quot;&quot;</span>)</code></pre>
+<h3 id="mermaid-流程图">Mermaid 流程图</h3>
+<div class="mermaid">graph TD
+    A[读取配置文件] --> B[初始化变量]
+    B --> C{检查语言选项}
+    C -->|中文| D[复制中文配置]
+    C -->|英文| E[复制英文配置]
+    D --> F[生成文件夹]
+    E --> F
+    F --> G[完成]</div>
+<p>此图展示了从读取配置文件到完成文件生成的整体流程。Sources: <a href="">generatepro.cpp:270-340</a></p>
+<h2 id="表格">表格</h2>
+<table>
+<thead>
+<tr>
+<th id="组件名称">组件名称</th>
+<th id="描述">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GeneratePro</td>
+<td>负责生成文件和目录的核心类</td>
+</tr>
+<tr>
+<td>CreatorWindow</td>
+<td>用户界面类，负责用户交互</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <a href="generatepro.cpp">generatepro.cpp</a>, <a href="creatorwindow.cpp">creatorwindow.cpp</a></p>
+<h2 id="结论-1">结论</h2>
+<p>“数据管理与流程”模块在项目中起到了关键作用，通过读取配置文件并根据用户输入生成相应的文件和目录结构。此模块的灵活性和可配置性使得软件能够根据不同的需求进行定制和调整，确保生成过程的高效性和准确性。</p>
+<hr />
+<p><a id='page-6'></a></p>
+<h2 id="前端组件">前端组件</h2>
+<h3 id="related-pages-5">Related Pages</h3>
+<p>Related topics: <a href="#page-5">数据管理与流程</a></p>
+<p><details><br />
+<summary>Relevant source files</summary></p>
+<ul>
+<li><a href="generatepro.cpp">generatepro.cpp</a></li>
+<li><a href="creatorwindow.cpp">creatorwindow.cpp</a></li>
+<li><a href="creatorwindow.hpp">creatorwindow.hpp</a></li>
+<li><a href="setting.hpp">setting.hpp</a></li>
+<li><a href="readandwritejson.hpp">readandwritejson.hpp</a><br />
+</details></li>
+</ul>
+<h1 id="前端组件-1">前端组件</h1>
+<h2 id="介绍-4">介绍</h2>
+<p>前端组件是软件项目中用于用户界面的核心模块。它主要负责显示和管理用户交互，提供直观的界面以便用户能够轻松配置和操作系统。在本项目中，前端组件通过与后台代码的交互，读取配置文件，生成必要的项目文件，并显示生成过程的状态。</p>
+<h2 id="组件架构">组件架构</h2>
+<p>前端组件的架构包括多个类和模块，这些模块共同协作以实现复杂的用户界面和交互逻辑。</p>
+<h3 id="主要组件">主要组件</h3>
+<ol>
+<li><p><strong>CreatorWindow 类</strong>: 负责主窗口的初始化和用户交互。它加载配置文件，设置界面元素，并通过信号与其他模块通信。</p></li>
+<li><p><strong>GeneratePro 类</strong>: 用于生成项目配置文件。它从 JSON 文件中读取数据，并根据配置生成目标文件。</p></li>
+<li><p><strong>ReadAndWriteJson 类</strong>: 负责读取和写入 JSON 格式的配置文件，确保数据的持久性。</p></li>
+<li><p><strong>ConvertCode 类</strong>: 处理字符编码转换，确保不同编码之间的数据正确转换。</p></li>
+</ol>
+<h3 id="数据流与逻辑">数据流与逻辑</h3>
+<div class="mermaid">graph TD;
+    A[用户界面] --> B[CreatorWindow];
+    B --> C[ReadAndWriteJson];
+    B --> D[GeneratePro];
+    D -->|生成文件| E[文件系统];
+    C -->|读取配置| B;</div>
+<p>此图展示了用户界面与后台逻辑的交互方式。用户界面通过 CreatorWindow 类与 JSON 配置和文件生成模块交互。</p>
+<p>Sources: <a href="">creatorwindow.cpp:1-100</a>, <a href="">generatepro.cpp:1-100</a></p>
+<h2 id="详细功能">详细功能</h2>
+<h3 id="creatorwindow-类-1">CreatorWindow 类</h3>
+<p>CreatorWindow 是主窗口类，负责界面的初始化和用户操作的响应。</p>
+<ul>
+<li><strong>getMachineInfo</strong>: 从 JSON 配置中读取机器信息并显示在界面上。</li>
+<li><strong>loadComboBoxSet</strong>: 根据配置文件初始化下拉菜单。</li>
+</ul>
+<pre><code class="hljs" class="cpp language-cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">CreatorWindow::getMachineInfo</span><span class="hljs-params">()</span> </span>{
+    QJsonObject obj = r-&gt;<span class="hljs-built_in">readJsonToObj</span>();
+    <span class="hljs-keyword">if</span> (!obj[<span class="hljs-string">&quot;machineName&quot;</span>].<span class="hljs-built_in">isNull</span>())
+        ui-&gt;lineEditMachineName-&gt;<span class="hljs-built_in">setText</span>(obj[<span class="hljs-string">&quot;machineName&quot;</span>].<span class="hljs-built_in">toString</span>());
+    <span class="hljs-comment">// 其他配置读取逻辑</span>
+}</code></pre>
+<p>Sources: <a href="">creatorwindow.cpp:40-70</a></p>
+<h3 id="generatepro-类-1">GeneratePro 类</h3>
+<p>GeneratePro 类负责根据配置生成项目文件。</p>
+<ul>
+<li><strong>getJsonValue</strong>: 从 JSON 配置中读取必要的值用于文件生成。</li>
+<li><strong>startGenerate</strong>: 开始文件生成过程，创建必要的目录并复制文件。</li>
+</ul>
+<pre><code class="hljs" class="cpp language-cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GeneratePro::getJsonValue</span><span class="hljs-params">()</span> </span>{
+    QJsonObject obj = r-&gt;<span class="hljs-built_in">readJsonToObj</span>();
+    <span class="hljs-comment">// 读取配置逻辑</span>
+}</code></pre>
+<p>Sources: <a href="">generatepro.cpp:200-250</a></p>
+<h3 id="数据模型">数据模型</h3>
+<p>前端组件使用 JSON 文件作为主要的数据存储格式，以下是 JSON 文件的关键字段：</p>
+<table>
+<thead>
+<tr>
+<th id="字段名称">字段名称</th>
+<th id="类型">类型</th>
+<th id="描述">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>machineName</td>
+<td>字符串</td>
+<td>机器名称</td>
+</tr>
+<tr>
+<td>machineType</td>
+<td>整数</td>
+<td>机器类型</td>
+</tr>
+<tr>
+<td>ifHasScrewTap</td>
+<td>整数</td>
+<td>是否有螺纹</td>
+</tr>
+<tr>
+<td>wareType</td>
+<td>整数</td>
+<td>设备类型</td>
+</tr>
+<tr>
+<td>ifOperation</td>
+<td>整数</td>
+<td>是否操作</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <a href="">generatepro.cpp:300-350</a></p>
+<h2 id="总结-3">总结</h2>
+<p>前端组件是项目中至关重要的部分，通过与后台模块的协作，提供用户友好的界面和灵活的配置功能。该组件通过 CreatorWindow 和 GeneratePro 类实现了从配置读取到文件生成的完整流程。这种设计不仅增强了用户体验，还提高了系统的可维护性和扩展性。</p>
+<hr />
+<p><a id='page-7'></a></p>
+<h2 id="后端系统">后端系统</h2>
+<h3 id="related-pages-6">Related Pages</h3>
+<p>Related topics: <a href="#page-8">部署与基础设施</a></p>
+<p><details><br />
+<summary>Relevant source files</summary></p>
+<ul>
+<li><a href="generatepro.cpp">generatepro.cpp</a></li>
+<li><a href="creatorwindow.cpp">creatorwindow.cpp</a></li>
+<li><a href="creatorwindow.hpp">creatorwindow.hpp</a></li>
+<li><a href="filework.cpp">filework.cpp</a></li>
+<li><a href="generatepro.h">generatepro.h</a><br />
+</details></li>
+</ul>
+<h1 id="后端系统-1">后端系统</h1>
+<h2 id="介绍-5">介绍</h2>
+<p>后端系统是项目的核心组成部分，负责处理数据管理、文件操作和系统配置等功能。该系统通过多个模块协同工作，实现了配置生成、文件复制和路径管理等功能。后端系统的设计旨在提供灵活性和可扩展性，以满足不同用户的需求。</p>
+<h2 id="系统架构">系统架构</h2>
+<p>后端系统主要由几个关键模块组成，包括<code>GeneratePro</code>类、<code>CreatorWindow</code>类和<code>FileWork</code>类。这些模块通过彼此间的接口进行交互，实现了复杂的业务逻辑。</p>
+<h3 id="generatepro-类-2">GeneratePro 类</h3>
+<p><code>GeneratePro</code>类是系统的核心模块，负责读取配置文件、生成目标文件夹结构以及执行文件复制操作。</p>
+<pre><code class="hljs" class="cpp language-cpp">GeneratePro::<span class="hljs-built_in">GeneratePro</span>(QObject *parent) : <span class="hljs-built_in">QObject</span>(parent) {
+    c = <span class="hljs-keyword">new</span> ConvertCode;
+    r = <span class="hljs-keyword">new</span> ReadAndWriteJson;
+    project = <span class="hljs-keyword">new</span> FileWork;
+}</code></pre>
+<p>该类使用了<code>ConvertCode</code>和<code>ReadAndWriteJson</code>来处理字符编码和JSON数据读取。<code>FileWork</code>类用于文件操作。  <br />
+Sources: <a href="">generatepro.cpp:40-46</a></p>
+<h3 id="creatorwindow-类-2">CreatorWindow 类</h3>
+<p><code>CreatorWindow</code>类提供了用户界面交互功能，允许用户通过图形界面设置机器信息和配置选项。</p>
+<pre><code class="hljs" class="cpp language-cpp">CreatorWindow::<span class="hljs-built_in">CreatorWindow</span>(QWidget *parent) :
+    <span class="hljs-built_in">QWidget</span>(parent),
+    <span class="hljs-built_in">ui</span>(<span class="hljs-keyword">new</span> Ui::CreatorWindow) {
+    ui-&gt;<span class="hljs-built_in">setupUi</span>(<span class="hljs-keyword">this</span>);
+    <span class="hljs-built_in">setWindowTitle</span>(<span class="hljs-string">&quot;创建配置&quot;</span>);
+    r = <span class="hljs-keyword">new</span> ReadAndWriteJson;
+    c = <span class="hljs-keyword">new</span> ConvertCode;
+    <span class="hljs-built_in">getMachineInfo</span>();
+    <span class="hljs-built_in">loadComboBoxSet</span>();
+}</code></pre>
+<p>该类初始化了界面组件，并连接了用户输入和系统处理逻辑。  <br />
+Sources: <a href="">creatorwindow.cpp:12-26</a></p>
+<h3 id="filework-类">FileWork 类</h3>
+<p><code>FileWork</code>类负责文件系统操作，包括目录遍历和文件复制。该类使用Boost库提供的文件系统功能实现。</p>
+<pre><code class="hljs" class="cpp language-cpp">fs::path p = fs::<span class="hljs-built_in">system_complete</span>(dir);
+<span class="hljs-keyword">if</span> (!fs::<span class="hljs-built_in">exists</span>(p)) {
+    std::cout &lt;&lt; <span class="hljs-string">&quot;\nsource directory error: &quot;</span> &lt;&lt; p &lt;&lt; std::endl;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+}</code></pre>
+<p>通过检查路径的存在性和类型，确保文件操作的安全性。  <br />
+Sources: <a href="">filework.cpp:1-10</a></p>
+<h2 id="数据流和逻辑">数据流和逻辑</h2>
+<p>后端系统的数据流主要涉及JSON数据的读取和解析、文件路径的动态生成以及文件的复制和管理。</p>
+<pre><code class="hljs" class="cpp language-cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GeneratePro::getJsonValue</span><span class="hljs-params">()</span> </span>{
+    QJsonObject obj = r-&gt;<span class="hljs-built_in">readJsonToObj</span>();
+    QJsonObject obj2 = obj[<span class="hljs-string">&quot;programDir&quot;</span>].<span class="hljs-built_in">toObject</span>();
+    softwareVersion = obj[<span class="hljs-string">&quot;version&quot;</span>].<span class="hljs-built_in">toString</span>().<span class="hljs-built_in">toStdString</span>();
+    sourceDir = obj2[<span class="hljs-string">&quot;sourceDir&quot;</span>].<span class="hljs-built_in">toString</span>().<span class="hljs-built_in">toStdString</span>();
+    destDir = obj2[<span class="hljs-string">&quot;destDir&quot;</span>].<span class="hljs-built_in">toString</span>().<span class="hljs-built_in">toStdString</span>();
+}</code></pre>
+<p>通过<code>getJsonValue</code>函数从JSON文件中读取配置数据，并将其存储到类的成员变量中以供后续使用。  <br />
+Sources: <a href="">generatepro.cpp:150-160</a></p>
+<h2 id="mermaid-图表-1">Mermaid 图表</h2>
+<h3 id="系统流程图">系统流程图</h3>
+<div class="mermaid">graph TD;
+    A[读取JSON配置] --> B[生成目标路径];
+    B --> C[复制文件];
+    C --> D[更新用户界面];</div>
+<p>该流程图展示了后端系统的核心处理流程，从配置读取到文件操作，再到界面更新的完整过程。</p>
+<h2 id="配置选项表-2">配置选项表</h2>
+<table>
+<thead>
+<tr>
+<th id="配置项">配置项</th>
+<th id="类型">类型</th>
+<th id="默认值">默认值</th>
+<th id="描述">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>machineName</td>
+<td>字符串</td>
+<td>无</td>
+<td>机器名称</td>
+</tr>
+<tr>
+<td>machineType</td>
+<td>整数</td>
+<td>0</td>
+<td>机器类型</td>
+</tr>
+<tr>
+<td>ifHasScrewTap</td>
+<td>布尔值</td>
+<td>false</td>
+<td>是否包含螺纹</td>
+</tr>
+<tr>
+<td>wareType</td>
+<td>整数</td>
+<td>0</td>
+<td>产品类型</td>
+</tr>
+<tr>
+<td>ifHasWorm</td>
+<td>布尔值</td>
+<td>false</td>
+<td>是否包含蜗杆</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <a href="">creatorwindow.cpp:60-80</a></p>
+<h2 id="结论-2">结论</h2>
+<p>后端系统在项目中扮演了关键角色，通过模块化设计和灵活的配置选项，实现了高效的文件管理和系统配置功能。通过合理的类结构和数据流设计，该系统能够满足多样化的用户需求，并提供了良好的扩展性。</p>
+<hr />
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>

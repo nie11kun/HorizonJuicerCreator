@@ -8,6 +8,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QByteArray>
+#include <QCoreApplication>
 
 namespace fs = boost::filesystem;
 
@@ -679,10 +680,24 @@ void GeneratePro::getJsonValue(){
 }
 
 string GeneratePro::getReplaceJsonValue() {
-    // 读取Qt资源文件
-    QFile file(":./oneReplace.json");
+    // 获取当前可执行文件所在的目录路径
+    QString appDir = QCoreApplication::applicationDirPath();
+
+    // 构建 "oneReplace.json" 文件的完整、跨平台的路径
+    QString jsonFilePath = QDir(appDir).filePath("oneReplace.json");
+
+    // 调试输出：打印尝试打开的文件路径，这在排错时非常有用
+    qDebug() << "Attempting to open file:" << jsonFilePath;
+
+    // 使用构建好的文件路径创建QFile对象
+    QFile file(jsonFilePath);
+
+    // 尝试以只读方式打开文件
     if (!file.open(QIODevice::ReadOnly)) {
-        std::cerr << "can not open json file: :./oneReplace.json" << std::endl;
+        // 输出更详细的错误信息
+        qWarning() << "Could not open JSON file:" << jsonFilePath << "Error:" << file.errorString();
+        // 或者使用 std::cerr
+        // std::cerr << "can not open json file: " << jsonFilePath.toStdString() << std::endl;
         return {};
     }
 

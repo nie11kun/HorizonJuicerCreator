@@ -58,7 +58,7 @@ win32: {
                     -llibboost_regex-mgw81-mt-x32-1_72
     INCLUDEPATH += "C:/Users/Marco Nie/Library/boost_1_72_0"
     DEPENDPATH += "C:/Users/Marco Nie/Library/boost_1_72_0"
-    RC_ICONS = ./car.ico
+    RC_ICONS = ./hjc.ico
 }
 
 macx: {
@@ -67,7 +67,7 @@ macx: {
                     -lboost_regex
     INCLUDEPATH += /Users/marconie/libs/boost_1_75_0
     DEPENDPATH += /Users/marconie/libs/boost_1_75_0
-    ICON = ./car.icns
+    ICON = ./hjc.icns
 }
 
 DISTFILES +=

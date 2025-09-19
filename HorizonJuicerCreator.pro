@@ -76,5 +76,5 @@ RESOURCES += \
     resourse.qrc \
     qdarkstyle/dark/style.qrc
 
-
+macx: QMAKE_LIBS_OPENGL = -framework OpenGL
 

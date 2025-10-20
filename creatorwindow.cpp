@@ -111,7 +111,8 @@ void CreatorWindow::loadComboBoxSet() {
         ui->comboBoxSystemMode->setCurrentIndex(obj["systemMode"].toInt());
     if (!obj["ifHasLoadingArm"].isNull())
         ui->comboBoxLoadingArm->setCurrentIndex(obj["ifHasLoadingArm"].toInt());
-
+    if (!obj["ifHasEncryption"].isNull())
+        ui->comboBoxEncryption->setCurrentIndex(obj["ifHasEncryption"].toInt());
     machineTypeComboBoxSet(obj["machineType"].toInt());
 
 }
@@ -360,6 +361,7 @@ int CreatorWindow::on_saveDataPushButton_clicked()
         obj.insert("hmiMode", ui->comboBoxHMIMode->currentIndex());
         obj.insert("systemMode", ui->comboBoxSystemMode->currentIndex());
         obj.insert("ifHasLoadingArm", ui->comboBoxLoadingArm->currentIndex());
+        obj.insert("ifHasEncryption", ui->comboBoxEncryption->currentIndex());
 
         r->saveObjToJson(obj);
 

@@ -62,6 +62,7 @@ private:
     int hmiMode;
     int systemMode;
     int ifHasLoadingArm;
+    int ifHasEncryption;
 
 signals:
     void triggerStartingProcess();

@@ -439,6 +439,18 @@ const char* ifIsNotHasLoadingArm =
 "([^\n]+ifIsNotHasLoadingArm\\b)|"
 "([^\n]+\<!--ifIsNotHasLoadingArmLine--\>)"
 ;
+const char* ifIsHasEncryption =
+"(;ifIsHasEncryptionBegin.*?;ifIsHasEncryptionEnd)|"
+"(\<!--ifIsHasEncryptionBegin--\>.*?\<!--ifIsHasEncryptionEnd--\>)|"
+"([^\n]+ifIsHasEncryption\\b)|"
+"([^\n]+\<!--ifIsHasEncryptionLine--\>)"
+;
+const char* ifIsNotHasEncryption =
+"(;ifIsNotHasEncryptionBegin.*?;ifIsNotHasEncryptionEnd)|"
+"(\<!--ifIsNotHasEncryptionBegin--\>.*?\<!--ifIsNotHasEncryptionEnd--\>)|"
+"([^\n]+ifIsNotHasEncryption\\b)|"
+"([^\n]+\<!--ifIsNotHasEncryptionLine--\>)"
+;
 const char* ifIsXW =
 "(;ifIsXWBegin.*?;ifIsXWEnd)|"
 "(\<!--ifIsXWBegin--\>.*?\<!--ifIsXWEnd--\>)|"
@@ -643,6 +655,7 @@ void GeneratePro::getJsonValue(){
     hmiMode = obj["hmiMode"].toInt();
     systemMode = obj["systemMode"].toInt();
     ifHasLoadingArm = obj["ifHasLoadingArm"].toInt();
+    ifHasEncryption = obj["ifHasEncryption"].toInt();
 
     cout << softwareVersion << endl;
     cout << "-------------------" << endl;
@@ -676,6 +689,7 @@ void GeneratePro::getJsonValue(){
     cout << hmiMode << endl;
     cout << systemMode << endl;
     cout << ifHasLoadingArm << endl;
+    cout << ifHasEncryption << endl;
     cout << "-------------------" << endl;
 }
 
@@ -1084,6 +1098,7 @@ void GeneratePro::startGenerate() {
     specificationInfo.append(to_string(dressWheelType));
     specificationInfo.append(to_string(ifRemoveComments));
     specificationInfo.append(to_string(ifHasLoadingArm));
+    specificationInfo.append(to_string(ifHasEncryption));
     char* toSpecificationInfo = (char*)specificationInfo.c_str();
     //************************************************
 
@@ -1806,6 +1821,12 @@ void GeneratePro::startGenerate() {
             project->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsHasLoadingArm, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasLoadingArm, rmUnusedPart, NULL, 0);
             project->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsHasLoadingArm, rmUnusedPart, NULL, 0);
+        }
+        if (ifHasEncryption == 0) //无加密
+        {
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsHasEncryption, rmUnusedPart, NULL, 0);
+        } else {
+            project->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotHasEncryption, rmUnusedPart, NULL, 0);
         }
 
         if (lng == 1)

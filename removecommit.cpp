@@ -1,50 +1,52 @@
+/**
+ * @file removecommit.cpp
+ * @brief Comment removal process handler implementation
+ * @author Marco Nie
+ * @date 2018
+ * @copyright Copyright © 2018-2024 Marco Nie. All rights reserved.
+ */
+
 #include "removecommit.hpp"
+
 #include <iostream>
 
 using namespace std;
 
-RemoveCommit::RemoveCommit(QObject *parent) : QObject(parent)
-{
-    project = new FileWork;
-    r = new ReadAndWriteJson;
-    c = new ConvertCode;
+RemoveCommit::RemoveCommit(QObject *parent) : QObject(parent) {
+  fileHandler = new FileWork;
+  jsonHandler = new ReadAndWriteJson;
+  converter = new ConvertCode;
 }
 
 RemoveCommit::~RemoveCommit() {
-    delete project;
-    delete r;
-    delete c;
+  delete fileHandler;
+  delete jsonHandler;
+  delete converter;
 }
 
 void RemoveCommit::startProcess() {
-    const char* isComments =
-    "(;[^\n\*\"][^\n]+)";
+  // Regex pattern to match comment lines (starting with ; but not string
+  // literals)
+  const char *commentPattern = "(;[^\\n\\*\\\"][^\\n]+)";
+  const char *removePattern = "(;)";
 
-    const char* rmUnusedPart =
-    "(;)"
-    ;
+  // File extensions to process
+  const char *targetExtensions[] = {"com$", "spf$", "mpf$",
+                                    "COM$", "SPF$", "MPF$"};
+  const int extensionCount =
+      sizeof(targetExtensions) / sizeof(targetExtensions[0]);
 
-    const char* commentsInFiles[] = {
-        "com$",
-        "spf$",
-        "mpf$",
-        "COM$",
-        "SPF$",
-        "MPF$"
-    };
+  emit triggerStartingProcess();
 
-    const int commentsInFilesCount = sizeof(commentsInFiles) / sizeof(commentsInFiles[0]);
+  // Get target directory from configuration
+  QJsonObject config = jsonHandler->readJsonToObj();
+  string targetDir = config["removeDir"].toString().toStdString();
+  targetDir = converter->UTF8ToGBK(targetDir);
+  const char *dirPath = targetDir.c_str();
 
-    emit triggerStartingProcess();
+  cout << "\n\nremoving comments:\n";
+  fileHandler->findAndRepleaceInDirWithIncludeRecursion(
+      dirPath, commentPattern, removePattern, targetExtensions, extensionCount);
 
-    QJsonObject obj = r->readJsonToObj();
-
-    string dir = obj["removeDir"].toString().toStdString();
-    dir = c->UTF8ToGBK(dir);
-    const char* c_dir = dir.c_str();
-
-    cout << "\n\nremoving comments:\n";
-    project->findAndRepleaceInDirWithIncludeRecursion(c_dir, isComments, rmUnusedPart, commentsInFiles, commentsInFilesCount);
-
-    emit triggerFinishedProcess();
+  emit triggerFinishedProcess();
 }

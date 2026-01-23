@@ -1,109 +1,121 @@
+/**
+ * @file convertcode.cpp
+ * @brief Character encoding conversion utilities implementation
+ * @author Marco Nie
+ * @date 2018
+ * @copyright Copyright © 2018-2024 Marco Nie. All rights reserved.
+ */
 
-#include <iostream>       // std::cout, std::hex
-#include <string>         // std::string, std::u32string
 #include "convertcode.hpp"
 
+#include <iostream>
+#include <string>
+
 #ifdef _WIN32
-    #include <Windows.h>
+#include <Windows.h>
 #endif
 
 using namespace std;
 
-ConvertCode::ConvertCode()
-{
-}
+ConvertCode::ConvertCode() {}
 
-ConvertCode::~ConvertCode()
-{
-}
+ConvertCode::~ConvertCode() {}
 
-string ConvertCode::UnicodeToUTF8(const wstring& ws)
-{
-    string s;
-    for (int i = 0; i < ws.size(); ++i)
-    {
-        wchar_t wc = ws[i];
-        if (0 <= wc && wc <= 0x7f)
-        {
-            s += (char)wc;
-        }
-        else if (0x80 <= wc && wc <= 0x7ff)
-        {
-            s += (0xc0 | (wc >> 6));
-            s += (0x80 | (wc & 0x3f));
-        }
-        else if (0x800 <= wc && wc <= 0xffff)
-        {
-            s += (0xe0 | (wc >> 12));
-            s += (0x80 | ((wc >> 6) & 0x3f));
-            s += (0x80 | (wc & 0x3f));
-}
-        else if (0x10000 <= wc && wc <= 0x1fffff)
-        {
-            s += (0xf0 | (wc >> 18));
-            s += (0x80 | ((wc >> 12) & 0x3f));
-            s += (0x80 | ((wc >> 6) & 0x3f));
-            s += (0x80 | (wc & 0x3f));
-        }
-        else if (0x200000 <= wc && wc <= 0x3ffffff)
-        {
-            s += (0xf8 | (wc >> 24));
-            s += (0x80 | ((wc >> 18) & 0x3f));
-            s += (0x80 | ((wc >> 12) & 0x3f));
-            s += (0x80 | ((wc >> 6) & 0x3f));
-            s += (0x80 | (wc & 0x3f));
-        }
-        else if (0x4000000 <= wc && wc <= 0x7fffffff)
-        {
-            s += (0xfc | (wc >> 30));
-            s += (0x80 | ((wc >> 24) & 0x3f));
-            s += (0x80 | ((wc >> 18) & 0x3f));
-            s += (0x80 | ((wc >> 12) & 0x3f));
-            s += (0x80 | ((wc >> 6) & 0x3f));
-            s += (0x80 | (wc & 0x3f));
-        }
+string ConvertCode::UnicodeToUTF8(const wstring &ws) {
+  string result;
+  for (size_t i = 0; i < ws.size(); ++i) {
+    wchar_t wc = ws[i];
+
+    // 1-byte UTF-8 (ASCII)
+    if (0 <= wc && wc <= 0x7f) {
+      result += static_cast<char>(wc);
     }
-    return s;
+    // 2-byte UTF-8
+    else if (0x80 <= wc && wc <= 0x7ff) {
+      result += static_cast<char>(0xc0 | (wc >> 6));
+      result += static_cast<char>(0x80 | (wc & 0x3f));
+    }
+    // 3-byte UTF-8
+    else if (0x800 <= wc && wc <= 0xffff) {
+      result += static_cast<char>(0xe0 | (wc >> 12));
+      result += static_cast<char>(0x80 | ((wc >> 6) & 0x3f));
+      result += static_cast<char>(0x80 | (wc & 0x3f));
+    }
+    // 4-byte UTF-8
+    else if (0x10000 <= wc && wc <= 0x1fffff) {
+      result += static_cast<char>(0xf0 | (wc >> 18));
+      result += static_cast<char>(0x80 | ((wc >> 12) & 0x3f));
+      result += static_cast<char>(0x80 | ((wc >> 6) & 0x3f));
+      result += static_cast<char>(0x80 | (wc & 0x3f));
+    }
+    // 5-byte UTF-8 (rarely used)
+    else if (0x200000 <= wc && wc <= 0x3ffffff) {
+      result += static_cast<char>(0xf8 | (wc >> 24));
+      result += static_cast<char>(0x80 | ((wc >> 18) & 0x3f));
+      result += static_cast<char>(0x80 | ((wc >> 12) & 0x3f));
+      result += static_cast<char>(0x80 | ((wc >> 6) & 0x3f));
+      result += static_cast<char>(0x80 | (wc & 0x3f));
+    }
+    // 6-byte UTF-8 (rarely used)
+    else if (0x4000000 <= wc && wc <= 0x7fffffff) {
+      result += static_cast<char>(0xfc | (wc >> 30));
+      result += static_cast<char>(0x80 | ((wc >> 24) & 0x3f));
+      result += static_cast<char>(0x80 | ((wc >> 18) & 0x3f));
+      result += static_cast<char>(0x80 | ((wc >> 12) & 0x3f));
+      result += static_cast<char>(0x80 | ((wc >> 6) & 0x3f));
+      result += static_cast<char>(0x80 | (wc & 0x3f));
+    }
+  }
+  return result;
 }
 
-string ConvertCode::GBKToUTF8(const string in)
-{
-    #ifdef _WIN32
-        const char* strGBK = in.c_str();
-        int len = MultiByteToWideChar(CP_ACP, 0, strGBK, -1, NULL, 0);
-        wchar_t* wstr = new wchar_t[len + 1];
-        memset(wstr, 0, len + 1);
-        MultiByteToWideChar(CP_ACP, 0, strGBK, -1, wstr, len);
-        len = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, NULL, 0, NULL, NULL);
-        char* str = new char[len + 1];
-        memset(str, 0, len + 1);
-        WideCharToMultiByte(CP_UTF8, 0, wstr, -1, str, len, NULL, NULL);
-        string strTemp = str;
-        if (wstr) delete[] wstr;
-        if (str) delete[] str;
-        return strTemp;
-    #else
-        return in;
-    #endif
+string ConvertCode::GBKToUTF8(const string input) {
+#ifdef _WIN32
+  const char *strGBK = input.c_str();
+
+  // Convert GBK to Unicode (UTF-16)
+  int wideLen = MultiByteToWideChar(CP_ACP, 0, strGBK, -1, NULL, 0);
+  wchar_t *wideStr = new wchar_t[wideLen + 1];
+  memset(wideStr, 0, (wideLen + 1) * sizeof(wchar_t));
+  MultiByteToWideChar(CP_ACP, 0, strGBK, -1, wideStr, wideLen);
+
+  // Convert Unicode to UTF-8
+  int utf8Len =
+      WideCharToMultiByte(CP_UTF8, 0, wideStr, -1, NULL, 0, NULL, NULL);
+  char *utf8Str = new char[utf8Len + 1];
+  memset(utf8Str, 0, utf8Len + 1);
+  WideCharToMultiByte(CP_UTF8, 0, wideStr, -1, utf8Str, utf8Len, NULL, NULL);
+
+  string result = utf8Str;
+  delete[] wideStr;
+  delete[] utf8Str;
+  return result;
+#else
+  return input;
+#endif
 }
 
-string ConvertCode::UTF8ToGBK(const string in)
-{
-    #ifdef _WIN32
-        const char* strUTF8 = in.c_str();
-        int len = MultiByteToWideChar(CP_UTF8, 0, strUTF8, -1, NULL, 0);
-        wchar_t* wszGBK = new wchar_t[len + 1];
-        memset(wszGBK, 0, len * 2 + 2);
-        MultiByteToWideChar(CP_UTF8, 0, strUTF8, -1, wszGBK, len);
-        len = WideCharToMultiByte(CP_ACP, 0, wszGBK, -1, NULL, 0, NULL, NULL);
-        char* szGBK = new char[len + 1];
-        memset(szGBK, 0, len + 1);
-        WideCharToMultiByte(CP_ACP, 0, wszGBK, -1, szGBK, len, NULL, NULL);
-        string strTemp(szGBK);
-        if (wszGBK) delete[] wszGBK;
-        if (szGBK) delete[] szGBK;
-        return strTemp;
-    #else
-        return in;
-    #endif
+string ConvertCode::UTF8ToGBK(const string input) {
+#ifdef _WIN32
+  const char *strUTF8 = input.c_str();
+
+  // Convert UTF-8 to Unicode (UTF-16)
+  int wideLen = MultiByteToWideChar(CP_UTF8, 0, strUTF8, -1, NULL, 0);
+  wchar_t *wideStr = new wchar_t[wideLen + 1];
+  memset(wideStr, 0, (wideLen + 1) * sizeof(wchar_t));
+  MultiByteToWideChar(CP_UTF8, 0, strUTF8, -1, wideStr, wideLen);
+
+  // Convert Unicode to GBK
+  int gbkLen = WideCharToMultiByte(CP_ACP, 0, wideStr, -1, NULL, 0, NULL, NULL);
+  char *gbkStr = new char[gbkLen + 1];
+  memset(gbkStr, 0, gbkLen + 1);
+  WideCharToMultiByte(CP_ACP, 0, wideStr, -1, gbkStr, gbkLen, NULL, NULL);
+
+  string result(gbkStr);
+  delete[] wideStr;
+  delete[] gbkStr;
+  return result;
+#else
+  return input;
+#endif
 }

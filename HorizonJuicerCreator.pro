@@ -53,11 +53,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 win32: {
-    LIBS += -L"C:/Users/Marco Nie/Library/boost_1_72_0/stage/lib/" \
-                    -llibboost_filesystem-mgw81-mt-x32-1_72 \
-                    -llibboost_regex-mgw81-mt-x32-1_72
-    INCLUDEPATH += "C:/Users/Marco Nie/Library/boost_1_72_0"
-    DEPENDPATH += "C:/Users/Marco Nie/Library/boost_1_72_0"
+    LIBS += -L"C:/Users/Marco Nie/Library/boost_1_84_0/stage/lib/" \
+                    -lboost_filesystem-mgw13-mt-x64-1_84 \
+                    -lboost_regex-mgw13-mt-x64-1_84
+    INCLUDEPATH += "C:/Users/Marco Nie/Library/boost_1_84_0"
+    DEPENDPATH += "C:/Users/Marco Nie/Library/boost_1_84_0"
     RC_ICONS = ./hjc.ico
 }
 

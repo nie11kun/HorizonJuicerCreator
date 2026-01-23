@@ -1,104 +1,107 @@
+/**
+ * @file readandwritejson.cpp
+ * @brief JSON configuration read/write utilities implementation
+ * @author Marco Nie
+ * @date 2018
+ * @copyright Copyright © 2018-2024 Marco Nie. All rights reserved.
+ */
+
 #include "readandwritejson.hpp"
-#include <QString>
-#include <QJsonDocument>
+
 #include <QFile>
-#include <QTextStream>
+#include <QJsonDocument>
 #include <QJsonObject>
+#include <QString>
+#include <QTextStream>
+
 #include <string>
 
-using namespace std;
-
-ReadAndWriteJson::ReadAndWriteJson()
-{
-    c = new ConvertCode;
-    filePath = QDir::homePath() + seg + fileName;
+ReadAndWriteJson::ReadAndWriteJson() {
+  converter = new ConvertCode;
+  filePath = QDir::homePath() + pathSeparator + fileName;
 }
 
-ReadAndWriteJson::~ReadAndWriteJson()
-{
-    delete c;
-}
+ReadAndWriteJson::~ReadAndWriteJson() { delete converter; }
 
 QJsonObject ReadAndWriteJson::readJsonToObj() {
-    QFile file(this->filePath);
-    if(!file.open(QIODevice::ReadOnly)) {
-        qDebug() << "File open error";
-        abort();
-    } else {
-        QTextStream in(&file);
-        in.setCodec("utf8");// if not set code to utf8, chinese will error when is odd number.
-        QString s = in.readAll();
-        file.close();
-        QJsonDocument doc = QJsonDocument::fromJson(s.toUtf8());
-        QJsonObject obj = doc.object();
-        qDebug() << "***************read json************\n"
-                 << obj <<
-                    "\n**********************************\n";
-        return obj;
-    }
+  QFile file(this->filePath);
+  if (!file.open(QIODevice::ReadOnly)) {
+    qDebug() << "File open error";
+    abort();
+  }
+
+  QTextStream inputStream(&file);
+  QString content = inputStream.readAll();
+  file.close();
+
+  QJsonDocument doc = QJsonDocument::fromJson(content.toUtf8());
+  QJsonObject obj = doc.object();
+
+  qDebug() << "***************read json************\n"
+           << obj << "\n**********************************\n";
+
+  return obj;
 }
 
 void ReadAndWriteJson::saveObjToJson(QJsonObject obj) {
+  qDebug() << "***************write json***********\n"
+           << obj << "\n**********************************\n";
 
-    qDebug() << "***************write json***********\n"
-             << obj <<
-                "\n**********************************\n";
-    QJsonDocument jsonDoc;
-    jsonDoc.setObject(obj);
-    QFile file(this->filePath);
-    if(!file.open(QIODevice::WriteOnly)) {
-        qDebug() << "File open error";
-        abort();
-    } else {
-        file.resize(0);
-        file.write(jsonDoc.toJson());
-        file.close();
-    }
+  QJsonDocument jsonDoc;
+  jsonDoc.setObject(obj);
+
+  QFile file(this->filePath);
+  if (!file.open(QIODevice::WriteOnly)) {
+    qDebug() << "File open error";
+    abort();
+  }
+
+  file.resize(0); // Clear file contents
+  file.write(jsonDoc.toJson());
+  file.close();
 }
 
 QString ReadAndWriteJson::getSourceDir() {
-    QJsonObject obj1 = this->readJsonToObj();
-    QJsonValue prog = obj1["programDir"];
-    QJsonObject obj2 = prog.toObject();
-    QString s = obj2["sourceDir"].toString();
-    return s;
+  QJsonObject config = this->readJsonToObj();
+  QJsonValue programDir = config["programDir"];
+  QJsonObject dirObj = programDir.toObject();
+  return dirObj["sourceDir"].toString();
 }
 
 QString ReadAndWriteJson::getDestDir() {
-    QJsonObject obj1 = this->readJsonToObj();
-    QJsonValue prog = obj1["programDir"];
-    QJsonObject obj2 = prog.toObject();
-    QString s = obj2["destDir"].toString();
-    return s;
+  QJsonObject config = this->readJsonToObj();
+  QJsonValue programDir = config["programDir"];
+  QJsonObject dirObj = programDir.toObject();
+  return dirObj["destDir"].toString();
 }
 
-void ReadAndWriteJson::setDirs(QString a, QString b) {
-    QJsonObject obj1 = this->readJsonToObj();
+void ReadAndWriteJson::setDirs(QString sourceDir, QString destDir) {
+  QJsonObject config = this->readJsonToObj();
 
-    QJsonObject obj2;
-    obj2.insert("sourceDir", a);
-    obj2.insert("destDir", b);
+  QJsonObject dirObj;
+  dirObj.insert("sourceDir", sourceDir);
+  dirObj.insert("destDir", destDir);
+  config.insert("programDir", dirObj);
 
-    obj1.insert("programDir", obj2);
+  // Preserve existing string values
+  if (!config["customInfo"].isNull()) {
+    QString customInfo = config["customInfo"].toString();
+    config.insert("customInfo", customInfo);
+  }
+  if (!config["machineNameLng"].isNull()) {
+    QString machineNameLng = config["machineNameLng"].toString();
+    config.insert("machineNameLng", machineNameLng);
+  }
 
-    if (!obj1["customInfo"].isNull()) {
-        QString s = obj1["customInfo"].toString();
-        obj1.insert("customInfo", s);
-    }
-    if (!obj1["machineNameLng"].isNull()) {
-        QString s = obj1["machineNameLng"].toString();
-        obj1.insert("machineNameLng", s);
-    }
-
-    saveObjToJson(obj1);
+  saveObjToJson(config);
 }
 
 QString ReadAndWriteJson::getVersionInfo() {
-    QJsonObject obj1 = this->readJsonToObj();
-    return obj1["version"].toString();
+  QJsonObject config = this->readJsonToObj();
+  return config["version"].toString();
 }
 
 QString ReadAndWriteJson::getRemoveDir() {
-    QJsonObject obj = this->readJsonToObj();
-    return obj["removeDir"].toString();
+  QJsonObject config = this->readJsonToObj();
+  return config["removeDir"].toString();
 }

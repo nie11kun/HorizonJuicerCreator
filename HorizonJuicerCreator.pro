@@ -2,7 +2,7 @@ QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++17
 # CONFIG += console
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -62,11 +62,11 @@ win32: {
 }
 
 macx: {
-    LIBS += -L"/Users/marconie/libs/boost_1_75_0/stage/lib/" \
+    LIBS += -L"/Users/marconie/libs/boost_1_84_0/stage/lib/" \
                     -lboost_filesystem \
                     -lboost_regex
-    INCLUDEPATH += /Users/marconie/libs/boost_1_75_0
-    DEPENDPATH += /Users/marconie/libs/boost_1_75_0
+    INCLUDEPATH += /Users/marconie/libs/boost_1_84_0
+    DEPENDPATH += /Users/marconie/libs/boost_1_84_0
     ICON = ./hjc.icns
 }
 

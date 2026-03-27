@@ -16,6 +16,7 @@ SOURCES += \
     filework.cpp \
     generatepro.cpp \
     history.cpp \
+    image_compress.cpp \
     main.cpp \
     horizonjuicercreator.cpp \
     readandwritejson.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     generatepro.h \
     history.hpp \
     horizonjuicercreator.hpp \
+    image_compress.h \
     readandwritejson.hpp \
     removecommit.hpp \
     removecommitwindow.hpp \
@@ -59,6 +61,18 @@ win32: {
     INCLUDEPATH += "C:/Users/Marco Nie/Library/boost_1_84_0"
     DEPENDPATH += "C:/Users/Marco Nie/Library/boost_1_84_0"
     RC_ICONS = ./hjc.ico
+
+    IMAGEPROCESS = "C:/Users/Marco Nie/Library/imageprocess"
+
+    INCLUDEPATH += \
+        $${IMAGEPROCESS}/libimagequant/include \
+        $${IMAGEPROCESS}/libpng/include \
+        $${IMAGEPROCESS}/zlib/include
+
+    LIBS += \
+        -L$${IMAGEPROCESS}/libimagequant/lib -limagequant \
+        -L$${IMAGEPROCESS}/libpng/lib        -lpng16 \
+        -L$${IMAGEPROCESS}/zlib/lib          -lzlibstatic
 }
 
 macx: {

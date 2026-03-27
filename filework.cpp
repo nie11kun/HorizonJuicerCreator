@@ -27,6 +27,8 @@
 #include <map>
 #include <sstream>
 #include <string>
+#include "image_compress.h"
+#include <QFileInfo>
 
 namespace fs = boost::filesystem;
 using namespace std;
@@ -953,25 +955,48 @@ void FileWork::readFileLineByLineToCout(string filename) {
   fs.close();
 }
 
-bool FileWork::resizeImageFile(const std::string &filePath, int targetWidth,
-                               int targetHeight) {
-  QImage image;
-  // 尝试加载图片
-  if (!image.load(QString::fromLocal8Bit(filePath.c_str()))) {
-    std::cout << "loading picture error: " << filePath << std::endl;
-    return false;
-  }
-  // 使用 scaled() 调整图片尺寸，此处设置为忽略宽高比（可根据需要选择
-  // Qt::KeepAspectRatio）
-  QImage newImage =
-      image.scaled(targetWidth, targetHeight, Qt::IgnoreAspectRatio,
-                   Qt::SmoothTransformation);
-  // 保存图片到原路径（也可以保存为新文件）
-  if (!newImage.save(QString::fromLocal8Bit(filePath.c_str()))) {
-    std::cout << "saving picture error: " << filePath << std::endl;
-    return false;
-  }
-  return true;
+bool FileWork::resizeImageFile(const std::string &filePath,
+                               int targetWidth, int targetHeight)
+{
+    QImage image;
+    if (!image.load(QString::fromLocal8Bit(filePath.c_str()))) {
+        std::cout << "loading picture error: " << filePath << std::endl;
+        return false;
+    }
+
+    QImage scaled = image.scaled(targetWidth, targetHeight,
+                                 Qt::IgnoreAspectRatio,
+                                 Qt::SmoothTransformation);
+
+    QString ext = QFileInfo(QString::fromLocal8Bit(filePath.c_str()))
+                      .suffix().toLower();
+
+    bool ok = false;
+
+    if (ext == "png") {
+        // 转为 RGBA（libimagequant 要求 4 通道输入）
+        QImage converted = scaled.convertToFormat(QImage::Format_RGBA8888);
+        ok = ImageCompress::savePngLossy(
+            converted.constBits(),
+            converted.width(),
+            converted.height(),
+            filePath,
+            85);   // 85 是体积/质量较好的平衡点，可按需调整
+
+    } else if (ext == "jpg" || ext == "jpeg") {
+        // JPEG 本身已是有损格式，Qt 直接保存即可
+        ok = scaled.save(
+            QString::fromLocal8Bit(filePath.c_str()), "JPEG", 85);
+
+    } else {
+        ok = scaled.save(QString::fromLocal8Bit(filePath.c_str()));
+    }
+
+    if (!ok) {
+        std::cout << "saving picture error: " << filePath << std::endl;
+        return false;
+    }
+    return true;
 }
 
 bool FileWork::resizeImageInDirWithInclude(const char *dir,

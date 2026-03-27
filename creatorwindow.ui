@@ -24,7 +24,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_6">
    <property name="sizeConstraint">
-    <enum>QLayout::SetDefaultConstraint</enum>
+    <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
    </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,1">
@@ -237,7 +237,12 @@
            <widget class="QComboBox" name="comboBoxSystemMode">
             <item>
              <property name="text">
-              <string>非 ONE 系统</string>
+              <string>老版 828D</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>新版 828D</string>
              </property>
             </item>
             <item>
@@ -301,7 +306,7 @@
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
         <property name="sizeConstraint">
-         <enum>QLayout::SetDefaultConstraint</enum>
+         <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
         </property>
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_4">
@@ -727,7 +732,7 @@
             <string/>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -743,7 +748,7 @@
             <string/>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -787,7 +792,7 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1">
        <property name="sizeConstraint">
-        <enum>QLayout::SetDefaultConstraint</enum>
+        <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
        </property>
        <item>
         <widget class="QPushButton" name="saveDataPushButton">

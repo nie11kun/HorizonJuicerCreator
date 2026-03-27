@@ -957,7 +957,7 @@ bool FileWork::resizeImageFile(const std::string &filePath, int targetWidth,
                                int targetHeight) {
   QImage image;
   // 尝试加载图片
-  if (!image.load(QString::fromStdString(filePath))) {
+  if (!image.load(QString::fromLocal8Bit(filePath.c_str()))) {
     std::cout << "loading picture error: " << filePath << std::endl;
     return false;
   }
@@ -967,7 +967,7 @@ bool FileWork::resizeImageFile(const std::string &filePath, int targetWidth,
       image.scaled(targetWidth, targetHeight, Qt::IgnoreAspectRatio,
                    Qt::SmoothTransformation);
   // 保存图片到原路径（也可以保存为新文件）
-  if (!newImage.save(QString::fromStdString(filePath))) {
+  if (!newImage.save(QString::fromLocal8Bit(filePath.c_str()))) {
     std::cout << "saving picture error: " << filePath << std::endl;
     return false;
   }

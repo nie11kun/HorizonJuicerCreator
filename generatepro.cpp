@@ -418,7 +418,8 @@ const char *switchLogoFiles[] = {"S_"};
 const char *switchLogoResolution = "40*40";
 
 const char *panelLogoFiles[] = {"panel_"};
-const char *panelLogoResolution = "1170*595";
+const char *panelLogoResolutionOne = "1170*595";
+const char *panelLogoResolutionNew828D = "1150*630";
 //*******************************************
 const char *MultiSymbel = "(×)|"
                           "(\\*)";
@@ -989,7 +990,7 @@ void GeneratePro::startGenerate() {
     cout << "\n\ncopy files:\n";
     fileHandler->copyFilesToNewDirWithIgnore(c_defSourceDir[0], c_defDestDir,
                                              NULL, 0);
-    if (systemMode == 0) {
+    if (systemMode == 0 || systemMode == 1) {
       fileHandler->copyFilesToNewDirWithIgnore(
           c_hmiCfgSourceDir[0], c_hmiCfgDestDir, cfgOneFiles, cfgOneFilesCount);
     } else {
@@ -1005,7 +1006,7 @@ void GeneratePro::startGenerate() {
     }
     fileHandler->copyFilesToNewDirWithIgnore(c_hmiLngSourceDir[0],
                                              c_hmiLngDestDir, NULL, 0);
-    if (systemMode == 0) {
+    if (systemMode == 0 || systemMode == 1) {
       fileHandler->copyFilesToNewDirWithIgnore(
           c_hmiIco640SourceDir[0], c_hmiIco640DestDir, ico640OneFiles,
           ico640OneFilesCount);
@@ -2286,15 +2287,6 @@ void GeneratePro::startGenerate() {
     }
 
     if (systemMode == 1) {
-      fileHandler->findAndReplaceFromJSONWithIgnore(c_mpfDestDir,
-                                                    c_oneReplaceValue, NULL, 0);
-      fileHandler->findAndReplaceFromJSONWithIgnore(c_cmaDestDir,
-                                                    c_oneReplaceValue, NULL, 0);
-      fileHandler->findAndReplaceFromJSONWithIgnore(c_hmiProjDestDir,
-                                                    c_oneReplaceValue, NULL, 0);
-      fileHandler->findAndReplaceFromJSONWithIgnore(c_cfcardUserDestDir,
-                                                    c_oneReplaceValue, NULL, 0);
-
       fileHandler->resizeImageInDirWithInclude(
           c_hmiIco800DestDir, customLogoResolution, customLogoFiles,
           customLogoFilesCount);
@@ -2304,7 +2296,7 @@ void GeneratePro::startGenerate() {
           c_hmiIco800DestDir, switchLogoResolution, switchLogoFiles,
           switchLogoFilesCount);
       fileHandler->resizeImageInDirWithInclude(
-          c_hmiIco800DestDir, panelLogoResolution, panelLogoFiles,
+          c_hmiIco800DestDir, panelLogoResolutionNew828D, panelLogoFiles,
           panelLogoFilesCount);
 
       fs::rename(cfcardSiemensSinumerikHmiIcoIco800Path,
@@ -2314,6 +2306,35 @@ void GeneratePro::startGenerate() {
           c_hmiLngDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
       fileHandler->findAndRepleaceInDirWithIgnore(
           c_cmaDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
+    } else if (systemMode == 2) {
+        fileHandler->findAndReplaceFromJSONWithIgnore(c_mpfDestDir,
+                                                      c_oneReplaceValue, NULL, 0);
+        fileHandler->findAndReplaceFromJSONWithIgnore(c_cmaDestDir,
+                                                      c_oneReplaceValue, NULL, 0);
+        fileHandler->findAndReplaceFromJSONWithIgnore(c_hmiProjDestDir,
+                                                      c_oneReplaceValue, NULL, 0);
+        fileHandler->findAndReplaceFromJSONWithIgnore(c_cfcardUserDestDir,
+                                                      c_oneReplaceValue, NULL, 0);
+
+        fileHandler->resizeImageInDirWithInclude(
+            c_hmiIco800DestDir, customLogoResolution, customLogoFiles,
+            customLogoFilesCount);
+        fileHandler->resizeImageInDirWithInclude(
+            c_hmiIco800DestDir, hjLogoResolution, hjLogoFiles, hjLogoFilesCount);
+        fileHandler->resizeImageInDirWithInclude(
+            c_hmiIco800DestDir, switchLogoResolution, switchLogoFiles,
+            switchLogoFilesCount);
+        fileHandler->resizeImageInDirWithInclude(
+            c_hmiIco800DestDir, panelLogoResolutionOne, panelLogoFiles,
+            panelLogoFilesCount);
+
+        fs::rename(cfcardSiemensSinumerikHmiIcoIco800Path,
+                   cfcardSiemensSinumerikHmiIcoIco1024Path);
+
+        fileHandler->findAndRepleaceInDirWithIgnore(
+            c_hmiLngDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
+        fileHandler->findAndRepleaceInDirWithIgnore(
+            c_cmaDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
     } else {
       fileHandler->findAndRepleaceInDirWithIgnore(
           c_hmiLngDestDir, ifIsOneSystem, rmUnusedPart, NULL, 0);

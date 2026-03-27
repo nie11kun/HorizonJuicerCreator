@@ -63,7 +63,7 @@ private:
   History *historyDialog;                 ///< History dialog
   ReadAndWriteJson *jsonHandler;          ///< JSON configuration handler
 
-  QString version = "3.24.1"; ///< Current application version
+  QString version = "3.25.0"; ///< Current application version
 
   /**
    * @brief Initialize or update version in configuration

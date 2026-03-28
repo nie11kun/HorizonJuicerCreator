@@ -73,6 +73,13 @@ win32: {
         -L$${IMAGEPROCESS}/libimagequant/lib -limagequant \
         -L$${IMAGEPROCESS}/libpng/lib        -lpng16 \
         -L$${IMAGEPROCESS}/zlib/lib          -lzlibstatic
+
+    # 拷贝 oneReplace.json 到输出目录
+    SRC_JSON = $$replace(PWD, /, \\)\\oneReplace.json
+    DST_DIR = $$replace(OUT_PWD, /, \\)
+    CONFIG(debug, debug|release): DST_DIR = $$DST_DIR\\debug
+    else: DST_DIR = $$DST_DIR\\release
+    QMAKE_POST_LINK += copy /Y \"$$SRC_JSON\" \"$$DST_DIR\"
 }
 
 macx: {
@@ -82,6 +89,21 @@ macx: {
     INCLUDEPATH += /Users/marconie/libs/boost_1_84_0
     DEPENDPATH += /Users/marconie/libs/boost_1_84_0
     ICON = ./hjc.icns
+
+    INCLUDEPATH += \
+        /opt/homebrew/opt/libimagequant/include \
+        /opt/homebrew/opt/libpng/include \
+        /opt/homebrew/opt/zlib/include
+
+    LIBS += \
+        -L/opt/homebrew/opt/libimagequant/lib -limagequant \
+        -L/opt/homebrew/opt/libpng/lib        -lpng \
+        -L/opt/homebrew/opt/zlib/lib          -lz
+
+    # 拷贝 oneReplace.json 到输出目录
+    json_mac.files = $$PWD/oneReplace.json
+    json_mac.path = Contents/MacOS
+    QMAKE_BUNDLE_DATA += json_mac
 }
 
 DISTFILES +=

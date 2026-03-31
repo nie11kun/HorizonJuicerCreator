@@ -75,10 +75,9 @@ win32: {
         -L$${IMAGEPROCESS}/zlib/lib          -lzlibstatic
 
     # 拷贝 oneReplace.json 到输出目录
-    SRC_JSON = $$replace(PWD, /, \\)\\oneReplace.json
-    DST_DIR = $$replace(OUT_PWD, /, \\)
-    CONFIG(debug, debug|release): DST_DIR = $$DST_DIR\\debug
-    else: DST_DIR = $$DST_DIR\\release
+    SRC_JSON = $$system_path($$PWD/oneReplace.json)
+    CONFIG(debug, debug|release): DST_DIR = $$system_path($$OUT_PWD/debug)
+    else: DST_DIR = $$system_path($$OUT_PWD/release)
     QMAKE_POST_LINK += copy /Y \"$$SRC_JSON\" \"$$DST_DIR\"
 }
 

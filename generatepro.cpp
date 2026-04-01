@@ -419,7 +419,7 @@ const char *switchLogoResolution = "40*40";
 
 const char *panelLogoFiles[] = {"panel_"};
 const char *panelLogoResolutionOne = "1170*595";
-const char *panelLogoResolutionNew828D = "1150*616";
+const char *panelLogoResolutionNew828D = "1150*618";
 //*******************************************
 const char *MultiSymbel = "(×)|"
                           "(\\*)";

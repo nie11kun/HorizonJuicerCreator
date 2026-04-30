@@ -157,8 +157,10 @@ void CreatorWindow::machineTypeComboBoxSet(int index) {
     wareTypeView->setRowHidden(3, true);
     wareTypeView->setRowHidden(4, false);
     wareTypeView->setRowHidden(5, false);
+    wareTypeView->setRowHidden(6, true);
 
-    if (ui->comboBoxWareType->currentIndex() == 3)
+    if (ui->comboBoxWareType->currentIndex() == 3 ||
+        ui->comboBoxWareType->currentIndex() == 6)
       ui->comboBoxWareType->setCurrentIndex(0);
 
     ui->comboBoxIfHasReOp->setHidden(false);
@@ -174,6 +176,7 @@ void CreatorWindow::machineTypeComboBoxSet(int index) {
     wareTypeView->setRowHidden(3, false);
     wareTypeView->setRowHidden(4, true);
     wareTypeView->setRowHidden(5, false);
+    wareTypeView->setRowHidden(6, false);
 
     if (ui->comboBoxWareType->currentIndex() == 0 ||
         ui->comboBoxWareType->currentIndex() == 1 ||
@@ -195,13 +198,14 @@ void CreatorWindow::machineTypeComboBoxSet(int index) {
 void CreatorWindow::wareTypeComboBoxSet(int index) {
   bool isExternalMachine = (ui->comboBoxMachineType->currentIndex() == 0);
   bool showWormOption = isExternalMachine && (index == 0 || index == 2 ||
-                                              index == 5 || index == NULL);
+                                              index == 5 || index == 6 ||
+                                              index == NULL);
 
   ui->comboBoxIfHasWorm->setHidden(!showWormOption);
   ui->labelIfHasWorm->setHidden(!showWormOption);
 
   bool showWheelOptions =
-      (index == 0 || index == 2 || index == 5 || index == NULL);
+      (index == 0 || index == 2 || index == 5 || index == 6 || index == NULL);
   ui->comboBoxWheelType->setHidden(!showWheelOptions);
   ui->labelWheelType->setHidden(!showWheelOptions);
   ui->comboBoxShapeType->setHidden(!showWheelOptions);

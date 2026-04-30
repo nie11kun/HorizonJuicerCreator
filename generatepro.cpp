@@ -372,6 +372,14 @@ const char *ifIsNotXW = "(;ifIsNotXWBegin.*?;ifIsNotXWEnd)|"
                         "(\<!--ifIsNotXWBegin--\>.*?\<!--ifIsNotXWEnd--\>)|"
                         "([^\n]+ifIsNotXW\\b)|"
                         "([^\n]+\<!--ifIsNotXWLine--\>)";
+const char *ifIsUW = "(;ifIsUWBegin.*?;ifIsUWEnd)|"
+                     "(\<!--ifIsUWBegin--\>.*?\<!--ifIsUWEnd--\>)|"
+                     "([^\n]+ifIsUW\\b)|"
+                     "([^\n]+\<!--ifIsUWLine--\>)";
+const char *ifIsNotUW = "(;ifIsNotUWBegin.*?;ifIsNotUWEnd)|"
+                        "(\<!--ifIsNotUWBegin--\>.*?\<!--ifIsNotUWEnd--\>)|"
+                        "([^\n]+ifIsNotUW\\b)|"
+                        "([^\n]+\<!--ifIsNotUWLine--\>)";
 //***************************************
 const char *fromMachineNameInMain = "(machineName)";
 const char *fromMachineNameCHS = "(machineCHS)";
@@ -890,7 +898,7 @@ void GeneratePro::startGenerate() {
   specificationInfo.append(to_string(wareType));
   if (machineType == 0 && (wareType == 0 || wareType == 2))
     specificationInfo.append(to_string(ifHasWorm));
-  if (wareType == 0 || wareType == 2 || wareType == 5) {
+  if (wareType == 0 || wareType == 2 || wareType == 5 || wareType == 6) {
     specificationInfo.append(to_string(wheelType));
     specificationInfo.append(to_string(shapeType));
   }
@@ -1078,10 +1086,18 @@ void GeneratePro::startGenerate() {
                                                  c_cmaDestDir, NULL, 0);
       }
     } else {
-      for (int i = 0; i < commonSDSize; i++) {
-        fileHandler->copyFilesToNewDirWithIgnoreRefDirs(
-            c_commonSourceDir[i], snxzSourceDirRef, snxzSDCount, c_cmaDestDir,
-            NULL, 0);
+      if (wareType == 6) {
+        for (int i = 0; i < commonSDSize; i++) {
+          fileHandler->copyFilesToNewDirWithIgnoreRefDirs(
+              c_commonSourceDir[i], swvwSourceDirRef, swvwSDCount, c_cmaDestDir,
+              NULL, 0);
+        }
+      } else {
+        for (int i = 0; i < commonSDSize; i++) {
+          fileHandler->copyFilesToNewDirWithIgnoreRefDirs(
+              c_commonSourceDir[i], snxzSourceDirRef, snxzSDCount, c_cmaDestDir,
+              NULL, 0);
+        }
       }
 
       if (wareType != 3) {
@@ -1227,15 +1243,18 @@ void GeneratePro::startGenerate() {
             hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
       }
     } else {
+      if (wareType != 6) {
+        fileHandler->findAndRepleaceInDirWithIgnore(
+            c_cmaDestDir, ifIsExternalVW, rmUnusedPart, NULL, 0);
+        fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+            c_hmiHlpDestDir, ifIsExternalVW, rmUnusedPartInHTML,
+            hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+      }
+
       fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
           c_hmiHlpDestDir, ifIsExternal, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
           hmiHlpIgnoreFilesCount);
-      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
-          c_hmiHlpDestDir, ifIsExternalVW, rmUnusedPartInHTML,
-          hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
       fileHandler->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsExternal,
-                                                  rmUnusedPart, NULL, 0);
-      fileHandler->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsExternalVW,
                                                   rmUnusedPart, NULL, 0);
       fileHandler->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsExternal,
                                                   rmUnusedPart, NULL, 0);
@@ -1453,6 +1472,20 @@ void GeneratePro::startGenerate() {
                                                   rmUnusedPart, NULL, 0);
       fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
           c_hmiHlpDestDir, ifIsXW, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+          hmiHlpIgnoreFilesCount);
+    }
+
+    if (wareType != 6) {
+      fileHandler->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsUW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsUW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsUW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsUW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsUW, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
           hmiHlpIgnoreFilesCount);
     }
 
@@ -2010,6 +2043,106 @@ void GeneratePro::startGenerate() {
           hmiHlpIgnoreFilesCount);
 
       break;
+    case 6:
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsDressWare2, rmUnusedPartInHTML,
+          hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsDressWare3, rmUnusedPartInHTML,
+          hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsDressWare4, rmUnusedPartInHTML,
+          hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsDressWare5, rmUnusedPartInHTML,
+          hmiHlpIgnoreFiles, hmiHlpIgnoreFilesCount);
+      fileHandler->findAndRepleaceInDirWithIgnore(
+          c_hmiProjDestDir, ifIsDressWare2, rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(
+          c_hmiProjDestDir, ifIsDressWare3, rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(
+          c_hmiProjDestDir, ifIsDressWare4, rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(
+          c_hmiProjDestDir, ifIsDressWare5, rmUnusedPart, NULL, 0);
+
+      if (wheelType == 0) {
+        fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+            c_hmiHlpDestDir, ifIsVWSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+            hmiHlpIgnoreFilesCount);
+        fileHandler->findAndRepleaceInDirWithIgnore(
+            c_hmiProjDestDir, ifIsVWSide, rmUnusedPart, NULL, 0);
+      } else {
+        fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+            c_hmiHlpDestDir, ifIsVWSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+            hmiHlpIgnoreFilesCount);
+        fileHandler->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVWSR,
+                                                    rmUnusedPart, NULL, 0);
+      }
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsXZSR, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+          hmiHlpIgnoreFilesCount);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsXZSide, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+          hmiHlpIgnoreFilesCount);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsXNeiFront, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+          hmiHlpIgnoreFilesCount);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsXNeiBack, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+          hmiHlpIgnoreFilesCount);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsXWai, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+          hmiHlpIgnoreFilesCount);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsVH, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+          hmiHlpIgnoreFilesCount);
+
+      fileHandler->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSR,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXZSide,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(
+          c_hmiProjDestDir, ifIsXNeiFront, rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(
+          c_hmiProjDestDir, ifIsXNeiBack, rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsXWai,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsVH,
+                                                  rmUnusedPart, NULL, 0);
+
+      fileHandler->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsBackDress,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(
+          c_hmiProjDestDir, ifIsBackDress, rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsBackDress, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+          hmiHlpIgnoreFilesCount);
+
+      fileHandler->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsNotXW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotXW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotXW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotXW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsNotXW, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+          hmiHlpIgnoreFilesCount);
+
+      fileHandler->findAndRepleaceInDirWithIgnore(c_mpfDestDir, ifIsNotUW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_cmaDestDir, ifIsNotUW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_hmiProjDestDir, ifIsNotUW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(c_hmiLngDestDir, ifIsNotUW,
+                                                  rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnoreRecursion(
+          c_hmiHlpDestDir, ifIsNotUW, rmUnusedPartInHTML, hmiHlpIgnoreFiles,
+          hmiHlpIgnoreFilesCount);
+
+      break;
     default:
       break;
     }
@@ -2307,34 +2440,34 @@ void GeneratePro::startGenerate() {
       fileHandler->findAndRepleaceInDirWithIgnore(
           c_cmaDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
     } else if (systemMode == 2) {
-        fileHandler->findAndReplaceFromJSONWithIgnore(c_mpfDestDir,
-                                                      c_oneReplaceValue, NULL, 0);
-        fileHandler->findAndReplaceFromJSONWithIgnore(c_cmaDestDir,
-                                                      c_oneReplaceValue, NULL, 0);
-        fileHandler->findAndReplaceFromJSONWithIgnore(c_hmiProjDestDir,
-                                                      c_oneReplaceValue, NULL, 0);
-        fileHandler->findAndReplaceFromJSONWithIgnore(c_cfcardUserDestDir,
-                                                      c_oneReplaceValue, NULL, 0);
+      fileHandler->findAndReplaceFromJSONWithIgnore(c_mpfDestDir,
+                                                    c_oneReplaceValue, NULL, 0);
+      fileHandler->findAndReplaceFromJSONWithIgnore(c_cmaDestDir,
+                                                    c_oneReplaceValue, NULL, 0);
+      fileHandler->findAndReplaceFromJSONWithIgnore(c_hmiProjDestDir,
+                                                    c_oneReplaceValue, NULL, 0);
+      fileHandler->findAndReplaceFromJSONWithIgnore(c_cfcardUserDestDir,
+                                                    c_oneReplaceValue, NULL, 0);
 
-        fileHandler->resizeImageInDirWithInclude(
-            c_hmiIco800DestDir, customLogoResolution, customLogoFiles,
-            customLogoFilesCount);
-        fileHandler->resizeImageInDirWithInclude(
-            c_hmiIco800DestDir, hjLogoResolution, hjLogoFiles, hjLogoFilesCount);
-        fileHandler->resizeImageInDirWithInclude(
-            c_hmiIco800DestDir, switchLogoResolution, switchLogoFiles,
-            switchLogoFilesCount);
-        fileHandler->resizeImageInDirWithInclude(
-            c_hmiIco800DestDir, panelLogoResolutionOne, panelLogoFiles,
-            panelLogoFilesCount);
+      fileHandler->resizeImageInDirWithInclude(
+          c_hmiIco800DestDir, customLogoResolution, customLogoFiles,
+          customLogoFilesCount);
+      fileHandler->resizeImageInDirWithInclude(
+          c_hmiIco800DestDir, hjLogoResolution, hjLogoFiles, hjLogoFilesCount);
+      fileHandler->resizeImageInDirWithInclude(
+          c_hmiIco800DestDir, switchLogoResolution, switchLogoFiles,
+          switchLogoFilesCount);
+      fileHandler->resizeImageInDirWithInclude(
+          c_hmiIco800DestDir, panelLogoResolutionOne, panelLogoFiles,
+          panelLogoFilesCount);
 
-        fs::rename(cfcardSiemensSinumerikHmiIcoIco800Path,
-                   cfcardSiemensSinumerikHmiIcoIco1024Path);
+      fs::rename(cfcardSiemensSinumerikHmiIcoIco800Path,
+                 cfcardSiemensSinumerikHmiIcoIco1024Path);
 
-        fileHandler->findAndRepleaceInDirWithIgnore(
-            c_hmiLngDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
-        fileHandler->findAndRepleaceInDirWithIgnore(
-            c_cmaDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(
+          c_hmiLngDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
+      fileHandler->findAndRepleaceInDirWithIgnore(
+          c_cmaDestDir, ifIsNotOneSystem, rmUnusedPart, NULL, 0);
     } else {
       fileHandler->findAndRepleaceInDirWithIgnore(
           c_hmiLngDestDir, ifIsOneSystem, rmUnusedPart, NULL, 0);

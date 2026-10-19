@@ -72,6 +72,7 @@ private:
    * @brief Initialize or update version in configuration
    */
   void setVersion();
+  void setupMainButtons();
 };
 
 #endif // HORIZONJUICERCREATOR_HPP

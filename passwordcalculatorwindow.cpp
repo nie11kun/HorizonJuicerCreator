@@ -133,7 +133,7 @@ void PasswordCalculatorWindow::on_pushButtonCopy_clicked() {
 }
 
 void PasswordCalculatorWindow::resetCopyButtonText() {
-  ui->pushButtonCopy->setText("📄 复制口令");
+  ui->pushButtonCopy->setText("📄 复制解锁口令");
   if (!currentPassword.isEmpty()) {
     QString mode = isNewMode ? "新版" : "老版";
     ui->labelStatus->setText(QString("计算完成 (%1算法)").arg(mode));

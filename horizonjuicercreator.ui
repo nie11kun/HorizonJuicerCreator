@@ -10,12 +10,6 @@
     <height>600</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>0</width>
-    <height>0</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>HorizonJuicerCreator</string>
   </property>
@@ -26,49 +20,229 @@
      <height>581</height>
     </size>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="mainVerticalLayout">
+    <property name="leftMargin">
+     <number>30</number>
+    </property>
+    <property name="topMargin">
+     <number>28</number>
+    </property>
+    <property name="rightMargin">
+     <number>30</number>
+    </property>
+    <property name="bottomMargin">
+     <number>20</number>
+    </property>
     <item>
-     <widget class="QPushButton" name="creatNewMachineButton">
-      <property name="minimumSize">
+     <spacer name="verticalSpacerTop">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
        <size>
-        <width>91</width>
+        <width>20</width>
+        <height>25</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="bannerLayout">
+      <property name="spacing">
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="labelAppTitle">
+        <property name="font">
+         <font>
+          <pointsize>17</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #f8fafc; font-size: 22px; font-weight: bold; letter-spacing: 1px;</string>
+        </property>
+        <property name="text">
+         <string>HorizonJuicer 工业工作台</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelAppSubtitle">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #94a3b8; font-size: 13px;</string>
+        </property>
+        <property name="text">
+         <string>数控机床加工程序定制生成与维护工具箱</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <spacer name="verticalSpacerMid">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
         <height>30</height>
        </size>
       </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>150</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>配置机床</string>
-      </property>
-     </widget>
+     </spacer>
     </item>
     <item>
-     <widget class="QPushButton" name="passwordCaculateButton">
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>150</height>
-       </size>
+     <layout class="QHBoxLayout" name="cardsHorizontalLayout">
+      <property name="spacing">
+       <number>20</number>
       </property>
-      <property name="text">
-       <string>口令计算</string>
-      </property>
-     </widget>
+      <item>
+       <spacer name="horizontalSpacerLeft">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="creatNewMachineButton">
+        <property name="minimumSize">
+         <size>
+          <width>215</width>
+          <height>175</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>215</width>
+          <height>175</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#creatNewMachineButton { background-color: #1e293b; color: #f8fafc; border: 1.5px solid #334155; border-radius: 12px; padding: 18px 12px; text-align: center; } QPushButton#creatNewMachineButton:hover { background-color: #1e3a8a; border: 1.5px solid #3b82f6; color: #ffffff; } QPushButton#creatNewMachineButton:pressed { background-color: #172554; }</string>
+        </property>
+        <property name="text">
+         <string></string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="passwordCaculateButton">
+        <property name="minimumSize">
+         <size>
+          <width>215</width>
+          <height>175</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>215</width>
+          <height>175</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#passwordCaculateButton { background-color: #1e293b; color: #f8fafc; border: 1.5px solid #334155; border-radius: 12px; padding: 18px 12px; text-align: center; } QPushButton#passwordCaculateButton:hover { background-color: #064e3b; border: 1.5px solid #10b981; color: #ffffff; } QPushButton#passwordCaculateButton:pressed { background-color: #022c22; }</string>
+        </property>
+        <property name="text">
+         <string></string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="removeCommitsButton">
+        <property name="minimumSize">
+         <size>
+          <width>215</width>
+          <height>175</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>215</width>
+          <height>175</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#removeCommitsButton { background-color: #1e293b; color: #f8fafc; border: 1.5px solid #334155; border-radius: 12px; padding: 18px 12px; text-align: center; } QPushButton#removeCommitsButton:hover { background-color: #78350f; border: 1.5px solid #f59e0b; color: #ffffff; } QPushButton#removeCommitsButton:pressed { background-color: #451a03; }</string>
+        </property>
+        <property name="text">
+         <string></string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacerRight">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </item>
     <item>
-     <widget class="QPushButton" name="removeCommitsButton">
-      <property name="maximumSize">
+     <spacer name="verticalSpacerBottom">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
        <size>
-        <width>200</width>
-        <height>150</height>
+        <width>20</width>
+        <height>40</height>
        </size>
       </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QLabel" name="labelFooter">
+      <property name="styleSheet">
+       <string notr="true">color: #64748b; font-size: 11px;</string>
+      </property>
       <property name="text">
-       <string>删除注释</string>
+       <string>© 2018-2026 Marco Nie · HorizonJuicer 数控系统工程套件</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -80,7 +254,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>19</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSetting">
@@ -101,20 +275,17 @@
   </widget>
   <action name="actionSettings">
    <property name="text">
-    <string>设置</string>
-   </property>
-   <property name="toolTip">
-    <string>设置</string>
+    <string>参数设置</string>
    </property>
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>关于</string>
+    <string>关于软件</string>
    </property>
   </action>
   <action name="actionHistory">
    <property name="text">
-    <string>版本历史</string>
+    <string>版本更新日志</string>
    </property>
   </action>
  </widget>

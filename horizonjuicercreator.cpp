@@ -21,6 +21,7 @@ HorizonJuicerCreator::HorizonJuicerCreator(QWidget *parent)
   jsonHandler = new ReadAndWriteJson;
 
   setVersion();
+  setupMainButtons();
 }
 
 HorizonJuicerCreator::~HorizonJuicerCreator() {
@@ -48,6 +49,9 @@ void HorizonJuicerCreator::on_creatNewMachineButton_clicked() {
   creatorWindow = new CreatorWindow(ui->centralwidget);
   connect(creatorWindow, SIGNAL(triggerBackToMain()), this, SLOT(showWindow()));
 
+  ui->labelAppTitle->hide();
+  ui->labelAppSubtitle->hide();
+  ui->labelFooter->hide();
   ui->creatNewMachineButton->hide();
   ui->passwordCaculateButton->hide();
   ui->removeCommitsButton->hide();
@@ -95,7 +99,44 @@ void HorizonJuicerCreator::on_actionHistory_triggered() {
 }
 
 void HorizonJuicerCreator::showWindow() {
+  ui->labelAppTitle->show();
+  ui->labelAppSubtitle->show();
+  ui->labelFooter->show();
   ui->creatNewMachineButton->show();
   ui->passwordCaculateButton->show();
   ui->removeCommitsButton->show();
+}
+
+void HorizonJuicerCreator::setupMainButtons() {
+  auto setupButton = [](QPushButton *btn, const QString &title,
+                        const QString &subtitle) {
+    btn->setText(""); // Clear plain text
+
+    QVBoxLayout *layout = new QVBoxLayout(btn);
+    layout->setContentsMargins(16, 22, 16, 22);
+    layout->setSpacing(8);
+    layout->setAlignment(Qt::AlignCenter);
+
+    QLabel *titleLabel = new QLabel(title, btn);
+    titleLabel->setAlignment(Qt::AlignCenter);
+    titleLabel->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    titleLabel->setStyleSheet(
+        "font-size: 17px; font-weight: bold; color: #f8fafc; "
+        "background: transparent; border: none;");
+
+    QLabel *subLabel = new QLabel(subtitle, btn);
+    subLabel->setAlignment(Qt::AlignCenter);
+    subLabel->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    subLabel->setWordWrap(true);
+    subLabel->setStyleSheet(
+        "font-size: 12px; color: #94a3b8; font-weight: normal; "
+        "background: transparent; border: none;");
+
+    layout->addWidget(titleLabel);
+    layout->addWidget(subLabel);
+  };
+
+  setupButton(ui->creatNewMachineButton, "⚙️ 机床配置", "定制机床加工宏程序");
+  setupButton(ui->passwordCaculateButton, "🔐 口令计算", "新老版解锁口令秒算");
+  setupButton(ui->removeCommitsButton, "🧹 删除注释", "批量清理程序注释");
 }

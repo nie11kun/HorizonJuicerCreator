@@ -6,152 +6,208 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>300</height>
+    <width>680</width>
+    <height>340</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>参数设置</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_4" stretch="2,1,1">
+  <layout class="QVBoxLayout" name="mainVerticalLayout">
+   <property name="spacing">
+    <number>14</number>
+   </property>
+   <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="topMargin">
+    <number>16</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>16</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="labelDialogTitle">
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #f1f5f9; font-size: 16px; font-weight: bold;</string>
+     </property>
+     <property name="text">
+      <string>系统工作路径配置</string>
+     </property>
+    </widget>
+   </item>
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>目录设置</string>
+      <string>目录配置</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
+      <property name="spacing">
+       <number>12</number>
+      </property>
       <item row="0" column="0">
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelSource">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>源仓库目录    </string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="labelDest">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>程序生成目录 </string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QLabel" name="labelSource">
+        <property name="minimumSize">
+         <size>
+          <width>110</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>源仓库目录：</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="1">
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <widget class="QLineEdit" name="lineEditSource"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLineEdit" name="lineEditDest"/>
-        </item>
-       </layout>
+       <widget class="QLineEdit" name="lineEditSource">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>38</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit { background-color: #1e293b; border: 1.5px solid #334155; border-radius: 6px; color: #f8fafc; padding: 0 10px; } QLineEdit:focus { border-color: #3b82f6; }</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="2">
-       <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
-         <widget class="QPushButton" name="sourceButton">
-          <property name="minimumSize">
-           <size>
-            <width>80</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>选择</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="destButton">
-          <property name="minimumSize">
-           <size>
-            <width>80</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>选择</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QPushButton" name="sourceButton">
+        <property name="minimumSize">
+         <size>
+          <width>85</width>
+          <height>38</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>📁 选择</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelDest">
+        <property name="minimumSize">
+         <size>
+          <width>110</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>程序生成目录：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEditDest">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>38</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit { background-color: #1e293b; border: 1.5px solid #334155; border-radius: 6px; color: #f8fafc; padding: 0 10px; } QLineEdit:focus { border-color: #3b82f6; }</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="destButton">
+        <property name="minimumSize">
+         <size>
+          <width>85</width>
+          <height>38</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>📁 选择</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="labelError">
-       <property name="font">
-        <font>
-         <italic>false</italic>
-         <bold>false</bold>
-         <underline>true</underline>
-         <strikeout>false</strikeout>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(200, 151, 151);</string>
-       </property>
-       <property name="text">
-        <string>源仓库地址需索引到 Horizon-Juicer 文件夹</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QLabel" name="labelError">
+     <property name="styleSheet">
+      <string notr="true">color: #94a3b8; font-size: 11px;</string>
+     </property>
+     <property name="text">
+      <string>💡 提示：源仓库地址需索引到 Horizon-Juicer 代码目录。</string>
+     </property>
+    </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QHBoxLayout" name="buttonsLayout">
+     <property name="spacing">
+      <number>12</number>
+     </property>
      <item>
-      <widget class="QPushButton" name="saveButton">
-       <property name="minimumSize">
+      <spacer name="btnSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
         <size>
-         <width>80</width>
-         <height>50</height>
+         <width>40</width>
+         <height>20</height>
         </size>
        </property>
-       <property name="maximumSize">
-        <size>
-         <width>100</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>保存</string>
-       </property>
-      </widget>
+      </spacer>
      </item>
      <item>
       <widget class="QPushButton" name="abortButton">
        <property name="minimumSize">
         <size>
-         <width>80</width>
-         <height>50</height>
+         <width>95</width>
+         <height>38</height>
         </size>
        </property>
-       <property name="maximumSize">
-        <size>
-         <width>100</width>
-         <height>16777215</height>
-        </size>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#abortButton { background-color: #1e293b; color: #94a3b8; border: 1px solid #334155; border-radius: 6px; } QPushButton#abortButton:hover { background-color: #334155; color: #f8fafc; }</string>
        </property>
        <property name="text">
         <string>取消</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="saveButton">
+       <property name="minimumSize">
+        <size>
+         <width>110</width>
+         <height>38</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#saveButton { background-color: #2563eb; color: #ffffff; border: none; border-radius: 6px; font-weight: bold; } QPushButton#saveButton:hover { background-color: #3b82f6; } QPushButton#saveButton:pressed { background-color: #1d4ed8; }</string>
+       </property>
+       <property name="text">
+        <string>💾 保存配置</string>
        </property>
       </widget>
      </item>

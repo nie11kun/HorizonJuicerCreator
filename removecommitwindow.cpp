@@ -79,7 +79,8 @@ void RemoveCommitWindow::on_pushButtonStart_clicked() {
 
     emit triggerProcess();
   } else {
-    ui->labelInfo->setText("请设置正确路径！");
+    ui->labelInfo->setStyleSheet("QLabel { color : #ef4444; font-weight: bold; font-size: 13px; }");
+    ui->labelInfo->setText("✖ 请选择有效的程序文件夹路径！");
   }
 }
 
@@ -89,7 +90,7 @@ void RemoveCommitWindow::on_pushButtonCancel_clicked() {
 }
 
 void RemoveCommitWindow::startingProcess() {
-  ui->pushButtonStart->setText("正在处理");
+  ui->pushButtonStart->setText("正在清理中...");
   ui->pushButtonStart->setDisabled(true);
   ui->pushButtonCancel->setDisabled(true);
   ui->labelInfo->hide();
@@ -97,11 +98,11 @@ void RemoveCommitWindow::startingProcess() {
 }
 
 void RemoveCommitWindow::finishedProcess() {
-  ui->pushButtonStart->setText("开始");
+  ui->pushButtonStart->setText("▶ 开始清理注释");
   ui->pushButtonStart->setDisabled(false);
   ui->pushButtonCancel->setDisabled(false);
   ui->labelProcess->hide();
   ui->labelInfo->show();
-  ui->labelInfo->setStyleSheet("QLabel { color : red; }");
-  ui->labelInfo->setText("注释删除完成");
+  ui->labelInfo->setStyleSheet("QLabel { color : #10b981; font-weight: bold; font-size: 14px; }");
+  ui->labelInfo->setText("✔ 注释清理已顺利完成！");
 }

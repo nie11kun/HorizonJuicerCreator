@@ -13,7 +13,8 @@
 
 About::About(QWidget *parent) : QWidget(parent), ui(new Ui::About) {
   ui->setupUi(this);
-  setWindowTitle("关于");
+  setWindowTitle("关于软件");
+  resize(960, 600);
   setVersionInfo();
 
   // Enable external links in text browser

@@ -32,12 +32,13 @@ CreatorWindow::CreatorWindow(QWidget *parent)
   getMachineInfo();
   loadComboBoxSet();
 
-  // Setup processing animation
+  // Setup processing animation and initial status
   QMovie *processingAnimation = new QMovie(":./processing.gif");
-  processingAnimation->setScaledSize(ui->labelProcessing->size());
+  processingAnimation->setScaledSize(QSize(110, 110));
   ui->labelProcessing->setMovie(processingAnimation);
   processingAnimation->start();
   ui->labelProcessing->hide();
+  ui->labelIdleIcon->show();
 
   // Setup generator worker thread
   generator = new GeneratePro();
@@ -406,7 +407,14 @@ int CreatorWindow::on_saveDataPushButton_clicked() {
 
   jsonHandler->saveObjToJson(config);
 
-  ui->labelInfo->setText("保存成功");
+  ui->labelStateBadge->setText("✔ 配置已保存");
+  ui->labelStateBadge->setStyleSheet(
+      "color: #10b981; background-color: #064e3b; border: 1px solid #059669; "
+      "border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: bold;");
+  ui->labelStatusTitle->setText("机床配置已保存");
+  ui->labelStatusTitle->setStyleSheet("color: #10b981; font-size: 13px; font-weight: bold;");
+  ui->labelInfo->setText("当前界面配置参数已成功保存至本地文件");
+  ui->labelInfo->setStyleSheet("color: #94a3b8; font-size: 11px; line-height: 140%;");
   return true;
 }
 
@@ -442,21 +450,41 @@ void CreatorWindow::on_creatPushButton_clicked() {
 //=============================================================================
 
 void CreatorWindow::startingProcess() {
-  ui->creatPushButton->setText("正在生成");
+  ui->creatPushButton->setText("正在生成...");
   ui->creatPushButton->setDisabled(true);
   ui->saveDataPushButton->setDisabled(true);
-  ui->labelInfo->hide();
+  ui->labelIdleIcon->hide();
   ui->labelProcessing->show();
+  ui->labelStatusTitle->setText("正在构建程序");
+  ui->labelStatusTitle->setStyleSheet("color: #38bdf8; font-size: 13px; font-weight: bold;");
+  ui->labelInfo->show();
+  ui->labelInfo->setText("正在校验机床参数并组装代码...\n请稍候");
+  ui->labelInfo->setStyleSheet("color: #94a3b8; font-size: 11px; line-height: 140%;");
+  ui->labelStateBadge->setText("⚡ 正在生成...");
+  ui->labelStateBadge->setStyleSheet(
+      "color: #38bdf8; background-color: #0c4a6e; border: 1px solid #0284c7; "
+      "border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: bold;");
 }
 
 void CreatorWindow::finishedProcess() {
-  ui->creatPushButton->setText("程序生成");
+  ui->creatPushButton->setText("⚡ 程序生成");
   ui->creatPushButton->setDisabled(false);
   ui->saveDataPushButton->setDisabled(false);
   ui->labelProcessing->hide();
+  ui->labelIdleIcon->setText("✔");
+  ui->labelIdleIcon->setStyleSheet(
+      "QLabel#labelIdleIcon { background-color: #064e3b; border: 2px solid #059669; "
+      "border-radius: 32px; color: #10b981; font-weight: bold; }");
+  ui->labelIdleIcon->show();
+  ui->labelStatusTitle->setText("加工程序生成成功");
+  ui->labelStatusTitle->setStyleSheet("color: #10b981; font-size: 14px; font-weight: bold;");
   ui->labelInfo->show();
-  ui->labelInfo->setStyleSheet("QLabel { color : red; }");
-  ui->labelInfo->setText("程序已生成");
+  ui->labelInfo->setStyleSheet("color: #94a3b8; font-size: 11px; line-height: 140%;");
+  ui->labelInfo->setText("文件已生成完毕\n输出目标目录已自动打开");
+  ui->labelStateBadge->setText("✔ 生成完毕");
+  ui->labelStateBadge->setStyleSheet(
+      "color: #10b981; background-color: #064e3b; border: 1px solid #059669; "
+      "border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: bold;");
 
   // Open destination directory
   QDesktopServices::openUrl(

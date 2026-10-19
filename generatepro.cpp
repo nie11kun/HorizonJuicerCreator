@@ -404,6 +404,8 @@ const char *centerProjFiles[] = {"a_centerduanmian\.com$", "a_centermain\.com$",
                                  "a_centerwaiyuan\.com$"};
 const char *machinePic800[] = {"panel_0_0", "panel_0_1"};
 const char *machinePic640[] = {"splash"};
+const char *noneTradeMarkMachinePic800[] = {"panel_0_0", "panel_0_1", "custom", "logo"};
+const char *noneTradeMarkMachinePic640[] = {"splash"};
 
 const char *mpfMachineMainProgram[] = {"INFO_INIT\.MPF$"};
 const char *projMachineSettingHMI[] = {"a_setting\.com$"};
@@ -454,6 +456,8 @@ const int swvwSDCount = sizeof(swvwSourceDirRef) / sizeof(swvwSourceDirRef[0]);
 const int swxzSDCount = sizeof(swxzSourceDirRef) / sizeof(swxzSourceDirRef[0]);
 const int machinePic800Count = sizeof(machinePic800) / sizeof(machinePic800[0]);
 const int machinePic640Count = sizeof(machinePic640) / sizeof(machinePic640[0]);
+const int noneTradeMarkMachinePic800Count = sizeof(noneTradeMarkMachinePic800) / sizeof(noneTradeMarkMachinePic800[0]);
+const int noneTradeMarkMachinePic640Count = sizeof(noneTradeMarkMachinePic640) / sizeof(noneTradeMarkMachinePic640[0]);
 const int commentsInFilesCount =
     sizeof(commentsInFiles) / sizeof(commentsInFiles[0]);
 const int hmiHlpIgnoreFilesCount =
@@ -511,6 +515,7 @@ void GeneratePro::getJsonValue() {
   systemMode = obj["systemMode"].toInt();
   ifHasLoadingArm = obj["ifHasLoadingArm"].toInt();
   ifHasEncryption = obj["ifHasEncryption"].toInt();
+  ifHasNoneTradeMark = obj["ifHasNoneTradeMark"].toInt();
 
   cout << softwareVersion << endl;
   cout << "-------------------" << endl;
@@ -545,6 +550,7 @@ void GeneratePro::getJsonValue() {
   cout << systemMode << endl;
   cout << ifHasLoadingArm << endl;
   cout << ifHasEncryption << endl;
+  cout << ifHasNoneTradeMark << endl;
   cout << "-------------------" << endl;
 }
 
@@ -652,6 +658,8 @@ void GeneratePro::startGenerate() {
                                "proj"};
   string hmiRepositorySourceDir[] = {seg + "Source_Library" + seg + "HMI" +
                                      seg + "Repository"};
+  string hmiNoneTradeMarkSourceDir[] = {seg + "Source_Library" + seg + "HMI" +
+                                        seg + "Repository" + seg + "0_NoneTradeMark"};
   string screwTapSourceDir[] = {seg + "Source_Library" + seg + "CMA" + seg +
                                 "SCREW_TAP"};
   string loadingArmSourceDir[] = {seg + "Source_Library" + seg + "CMA" + seg +
@@ -770,10 +778,13 @@ void GeneratePro::startGenerate() {
   const char *topasswordSource = (char *)passwordStr.c_str();
   //************************************************
 
-  if (lng == 0)
+  if (lng == 0) {
     hmiIco800DefaultSourceDir[0] += seg + "chs";
-  else
+    hmiNoneTradeMarkSourceDir[0] += seg + "chs";
+  } else {
     hmiIco800DefaultSourceDir[0] += seg + "eng";
+    hmiNoneTradeMarkSourceDir[0] += seg + "eng";
+  }
 
   string destDirParent = destDir;
   destDir = destDir + seg + machineNameForDirName;
@@ -831,6 +842,8 @@ void GeneratePro::startGenerate() {
       hmiProjSourceDir[0].insert(0, sourceDir).c_str()};
   const char *c_hmiRepositorySourceDir[] = {
       hmiRepositorySourceDir[0].insert(0, sourceDir).c_str()};
+  const char *c_hmiNoneTradeMarkSourceDir[] = {
+      hmiNoneTradeMarkSourceDir[0].insert(0, sourceDir).c_str()};
   const char *c_screwTapSourceDir[] = {
       screwTapSourceDir[0].insert(0, sourceDir).c_str()};
   const char *c_loadingArmSourceDir[] = {
@@ -928,6 +941,7 @@ void GeneratePro::startGenerate() {
   specificationInfo.append(to_string(ifRemoveComments));
   specificationInfo.append(to_string(ifHasLoadingArm));
   specificationInfo.append(to_string(ifHasEncryption));
+  specificationInfo.append(to_string(ifHasNoneTradeMark));
   char *toSpecificationInfo = (char *)specificationInfo.c_str();
   //************************************************
 
@@ -2261,12 +2275,21 @@ void GeneratePro::startGenerate() {
     fileHandler->copyFilesToNewDirWithRefDir(
         c_hmiIco800SourceDir[0], c_hmiIco800DestDir, c_hmiProjDestDir, NULL, 0);
 
-    fileHandler->copyFilesToNewDirWithIncludeDir(
-        c_hmiRepositorySourceDir[0], c_hmiIco800DestDir, c_machineName, 1,
-        machinePic800, machinePic800Count);
-    fileHandler->copyFilesToNewDirWithIncludeDir(
-        c_hmiRepositorySourceDir[0], c_hmiIco640DestDir, c_machineName, 1,
-        machinePic640, machinePic640Count);
+    if (ifHasNoneTradeMark == 0) {
+      fileHandler->copyFilesToNewDirWithIncludeDir(
+          c_hmiRepositorySourceDir[0], c_hmiIco800DestDir, c_machineName, 1,
+          machinePic800, machinePic800Count);
+      fileHandler->copyFilesToNewDirWithIncludeDir(
+          c_hmiRepositorySourceDir[0], c_hmiIco640DestDir, c_machineName, 1,
+          machinePic640, machinePic640Count);
+    } else {
+      fileHandler->copyFilesToNewDirWithInclude(
+          c_hmiNoneTradeMarkSourceDir[0], c_hmiIco800DestDir,
+          noneTradeMarkMachinePic800, noneTradeMarkMachinePic800Count);
+      fileHandler->copyFilesToNewDirWithInclude(
+          c_hmiNoneTradeMarkSourceDir[0], c_hmiIco640DestDir,
+          noneTradeMarkMachinePic640, noneTradeMarkMachinePic640Count);
+    }
 
     cout << "\n\nmodify machine spcifications:\n";
     if (ifHasA == 0) { // 有A轴

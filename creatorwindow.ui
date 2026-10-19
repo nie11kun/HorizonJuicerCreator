@@ -294,6 +294,27 @@
             </item>
            </widget>
           </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelNoneTradeMark">
+            <property name="text">
+             <string>删除厂商标识图</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QComboBox" name="comboBoxNoneTradeMark">
+            <item>
+             <property name="text">
+              <string>否</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>是</string>
+             </property>
+            </item>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>

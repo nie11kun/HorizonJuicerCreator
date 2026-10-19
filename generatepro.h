@@ -117,6 +117,7 @@ private:
   int systemMode;           ///< System mode (0=standard, 1=one)
   int ifHasLoadingArm;      ///< Has loading arm flag
   int ifHasEncryption;      ///< Has encryption flag
+  int ifHasNoneTradeMark;   ///< Has none trademark flag
 };
 
 #endif // GENERATEPRO_H

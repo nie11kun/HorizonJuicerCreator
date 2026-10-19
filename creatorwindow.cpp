@@ -135,6 +135,8 @@ void CreatorWindow::loadComboBoxSet() {
     ui->comboBoxLoadingArm->setCurrentIndex(config["ifHasLoadingArm"].toInt());
   if (!config["ifHasEncryption"].isNull())
     ui->comboBoxEncryption->setCurrentIndex(config["ifHasEncryption"].toInt());
+  if (!config["ifHasNoneTradeMark"].isNull())
+    ui->comboBoxNoneTradeMark->setCurrentIndex(config["ifHasNoneTradeMark"].toInt());
 
   machineTypeComboBoxSet(config["machineType"].toInt());
 }
@@ -400,6 +402,7 @@ int CreatorWindow::on_saveDataPushButton_clicked() {
   config.insert("systemMode", ui->comboBoxSystemMode->currentIndex());
   config.insert("ifHasLoadingArm", ui->comboBoxLoadingArm->currentIndex());
   config.insert("ifHasEncryption", ui->comboBoxEncryption->currentIndex());
+  config.insert("ifHasNoneTradeMark", ui->comboBoxNoneTradeMark->currentIndex());
 
   jsonHandler->saveObjToJson(config);
 

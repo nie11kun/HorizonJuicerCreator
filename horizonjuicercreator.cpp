@@ -9,6 +9,8 @@
 #include "horizonjuicercreator.hpp"
 #include "ui_horizonjuicercreator.h"
 
+#include <QDate>
+
 #include "boost/filesystem.hpp"
 #include "boost/filesystem/fstream.hpp"
 
@@ -19,6 +21,16 @@ HorizonJuicerCreator::HorizonJuicerCreator(QWidget *parent)
   ui->setupUi(this);
   setWindowTitle("HorizonJuicerCreator");
   jsonHandler = new ReadAndWriteJson;
+
+  const int currentYear = QDate::currentDate().year();
+  const QString yearStr = (currentYear > 2018)
+                              ? QString("2018-%1").arg(currentYear)
+                              : QString::number(currentYear);
+  ui->labelFooter->setText(QString(
+      "© %1 Nie Kun · HorizonJuicer 数控系统工程套件 · "
+      "<a href=\"https://blog.niekun.net/start-page.html\" style=\"color: #38bdf8; text-decoration: none;\">关于我</a>")
+      .arg(yearStr));
+  ui->labelFooter->setOpenExternalLinks(true);
 
   setVersion();
   setupMainButtons();

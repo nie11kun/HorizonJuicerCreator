@@ -239,10 +239,13 @@
        <string notr="true">color: #64748b; font-size: 11px;</string>
       </property>
       <property name="text">
-       <string>© 2018-2026 Marco Nie · HorizonJuicer 数控系统工程套件</string>
+       <string>© 2018 Nie Kun · HorizonJuicer 数控系统工程套件 · &lt;a href=&quot;https://blog.niekun.net/start-page.html&quot; style=&quot;color: #38bdf8; text-decoration: none;&quot;&gt;关于我&lt;/a&gt;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="openExternalLinks">
+       <bool>true</bool>
       </property>
      </widget>
     </item>

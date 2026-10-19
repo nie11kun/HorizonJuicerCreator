@@ -19,6 +19,7 @@ SOURCES += \
     image_compress.cpp \
     main.cpp \
     horizonjuicercreator.cpp \
+    passwordcalculatorwindow.cpp \
     readandwritejson.cpp \
     removecommit.cpp \
     removecommitwindow.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     generatepro.h \
     history.hpp \
     horizonjuicercreator.hpp \
+    passwordcalculatorwindow.hpp \
     image_compress.h \
     readandwritejson.hpp \
     removecommit.hpp \
@@ -43,6 +45,7 @@ FORMS += \
     creatorwindow.ui \
     history.ui \
     horizonjuicercreator.ui \
+    passwordcalculatorwindow.ui \
     removecommitwindow.ui \
     setting.ui
 

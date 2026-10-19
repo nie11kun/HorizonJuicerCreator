@@ -49,9 +49,22 @@ void HorizonJuicerCreator::on_creatNewMachineButton_clicked() {
   connect(creatorWindow, SIGNAL(triggerBackToMain()), this, SLOT(showWindow()));
 
   ui->creatNewMachineButton->hide();
+  ui->passwordCaculateButton->hide();
   ui->removeCommitsButton->hide();
   creatorWindow->show();
   creatorWindow->setMaximumHeight(560);
+}
+
+void HorizonJuicerCreator::on_passwordCaculateButton_clicked() {
+  passwordCalculatorWindow = new PasswordCalculatorWindow(ui->centralwidget);
+  connect(passwordCalculatorWindow, SIGNAL(triggerBackToMain()), this,
+          SLOT(showWindow()));
+
+  ui->creatNewMachineButton->hide();
+  ui->passwordCaculateButton->hide();
+  ui->removeCommitsButton->hide();
+  passwordCalculatorWindow->show();
+  passwordCalculatorWindow->setMaximumHeight(560);
 }
 
 void HorizonJuicerCreator::on_removeCommitsButton_clicked() {
@@ -60,6 +73,7 @@ void HorizonJuicerCreator::on_removeCommitsButton_clicked() {
           SLOT(showWindow()));
 
   ui->creatNewMachineButton->hide();
+  ui->passwordCaculateButton->hide();
   ui->removeCommitsButton->hide();
   removeCommitWindow->show();
 }
@@ -82,5 +96,6 @@ void HorizonJuicerCreator::on_actionHistory_triggered() {
 
 void HorizonJuicerCreator::showWindow() {
   ui->creatNewMachineButton->show();
+  ui->passwordCaculateButton->show();
   ui->removeCommitsButton->show();
 }

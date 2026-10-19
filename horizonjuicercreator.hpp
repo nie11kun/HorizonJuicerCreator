@@ -13,6 +13,7 @@
 
 #include "about.hpp"
 #include "creatorwindow.hpp"
+#include "passwordcalculatorwindow.hpp"
 #include "history.hpp"
 #include "readandwritejson.hpp"
 #include "removecommitwindow.hpp"
@@ -48,6 +49,7 @@ public:
 
 private slots:
   void on_creatNewMachineButton_clicked();
+  void on_passwordCaculateButton_clicked();
   void on_removeCommitsButton_clicked();
   void on_actionSettings_triggered();
   void on_actionAbout_triggered();
@@ -57,6 +59,7 @@ private slots:
 private:
   Ui::HorizonJuicerCreator *ui;           ///< UI pointer
   CreatorWindow *creatorWindow;           ///< Machine program creator window
+  PasswordCalculatorWindow *passwordCalculatorWindow; ///< Password calculator window
   RemoveCommitWindow *removeCommitWindow; ///< Comment removal window
   Setting *settingDialog;                 ///< Settings dialog
   About *aboutDialog;                     ///< About dialog

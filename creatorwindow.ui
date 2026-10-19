@@ -853,7 +853,7 @@
              <string notr="true">QLabel#labelIdleIcon { background-color: #1e293b; border: 2px solid #334155; border-radius: 32px; color: #64748b; }</string>
             </property>
             <property name="text">
-             <string>⚙</string>
+             <string/>
             </property>
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -959,20 +959,62 @@
             <number>6</number>
            </property>
            <item>
-            <widget class="QLabel" name="labelHintTitle">
-             <property name="font">
-              <font>
-               <pointsize>9</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: #cbd5e1;</string>
-             </property>
-             <property name="text">
-              <string>📦 输出说明</string>
-             </property>
-            </widget>
+            <layout class="QHBoxLayout" name="hintTitleLayout">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="labelHintIcon">
+                <property name="minimumSize">
+                 <size>
+                  <width>14</width>
+                  <height>14</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>14</width>
+                  <height>14</height>
+                 </size>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="resourse.qrc">:/icons/package.svg</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelHintTitle">
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: #cbd5e1;</string>
+                </property>
+                <property name="text">
+                 <string>输出说明</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="hintTitleSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>10</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
            </item>
            <item>
             <widget class="QLabel" name="labelHintDesc">
@@ -1001,10 +1043,7 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,2">
-     <property name="spacing">
-      <number>100</number>
-     </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,1,1">
      <item>
       <widget class="QPushButton" name="backButton">
        <property name="minimumSize">
@@ -1015,40 +1054,8 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>160</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton#backButton { background-color: #1e293b; color: #94a3b8; border: 1px solid #334155; border-radius: 6px; font-size: 13px; font-weight: 500; } QPushButton#backButton:hover { background-color: #334155; color: #f8fafc; border-color: #475569; } QPushButton#backButton:pressed { background-color: #0f172a; }</string>
-       </property>
-       <property name="text">
-        <string>← 返回主菜单</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1">
-       <property name="sizeConstraint">
-        <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
-       </property>
-       <item>
-        <widget class="QPushButton" name="saveDataPushButton">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
+         <width>16777215</width>
          <height>44</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>160</width>
-         <height>16777215</height>
         </size>
        </property>
        <property name="font">
@@ -1058,15 +1065,25 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton#saveDataPushButton { background-color: #1e293b; color: #94a3b8; border: 1px solid #334155; border-radius: 6px; font-size: 13px; font-weight: bold; } QPushButton#saveDataPushButton:hover { background-color: #334155; color: #f8fafc; border-color: #475569; } QPushButton#saveDataPushButton:pressed { background-color: #0f172a; }</string>
+        <string notr="true">QPushButton#backButton { background-color: #1e293b; color: #94a3b8; border: 1px solid #334155; border-radius: 6px; font-size: 13px; font-weight: bold; } QPushButton#backButton:hover { background-color: #334155; color: #f8fafc; border-color: #475569; } QPushButton#backButton:pressed { background-color: #0f172a; } QPushButton#backButton:disabled { background-color: #1e293b; color: #475569; border-color: #1e293b; }</string>
        </property>
        <property name="text">
-        <string>💾 保存设置</string>
+        <string>返回主菜单</string>
+       </property>
+       <property name="icon">
+        <iconset resource="resourse.qrc">
+         <normaloff>:/icons/arrow-left.svg</normaloff>:/icons/arrow-left.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>15</width>
+         <height>15</height>
+        </size>
        </property>
       </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="creatPushButton">
+     </item>
+     <item>
+      <widget class="QPushButton" name="saveDataPushButton">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -1075,8 +1092,46 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>180</width>
-         <height>16777215</height>
+         <width>16777215</width>
+         <height>44</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#saveDataPushButton { background-color: #1e293b; color: #e2e8f0; border: 1px solid #334155; border-radius: 6px; font-size: 13px; font-weight: bold; } QPushButton#saveDataPushButton:hover { background-color: #334155; color: #ffffff; border-color: #475569; } QPushButton#saveDataPushButton:pressed { background-color: #0f172a; } QPushButton#saveDataPushButton:disabled { background-color: #1e293b; color: #475569; border-color: #1e293b; }</string>
+       </property>
+       <property name="text">
+        <string>保存设置</string>
+       </property>
+       <property name="icon">
+        <iconset resource="resourse.qrc">
+         <normaloff>:/icons/save.svg</normaloff>:/icons/save.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>16</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="creatPushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>44</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>44</height>
         </size>
        </property>
        <property name="font">
@@ -1089,11 +1144,19 @@
         <string notr="true">QPushButton#creatPushButton { background-color: #2563eb; color: #ffffff; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; } QPushButton#creatPushButton:hover { background-color: #3b82f6; } QPushButton#creatPushButton:pressed { background-color: #1d4ed8; } QPushButton#creatPushButton:disabled { background-color: #334155; color: #64748b; }</string>
        </property>
        <property name="text">
-        <string>⚡ 程序生成</string>
+        <string>程序生成</string>
+       </property>
+       <property name="icon">
+        <iconset resource="resourse.qrc">
+         <normaloff>:/icons/bolt.svg</normaloff>:/icons/bolt.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>16</width>
+         <height>16</height>
+        </size>
        </property>
       </widget>
-       </item>
-      </layout>
      </item>
     </layout>
    </item>

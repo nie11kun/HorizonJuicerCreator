@@ -10,6 +10,8 @@
 
 #include <QApplication>
 #include <QFile>
+#include <QFont>
+#include <QStringList>
 #include <QTextStream>
 
 /**
@@ -20,14 +22,29 @@
  */
 int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
-  HorizonJuicerCreator mainWindow;
 
-  // Load dark theme stylesheet
+  // Configure modern, high-clarity UI typography
+  QFont defaultFont;
+  defaultFont.setFamilies(
+      {"Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI", "PingFang SC", "sans-serif"});
+  defaultFont.setPointSize(9);
+  defaultFont.setStyleHint(QFont::SansSerif);
+  defaultFont.setStyleStrategy(static_cast<QFont::StyleStrategy>(
+      QFont::PreferAntialias | QFont::PreferQuality));
+  app.setFont(defaultFont);
+
+  // Load dark theme stylesheet and inject global font-family rule
   QFile styleFile(":qdarkstyle/dark/style.qss");
   styleFile.open(QFile::ReadOnly | QFile::Text);
   QTextStream styleStream(&styleFile);
-  app.setStyleSheet(styleStream.readAll());
+  QString qss = styleStream.readAll();
 
+  // Ensure all styled widgets inherit the modern UI font family
+  QString fontRule =
+      "QWidget { font-family: 'Microsoft YaHei UI', 'Microsoft YaHei', 'Segoe UI', sans-serif; }\n";
+  app.setStyleSheet(fontRule + qss);
+
+  HorizonJuicerCreator mainWindow;
   mainWindow.show();
   return app.exec();
 }

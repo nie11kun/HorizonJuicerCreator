@@ -79,6 +79,16 @@
         </property>
         <item>
          <widget class="QPushButton" name="pushButtonCancel">
+          <property name="icon">
+           <iconset resource="resourse.qrc">
+            <normaloff>:/icons/arrow-left.svg</normaloff>:/icons/arrow-left.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>14</width>
+            <height>14</height>
+           </size>
+          </property>
           <property name="minimumSize">
            <size>
             <width>110</width>
@@ -100,7 +110,7 @@
            <string notr="true">QPushButton#pushButtonCancel { background-color: #1e293b; color: #94a3b8; border: 1px solid #334155; border-radius: 6px; font-size: 12px; font-weight: 500; } QPushButton#pushButtonCancel:hover { background-color: #334155; color: #f8fafc; border-color: #475569; } QPushButton#pushButtonCancel:pressed { background-color: #0f172a; }</string>
           </property>
           <property name="text">
-           <string>← 返回主菜单</string>
+           <string>返回主菜单</string>
           </property>
          </widget>
         </item>
@@ -212,6 +222,16 @@
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonDir">
+                <property name="icon">
+                 <iconset resource="resourse.qrc">
+                  <normaloff>:/icons/folder.svg</normaloff>:/icons/folder.svg</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>15</width>
+                  <height>15</height>
+                 </size>
+                </property>
                <property name="minimumSize">
                 <size>
                  <width>105</width>
@@ -224,7 +244,7 @@
                 </font>
                </property>
                <property name="text">
-                <string>📁 选择目录</string>
+                <string>选择目录</string>
                </property>
               </widget>
              </item>
@@ -267,7 +287,7 @@
                  <string notr="true">color: #cbd5e1;</string>
                 </property>
                 <property name="text">
-                 <string>💡 清理规则与支持格式</string>
+                 <string>清理规则与支持格式</string>
                 </property>
                </widget>
               </item>
@@ -376,6 +396,16 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonStart">
+          <property name="icon">
+           <iconset resource="resourse.qrc">
+            <normaloff>:/icons/play.svg</normaloff>:/icons/play.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>15</width>
+            <height>15</height>
+           </size>
+          </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -392,7 +422,7 @@
             <string notr="true">QPushButton#pushButtonStart { background-color: #2563eb; color: #ffffff; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; } QPushButton#pushButtonStart:hover { background-color: #3b82f6; } QPushButton#pushButtonStart:pressed { background-color: #1d4ed8; } QPushButton#pushButtonStart:disabled { background-color: #334155; color: #64748b; }</string>
            </property>
            <property name="text">
-            <string>▶ 开始清理注释</string>
+            <string>开始清理注释</string>
            </property>
           </widget>
          </item>

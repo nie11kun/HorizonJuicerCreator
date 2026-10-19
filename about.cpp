@@ -14,6 +14,7 @@
 About::About(QWidget *parent) : QWidget(parent), ui(new Ui::About) {
   ui->setupUi(this);
   setWindowTitle("关于软件");
+  setWindowIcon(QIcon(":/icons/info.svg"));
   resize(960, 600);
   setVersionInfo();
 

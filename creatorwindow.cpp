@@ -26,6 +26,13 @@ CreatorWindow::CreatorWindow(QWidget *parent)
     : QWidget(parent), ui(new Ui::CreatorWindow) {
   ui->setupUi(this);
   setWindowTitle("创建配置");
+  setWindowIcon(QIcon(":/icons/gear.svg"));
+  ui->backButton->setIcon(QIcon(":/icons/arrow-left.svg"));
+  ui->backButton->setIconSize(QSize(15, 15));
+  ui->saveDataPushButton->setIcon(QIcon(":/icons/save.svg"));
+  ui->saveDataPushButton->setIconSize(QSize(16, 16));
+  ui->creatPushButton->setIcon(QIcon(":/icons/bolt.svg"));
+  ui->creatPushButton->setIconSize(QSize(16, 16));
   jsonHandler = new ReadAndWriteJson;
   converter = new ConvertCode;
 
@@ -38,6 +45,7 @@ CreatorWindow::CreatorWindow(QWidget *parent)
   ui->labelProcessing->setMovie(processingAnimation);
   processingAnimation->start();
   ui->labelProcessing->hide();
+  ui->labelIdleIcon->setPixmap(QPixmap(":/icons/gear.svg").scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation));
   ui->labelIdleIcon->show();
 
   // Setup generator worker thread
@@ -407,7 +415,7 @@ int CreatorWindow::on_saveDataPushButton_clicked() {
 
   jsonHandler->saveObjToJson(config);
 
-  ui->labelStateBadge->setText("✔ 配置已保存");
+  ui->labelStateBadge->setText("● 配置已保存");
   ui->labelStateBadge->setStyleSheet(
       "color: #10b981; background-color: #064e3b; border: 1px solid #059669; "
       "border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: bold;");
@@ -451,8 +459,10 @@ void CreatorWindow::on_creatPushButton_clicked() {
 
 void CreatorWindow::startingProcess() {
   ui->creatPushButton->setText("正在生成...");
+  ui->creatPushButton->setIcon(QIcon());
   ui->creatPushButton->setDisabled(true);
   ui->saveDataPushButton->setDisabled(true);
+  ui->backButton->setDisabled(true);
   ui->labelIdleIcon->hide();
   ui->labelProcessing->show();
   ui->labelStatusTitle->setText("正在构建程序");
@@ -460,18 +470,20 @@ void CreatorWindow::startingProcess() {
   ui->labelInfo->show();
   ui->labelInfo->setText("正在校验机床参数并组装代码...\n请稍候");
   ui->labelInfo->setStyleSheet("color: #94a3b8; font-size: 11px; line-height: 140%;");
-  ui->labelStateBadge->setText("⚡ 正在生成...");
+  ui->labelStateBadge->setText("● 正在生成...");
   ui->labelStateBadge->setStyleSheet(
       "color: #38bdf8; background-color: #0c4a6e; border: 1px solid #0284c7; "
       "border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: bold;");
 }
 
 void CreatorWindow::finishedProcess() {
-  ui->creatPushButton->setText("⚡ 程序生成");
+  ui->creatPushButton->setText("程序生成");
+  ui->creatPushButton->setIcon(QIcon(":/icons/bolt.svg"));
   ui->creatPushButton->setDisabled(false);
   ui->saveDataPushButton->setDisabled(false);
+  ui->backButton->setDisabled(false);
   ui->labelProcessing->hide();
-  ui->labelIdleIcon->setText("✔");
+  ui->labelIdleIcon->setPixmap(QPixmap(":/icons/check.svg").scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation));
   ui->labelIdleIcon->setStyleSheet(
       "QLabel#labelIdleIcon { background-color: #064e3b; border: 2px solid #059669; "
       "border-radius: 32px; color: #10b981; font-weight: bold; }");
@@ -481,7 +493,7 @@ void CreatorWindow::finishedProcess() {
   ui->labelInfo->show();
   ui->labelInfo->setStyleSheet("color: #94a3b8; font-size: 11px; line-height: 140%;");
   ui->labelInfo->setText("文件已生成完毕\n输出目标目录已自动打开");
-  ui->labelStateBadge->setText("✔ 生成完毕");
+  ui->labelStateBadge->setText("● 生成完毕");
   ui->labelStateBadge->setStyleSheet(
       "color: #10b981; background-color: #064e3b; border: 1px solid #059669; "
       "border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: bold;");

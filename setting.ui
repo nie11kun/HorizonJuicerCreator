@@ -94,8 +94,18 @@
          </size>
         </property>
         <property name="text">
-         <string>📁 选择</string>
+         <string>选择</string>
         </property>
+         <property name="icon">
+          <iconset resource="resourse.qrc">
+           <normaloff>:/icons/folder.svg</normaloff>:/icons/folder.svg</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
        </widget>
       </item>
       <item row="1" column="0">
@@ -138,8 +148,18 @@
          </size>
         </property>
         <property name="text">
-         <string>📁 选择</string>
+         <string>选择</string>
         </property>
+         <property name="icon">
+          <iconset resource="resourse.qrc">
+           <normaloff>:/icons/folder.svg</normaloff>:/icons/folder.svg</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
        </widget>
       </item>
      </layout>
@@ -151,7 +171,7 @@
       <string notr="true">color: #94a3b8; font-size: 11px;</string>
      </property>
      <property name="text">
-      <string>💡 提示：源仓库地址需索引到 Horizon-Juicer 代码目录。</string>
+      <string>提示：源仓库地址需索引到 Horizon-Juicer 代码目录。</string>
      </property>
     </widget>
    </item>
@@ -187,6 +207,16 @@
        <property name="text">
         <string>取消</string>
        </property>
+        <property name="icon">
+         <iconset resource="resourse.qrc">
+          <normaloff>:/icons/x.svg</normaloff>:/icons/x.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>14</width>
+          <height>14</height>
+         </size>
+        </property>
       </widget>
      </item>
      <item>
@@ -207,14 +237,26 @@
         <string notr="true">QPushButton#saveButton { background-color: #2563eb; color: #ffffff; border: none; border-radius: 6px; font-weight: bold; } QPushButton#saveButton:hover { background-color: #3b82f6; } QPushButton#saveButton:pressed { background-color: #1d4ed8; }</string>
        </property>
        <property name="text">
-        <string>💾 保存配置</string>
+        <string>保存配置</string>
        </property>
+        <property name="icon">
+         <iconset resource="resourse.qrc">
+          <normaloff>:/icons/save.svg</normaloff>:/icons/save.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
       </widget>
      </item>
     </layout>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resourse.qrc"/>
+ </resources>
  <connections/>
 </ui>

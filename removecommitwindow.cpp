@@ -17,6 +17,13 @@ RemoveCommitWindow::RemoveCommitWindow(QWidget *parent)
     : QWidget(parent), ui(new Ui::RemoveCommitWindow) {
   ui->setupUi(this);
   setWindowTitle("删除程序注释");
+  setWindowIcon(QIcon(":/icons/broom.svg"));
+  ui->pushButtonCancel->setIcon(QIcon(":/icons/arrow-left.svg"));
+  ui->pushButtonCancel->setIconSize(QSize(14, 14));
+  ui->pushButtonDir->setIcon(QIcon(":/icons/folder.svg"));
+  ui->pushButtonDir->setIconSize(QSize(15, 15));
+  ui->pushButtonStart->setIcon(QIcon(":/icons/play.svg"));
+  ui->pushButtonStart->setIconSize(QSize(15, 15));
 
   converter = new ConvertCode;
   jsonHandler = new ReadAndWriteJson;
@@ -80,7 +87,7 @@ void RemoveCommitWindow::on_pushButtonStart_clicked() {
     emit triggerProcess();
   } else {
     ui->labelInfo->setStyleSheet("QLabel { color : #ef4444; font-weight: bold; font-size: 13px; }");
-    ui->labelInfo->setText("✖ 请选择有效的程序文件夹路径！");
+    ui->labelInfo->setText("请选择有效的程序文件夹路径！");
   }
 }
 
@@ -91,6 +98,7 @@ void RemoveCommitWindow::on_pushButtonCancel_clicked() {
 
 void RemoveCommitWindow::startingProcess() {
   ui->pushButtonStart->setText("正在清理中...");
+  ui->pushButtonStart->setIcon(QIcon());
   ui->pushButtonStart->setDisabled(true);
   ui->pushButtonCancel->setDisabled(true);
   ui->labelInfo->hide();
@@ -98,11 +106,12 @@ void RemoveCommitWindow::startingProcess() {
 }
 
 void RemoveCommitWindow::finishedProcess() {
-  ui->pushButtonStart->setText("▶ 开始清理注释");
+  ui->pushButtonStart->setText("开始清理注释");
+  ui->pushButtonStart->setIcon(QIcon(":/icons/play.svg"));
   ui->pushButtonStart->setDisabled(false);
   ui->pushButtonCancel->setDisabled(false);
   ui->labelProcess->hide();
   ui->labelInfo->show();
   ui->labelInfo->setStyleSheet("QLabel { color : #10b981; font-weight: bold; font-size: 14px; }");
-  ui->labelInfo->setText("✔ 注释清理已顺利完成！");
+  ui->labelInfo->setText("注释清理已顺利完成！");
 }

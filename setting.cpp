@@ -14,6 +14,15 @@
 Setting::Setting(QWidget *parent) : QWidget(parent), ui(new Ui::Setting) {
   ui->setupUi(this);
   setWindowTitle("设置");
+  setWindowIcon(QIcon(":/icons/gear.svg"));
+  ui->sourceButton->setIcon(QIcon(":/icons/folder.svg"));
+  ui->sourceButton->setIconSize(QSize(15, 15));
+  ui->destButton->setIcon(QIcon(":/icons/folder.svg"));
+  ui->destButton->setIconSize(QSize(15, 15));
+  ui->saveButton->setIcon(QIcon(":/icons/save.svg"));
+  ui->saveButton->setIconSize(QSize(16, 16));
+  ui->abortButton->setIcon(QIcon(":/icons/x.svg"));
+  ui->abortButton->setIconSize(QSize(14, 14));
   jsonHandler = new ReadAndWriteJson;
 
   loadDir();

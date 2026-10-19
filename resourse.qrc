@@ -3,5 +3,20 @@
         <file>processing.gif</file>
         <file>hjc.icns</file>
         <file>hjc.ico</file>
+        <file>icons/gear.svg</file>
+        <file>icons/key.svg</file>
+        <file>icons/broom.svg</file>
+        <file>icons/save.svg</file>
+        <file>icons/bolt.svg</file>
+        <file>icons/play.svg</file>
+        <file>icons/folder.svg</file>
+        <file>icons/copy.svg</file>
+        <file>icons/paste.svg</file>
+        <file>icons/x.svg</file>
+        <file>icons/check.svg</file>
+        <file>icons/arrow-left.svg</file>
+        <file>icons/clock.svg</file>
+        <file>icons/package.svg</file>
+        <file>icons/info.svg</file>
     </qresource>
 </RCC>

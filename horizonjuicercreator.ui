@@ -277,18 +277,32 @@
    <property name="text">
     <string>参数设置</string>
    </property>
+   <property name="icon">
+    <iconset resource="resourse.qrc">
+     <normaloff>:/icons/gear.svg</normaloff>:/icons/gear.svg</iconset>
+   </property>
   </action>
   <action name="actionAbout">
    <property name="text">
     <string>关于软件</string>
+   </property>
+   <property name="icon">
+    <iconset resource="resourse.qrc">
+     <normaloff>:/icons/info.svg</normaloff>:/icons/info.svg</iconset>
    </property>
   </action>
   <action name="actionHistory">
    <property name="text">
     <string>版本更新日志</string>
    </property>
+   <property name="icon">
+    <iconset resource="resourse.qrc">
+     <normaloff>:/icons/clock.svg</normaloff>:/icons/clock.svg</iconset>
+   </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resourse.qrc"/>
+ </resources>
  <connections/>
 </ui>

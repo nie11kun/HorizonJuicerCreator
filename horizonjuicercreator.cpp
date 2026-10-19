@@ -22,6 +22,10 @@ HorizonJuicerCreator::HorizonJuicerCreator(QWidget *parent)
 
   setVersion();
   setupMainButtons();
+  setWindowIcon(QIcon(":/icons/gear.svg"));
+  ui->actionSettings->setIcon(QIcon(":/icons/gear.svg"));
+  ui->actionAbout->setIcon(QIcon(":/icons/info.svg"));
+  ui->actionHistory->setIcon(QIcon(":/icons/clock.svg"));
 }
 
 HorizonJuicerCreator::~HorizonJuicerCreator() {
@@ -108,20 +112,28 @@ void HorizonJuicerCreator::showWindow() {
 }
 
 void HorizonJuicerCreator::setupMainButtons() {
-  auto setupButton = [](QPushButton *btn, const QString &title,
-                        const QString &subtitle) {
+  auto setupButton = [](QPushButton *btn, const QString &iconPath,
+                        const QString &title, const QString &subtitle) {
     btn->setText(""); // Clear plain text
 
     QVBoxLayout *layout = new QVBoxLayout(btn);
-    layout->setContentsMargins(16, 22, 16, 22);
+    layout->setContentsMargins(16, 16, 16, 16);
     layout->setSpacing(8);
     layout->setAlignment(Qt::AlignCenter);
+
+    // Modern vector SVG icon
+    QLabel *iconLabel = new QLabel(btn);
+    iconLabel->setAlignment(Qt::AlignCenter);
+    iconLabel->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    QPixmap iconPix(iconPath);
+    iconLabel->setPixmap(iconPix.scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    iconLabel->setStyleSheet("background: transparent; border: none;");
 
     QLabel *titleLabel = new QLabel(title, btn);
     titleLabel->setAlignment(Qt::AlignCenter);
     titleLabel->setAttribute(Qt::WA_TransparentForMouseEvents, true);
     titleLabel->setStyleSheet(
-        "font-size: 17px; font-weight: bold; color: #f8fafc; "
+        "font-size: 16px; font-weight: bold; color: #f8fafc; "
         "background: transparent; border: none;");
 
     QLabel *subLabel = new QLabel(subtitle, btn);
@@ -132,11 +144,12 @@ void HorizonJuicerCreator::setupMainButtons() {
         "font-size: 12px; color: #94a3b8; font-weight: normal; "
         "background: transparent; border: none;");
 
+    layout->addWidget(iconLabel);
     layout->addWidget(titleLabel);
     layout->addWidget(subLabel);
   };
 
-  setupButton(ui->creatNewMachineButton, "⚙️ 机床配置", "定制机床加工宏程序");
-  setupButton(ui->passwordCaculateButton, "🔐 口令计算", "新老版解锁口令秒算");
-  setupButton(ui->removeCommitsButton, "🧹 删除注释", "批量清理程序注释");
+  setupButton(ui->creatNewMachineButton, ":/icons/gear.svg", "机床配置", "定制机床加工宏程序");
+  setupButton(ui->passwordCaculateButton, ":/icons/key.svg", "口令计算", "新老版解锁口令秒算");
+  setupButton(ui->removeCommitsButton, ":/icons/broom.svg", "删除注释", "批量清理程序注释");
 }

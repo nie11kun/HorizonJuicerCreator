@@ -19,6 +19,14 @@ PasswordCalculatorWindow::PasswordCalculatorWindow(QWidget *parent)
     : QWidget(parent), ui(new Ui::PasswordCalculatorWindow), isNewMode(true) {
   ui->setupUi(this);
   setWindowTitle("机床解锁口令计算");
+  setWindowIcon(QIcon(":/icons/key.svg"));
+  ui->pushButtonBack->setIcon(QIcon(":/icons/arrow-left.svg"));
+  ui->pushButtonBack->setIconSize(QSize(15, 15));
+  ui->pushButtonBack->setText("返回主菜单");
+  ui->buttonModeNew->setIcon(QIcon(":/icons/bolt.svg"));
+  ui->buttonModeNew->setIconSize(QSize(16, 16));
+  ui->buttonModeLegacy->setIcon(QIcon(":/icons/clock.svg"));
+  ui->buttonModeLegacy->setIconSize(QSize(16, 16));
 
   // Only allow 6-digit integers (100000 - 999999)
   QIntValidator *validator = new QIntValidator(100000, 999999, this);
@@ -68,7 +76,7 @@ void PasswordCalculatorWindow::updateModeStyles() {
         "QPushButton { background-color: #2563eb; color: #ffffff; border: 1px solid #3b82f6; border-radius: 6px; padding: 6px 12px; font-weight: bold; } QPushButton:hover { background-color: #1d4ed8; }");
     ui->buttonModeLegacy->setStyleSheet(
         "QPushButton { background-color: #1e293b; color: #94a3b8; border: 1px solid #334155; border-radius: 6px; padding: 6px 12px; font-weight: normal; } QPushButton:hover { background-color: #334155; color: #f1f5f9; }");
-    ui->labelActiveBadge->setText("⚡ 新版算法生效");
+    ui->labelActiveBadge->setText("● 新版算法生效");
     ui->labelActiveBadge->setStyleSheet(
         "background-color: #1e293b; color: #38bdf8; border: 1px solid #0284c7; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: bold;");
   } else {
@@ -76,7 +84,7 @@ void PasswordCalculatorWindow::updateModeStyles() {
         "QPushButton { background-color: #1e293b; color: #94a3b8; border: 1px solid #334155; border-radius: 6px; padding: 6px 12px; font-weight: normal; } QPushButton:hover { background-color: #334155; color: #f1f5f9; }");
     ui->buttonModeLegacy->setStyleSheet(
         "QPushButton { background-color: #d97706; color: #ffffff; border: 1px solid #f59e0b; border-radius: 6px; padding: 6px 12px; font-weight: bold; } QPushButton:hover { background-color: #b45309; }");
-    ui->labelActiveBadge->setText("🕰️ 老版算法生效");
+    ui->labelActiveBadge->setText("● 老版算法生效");
     ui->labelActiveBadge->setStyleSheet(
         "background-color: #1e293b; color: #fbbf24; border: 1px solid #d97706; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: bold;");
   }
@@ -125,7 +133,8 @@ void PasswordCalculatorWindow::on_pushButtonCopy_clicked() {
   QClipboard *clipboard = QGuiApplication::clipboard();
   if (clipboard) {
     clipboard->setText(currentPassword);
-    ui->pushButtonCopy->setText("✔ 已复制到剪贴板");
+    ui->pushButtonCopy->setIcon(QIcon(":/icons/check.svg"));
+  ui->pushButtonCopy->setText("已复制到剪贴板");
     ui->labelStatus->setText("口令已成功复制到剪贴板");
     ui->labelStatus->setStyleSheet("color: #10b981; font-size: 12px; font-weight: bold;");
     copyFeedbackTimer->start(1500);
@@ -133,7 +142,8 @@ void PasswordCalculatorWindow::on_pushButtonCopy_clicked() {
 }
 
 void PasswordCalculatorWindow::resetCopyButtonText() {
-  ui->pushButtonCopy->setText("📄 复制解锁口令");
+  ui->pushButtonCopy->setIcon(QIcon(":/icons/copy.svg"));
+  ui->pushButtonCopy->setText("复制解锁口令");
   if (!currentPassword.isEmpty()) {
     QString mode = isNewMode ? "新版" : "老版";
     ui->labelStatus->setText(QString("计算完成 (%1算法)").arg(mode));

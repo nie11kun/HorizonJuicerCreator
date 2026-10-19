@@ -154,7 +154,7 @@
       <item>
        <widget class="QFrame" name="cardFrame">
         <property name="styleSheet">
-         <string notr="true">QFrame#cardFrame { background-color: #161b22; border: 1px solid #30363d; border-radius: 10px; }</string>
+         <string notr="true">QFrame#cardFrame { background-color: #161b22; border: 1px solid #30363d; border-radius: 10px; } QFrame#cardFrame QLabel { background-color: transparent; border: none; }</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -192,7 +192,7 @@
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: #f1f5f9;</string>
+              <string notr="true">color: #f1f5f9; background-color: transparent;</string>
              </property>
              <property name="text">
               <string>目标程序目录</string>
@@ -255,7 +255,7 @@
          <item>
           <widget class="QFrame" name="infoCard">
            <property name="styleSheet">
-            <string notr="true">QFrame#infoCard { background-color: #0b1320; border: 1px solid #1e293b; border-radius: 8px; }</string>
+            <string notr="true">QFrame#infoCard { background-color: #0b1320; border: 1px solid #1e293b; border-radius: 8px; } QFrame#infoCard QLabel { background-color: transparent; border: none; }</string>
            </property>
            <layout class="QVBoxLayout" name="infoCardLayout">
             <property name="spacing">
@@ -284,7 +284,7 @@
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">color: #cbd5e1;</string>
+                 <string notr="true">color: #cbd5e1; background-color: transparent;</string>
                 </property>
                 <property name="text">
                  <string>清理规则与支持格式</string>
@@ -344,7 +344,7 @@
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: #94a3b8; line-height: 140%;</string>
+               <string notr="true">color: #94a3b8; line-height: 140%; background-color: transparent;</string>
               </property>
               <property name="text">
                <string>程序将自动递归检索所选目录（包含子文件夹），剔除分号注释内容，保留纯净数控加工代码。清理前建议妥善备份原始工程。</string>
@@ -381,7 +381,7 @@
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: #94a3b8;</string>
+               <string notr="true">color: #94a3b8; background-color: transparent;</string>
               </property>
               <property name="text">
                <string>准备就绪，点击下方按钮开始批量清理</string>

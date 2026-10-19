@@ -891,7 +891,7 @@
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">color: #f1f5f9; font-weight: bold;</string>
+             <string notr="true">color: #f1f5f9; font-weight: bold; background-color: transparent;</string>
             </property>
             <property name="text">
              <string>等待生成</string>
@@ -909,7 +909,7 @@
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">color: #94a3b8; line-height: 140%;</string>
+             <string notr="true">color: #94a3b8; line-height: 140%; background-color: transparent;</string>
             </property>
             <property name="text">
              <string>确认左侧机床配置后&#10;点击「程序生成」开始构建</string>
@@ -940,7 +940,7 @@
         <item>
          <widget class="QFrame" name="hintFrame">
           <property name="styleSheet">
-           <string notr="true">QFrame#hintFrame { background-color: #0b1320; border: 1px solid #1e293b; border-radius: 6px; padding: 6px; }</string>
+           <string notr="true">QFrame#hintFrame { background-color: #0b1320; border: 1px solid #1e293b; border-radius: 6px; padding: 6px; } QFrame#hintFrame QLabel { background-color: transparent; border: none; }</string>
           </property>
           <layout class="QVBoxLayout" name="hintFrameLayout">
            <property name="spacing">
@@ -994,7 +994,7 @@
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">color: #cbd5e1;</string>
+                 <string notr="true">color: #cbd5e1; background-color: transparent;</string>
                 </property>
                 <property name="text">
                  <string>输出说明</string>
@@ -1024,7 +1024,7 @@
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: #64748b; line-height: 130%;</string>
+              <string notr="true">color: #94a3b8; line-height: 140%; background-color: transparent;</string>
              </property>
              <property name="text">
               <string>生成完成后将自动打包，&#10;并输出至目标程序目录。</string>

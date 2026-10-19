@@ -420,9 +420,9 @@ int CreatorWindow::on_saveDataPushButton_clicked() {
       "color: #10b981; background-color: #064e3b; border: 1px solid #059669; "
       "border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: bold;");
   ui->labelStatusTitle->setText("机床配置已保存");
-  ui->labelStatusTitle->setStyleSheet("color: #10b981; font-size: 13px; font-weight: bold;");
+  ui->labelStatusTitle->setStyleSheet("color: #10b981; font-size: 13px; font-weight: bold; background-color: transparent;");
   ui->labelInfo->setText("当前界面配置参数已成功保存至本地文件");
-  ui->labelInfo->setStyleSheet("color: #94a3b8; font-size: 11px; line-height: 140%;");
+  ui->labelInfo->setStyleSheet("color: #94a3b8; font-size: 11px; line-height: 140%; background-color: transparent;");
   return true;
 }
 
@@ -466,7 +466,7 @@ void CreatorWindow::startingProcess() {
   ui->labelIdleIcon->hide();
   ui->labelProcessing->show();
   ui->labelStatusTitle->setText("正在构建程序");
-  ui->labelStatusTitle->setStyleSheet("color: #38bdf8; font-size: 13px; font-weight: bold;");
+  ui->labelStatusTitle->setStyleSheet("color: #38bdf8; font-size: 13px; font-weight: bold; background-color: transparent;");
   ui->labelInfo->show();
   ui->labelInfo->setText("正在校验机床参数并组装代码...\n请稍候");
   ui->labelInfo->setStyleSheet("color: #94a3b8; font-size: 11px; line-height: 140%;");
@@ -489,7 +489,7 @@ void CreatorWindow::finishedProcess() {
       "border-radius: 32px; color: #10b981; font-weight: bold; }");
   ui->labelIdleIcon->show();
   ui->labelStatusTitle->setText("加工程序生成成功");
-  ui->labelStatusTitle->setStyleSheet("color: #10b981; font-size: 14px; font-weight: bold;");
+  ui->labelStatusTitle->setStyleSheet("color: #10b981; font-size: 14px; font-weight: bold; background-color: transparent;");
   ui->labelInfo->show();
   ui->labelInfo->setStyleSheet("color: #94a3b8; font-size: 11px; line-height: 140%;");
   ui->labelInfo->setText("文件已生成完毕\n输出目标目录已自动打开");

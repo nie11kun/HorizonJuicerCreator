@@ -86,7 +86,7 @@ void RemoveCommitWindow::on_pushButtonStart_clicked() {
 
     emit triggerProcess();
   } else {
-    ui->labelInfo->setStyleSheet("QLabel { color : #ef4444; font-weight: bold; font-size: 13px; }");
+    ui->labelInfo->setStyleSheet("QLabel { color : #ef4444; font-weight: bold; font-size: 13px; background-color: transparent; }");
     ui->labelInfo->setText("请选择有效的程序文件夹路径！");
   }
 }
@@ -112,6 +112,6 @@ void RemoveCommitWindow::finishedProcess() {
   ui->pushButtonCancel->setDisabled(false);
   ui->labelProcess->hide();
   ui->labelInfo->show();
-  ui->labelInfo->setStyleSheet("QLabel { color : #10b981; font-weight: bold; font-size: 14px; }");
+  ui->labelInfo->setStyleSheet("QLabel { color : #10b981; font-weight: bold; font-size: 14px; background-color: transparent; }");
   ui->labelInfo->setText("注释清理已顺利完成！");
 }
